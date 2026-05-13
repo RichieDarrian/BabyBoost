@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stunting Prediction | BabyBoost</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --pink: #FEA4AA;
+  --pink-light: #fde8ef;
+  --blue: #024774;
+  --blue-mid: #37678D;
+  --blue-light: #e8f2fb;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { font-family: 'Poppins', sans-serif; background: #F3F3F3; color: var(--blue); min-height: 100vh; }
+
+nav {
+  display: flex; align-items: center; padding: 14px 48px;
+  background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+  border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; gap: 16px;
+}
+.logo { display: flex; align-items: center; gap: 6px; text-decoration: none; flex-shrink: 0; }
+.logo-svg { width: 32px; height: 32px; }
+.logo-text { font-size: 1.25rem; font-weight: 700; }
+.logo-text .b { color: var(--blue); }
+.logo-text .p { color: var(--pink); }
+.nav-links-wrapper { display: flex; align-items: center; gap: 4px; margin-left: auto; min-width: 0; flex: 1; }
+.nav-arrow {
+  flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid #ddd; background: #fff; color: #555; cursor: pointer;
+  display: none; align-items: center; justify-content: center; padding: 0;
+  transition: border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.nav-arrow:hover { border-color: var(--blue); color: var(--blue); box-shadow: 0 2px 8px rgba(2,71,116,0.15); }
+.nav-arrow:active { background: #f0f6fc; }
+.nav-arrow svg { width: 13px; height: 13px; pointer-events: none; }
+.nav-arrow.visible { display: flex; }
+.nav-links-scroll { overflow: hidden; min-width: 0; flex: 1; }
+.nav-links {
+  display: flex; align-items: center; gap: 20px; list-style: none; width: max-content;
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), padding-left 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.nav-links li { display: flex; align-items: center; flex-shrink: 0; }
+.nav-links a { text-decoration: none; color: #333; font-size: 1rem; font-weight: 500; white-space: nowrap; transition: color 0.2s; }
+.nav-links a.active { color: var(--blue); font-weight: 700; }
+.nav-links a:hover { color: var(--blue); }
+.nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.btn-login { background: var(--blue); color: #fff; border: none; padding: 9px 22px; border-radius: 6px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+.btn-login:hover { background: #035a92; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2,71,116,0.28); }
+.btn-login:active { transform: translateY(0px) scale(0.97); box-shadow: 0 2px 6px rgba(2,71,116,0.2); }
+
+.page-wrap { min-height: calc(100vh - 65px); display: flex; align-items: flex-start; justify-content: center; padding: 32px 20px 48px; }
+
+.prediction-card { background: #fff; border-radius: 24px; border: 1.5px solid #f0dde6; width: 100%; max-width: 680px; overflow: hidden; animation: fadeUp 0.5s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.card-header { background: linear-gradient(135deg, var(--blue) 0%, #037abf 100%); padding: 28px 40px 26px; position: relative; overflow: hidden; }
+.card-header::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,0.06); }
+.card-header::after { content: ''; position: absolute; bottom: -60px; left: 30px; width: 140px; height: 140px; border-radius: 50%; background: rgba(254,164,170,0.12); }
+.header-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fff; margin-bottom: 12px; position: relative; z-index: 1; }
+.card-header h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 4px; position: relative; z-index: 1; }
+.card-header p { font-size: 0.88rem; color: rgba(255,255,255,0.72); position: relative; z-index: 1; }
+
+.card-body { padding: 24px 40px 32px; }
+.field-group { margin-bottom: 18px; }
+.field-label { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.field-label i { font-size: 0.82rem; color: var(--pink); }
+
+.input-wrap { position: relative; }
+.input-wrap input, .input-wrap select {
+  width: 100%; height: 48px; border: 1.5px solid #e8eef4; border-radius: 10px;
+  padding: 0 48px 0 14px; font-family: 'Poppins', sans-serif; font-size: 0.95rem;
+  color: var(--blue); background: #fafcff; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s; appearance: none;
+}
+.input-wrap input[type=number]::-webkit-inner-spin-button,
+.input-wrap input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.input-wrap input[type=number] { -moz-appearance: textfield; }
+.input-wrap input::placeholder { color: #b0c4d8; }
+.input-wrap input:focus, .input-wrap select:focus { border-color: var(--pink); background: #fff; box-shadow: 0 0 0 3px rgba(254,164,170,0.18); }
+.input-wrap .unit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 0.78rem; font-weight: 600; color: var(--blue-mid); pointer-events: none; }
+.select-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 0.75rem; color: var(--blue-mid); pointer-events: none; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.gender-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.gender-btn { height: 48px; border: 1.5px solid #e8eef4; border-radius: 10px; background: #fafcff; color: var(--blue-mid); font-family: 'Poppins', sans-serif; font-size: 0.92rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
+.gender-btn i { font-size: 1rem; }
+.gender-btn.male-btn i { color: #5b9bd5; }
+.gender-btn.female-btn i { color: var(--pink); }
+.gender-btn.active.male-btn { border-color: #5b9bd5; background: #edf4fb; color: #2a6aad; }
+.gender-btn.active.female-btn { border-color: var(--pink); background: var(--pink-light); color: #c0555c; }
+
+.form-divider { height: 1px; background: #f0e8ed; margin: 4px 0 18px; }
+
+.btn-submit { width: 100%; height: 52px; background: linear-gradient(135deg, var(--pink) 0%, #f67a84 100%); color: #fff; border: none; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s, box-shadow 0.2s, filter 0.2s; margin-top: 4px; }
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(254,164,170,0.45); filter: brightness(1.05); }
+.btn-submit:active { transform: translateY(0) scale(0.98); }
+
+.disclaimer { display: flex; align-items: flex-start; gap: 8px; margin-top: 16px; padding: 12px 14px; background: var(--blue-light); border-radius: 10px; font-size: 0.78rem; color: var(--blue-mid); line-height: 1.5; }
+.disclaimer i { color: var(--blue); margin-top: 1px; flex-shrink: 0; }
+
+/* Loading overlay */
+.loading-overlay { display: none; position: fixed; inset: 0; background: rgba(2,71,116,0.2); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center; }
+.loading-overlay.show { display: flex; }
+.loading-card { background: #fff; border-radius: 20px; padding: 36px 48px; text-align: center; box-shadow: 0 20px 60px rgba(2,71,116,0.2); }
+.spinner { width: 46px; height: 46px; border: 4px solid #f0e0e3; border-top-color: var(--pink); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-card p { font-size: 0.9rem; color: var(--blue-mid); font-weight: 500; }
+
+@media (max-width: 600px) {
+  nav { padding: 12px 16px; }
+  .card-header { padding: 22px 20px 20px; }
+  .card-header h1 { font-size: 1.4rem; }
+  .card-body { padding: 20px 20px 24px; }
+  .two-col { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-card">
+    <div class="spinner"></div>
+    <p>Analyzing growth data…</p>
+  </div>
+</div>
+
+<nav>
+  <a class="logo" href="#">
+    <img src="static-assets/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
+  </a>
+  <div class="nav-links-wrapper">
+    <button class="nav-arrow" id="navPrev" aria-label="Show previous items">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="nav-links-scroll" id="navScroll">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stunting-prediction.html" class="active">Stunting Prediction</a></li>
+        <li><a href="growth-dashboard.html">Growth Dashboard</a></li>
+        <li><a href="healthy-recipes.html">Healthy Recipes</a></li>
+        <li><a href="parenting-guides.html">Parenting Guides</a></li>
+        <li><a href="forum.html">Forum</a></li>
+      </ul>
+    </div>
+    <button class="nav-arrow" id="navNext" aria-label="Show next items">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="nav-right">
+    <button class="btn-login">Log in</button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="prediction-card">
+    <div class="card-header">
+      <div class="header-icon"><i class="fa-solid fa-child"></i></div>
+      <h1>Stunting Prediction</h1>
+      <p>Enter your child's details to assess stunting risk using our ML model.</p>
+    </div>
+
+    <div class="card-body">
+      <form id="predForm" action="/predict" method="POST" onsubmit="return handleSubmit()">
+
+        <div class="two-col">
+          <div class="field-group">
+            <div class="field-label"><i class="fa-solid fa-user-group"></i> Child Profile</div>
+            <div class="input-wrap">
+              <select name="child_select" id="childSelect" required>
+                <option value="">Select Child</option>
+                <option value="Child 1">Child 1</option>
+                <option value="Child 2">Child 2</option>
+              </select>
+              <i class="fa-solid fa-chevron-down select-arrow"></i>
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field-label"><i class="fa-solid fa-venus-mars"></i> Gender</div>
+            <div class="gender-toggle">
+              <button type="button" class="gender-btn male-btn active" onclick="setGender('laki-laki', this)">
+                <i class="fa-solid fa-mars"></i> Male
+              </button>
+              <button type="button" class="gender-btn female-btn" onclick="setGender('perempuan', this)">
+                <i class="fa-solid fa-venus"></i> Female
+              </button>
+            </div>
+            <input type="hidden" name="gender" id="genderInput" value="laki-laki">
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="field-group">
+          <div class="field-label"><i class="fa-solid fa-calendar-days"></i> Age</div>
+          <div class="two-col" style="margin-bottom:0;">
+            <div class="input-wrap">
+              <input type="number" name="age_years" placeholder="Years e.g. 2" min="0" max="5" step="1" required>
+              <span class="unit">yr</span>
+            </div>
+            <div class="input-wrap">
+              <input type="number" name="age_months" placeholder="Months e.g. 6" min="0" max="11" step="1" required>
+              <span class="unit">mo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="two-col">
+          <div class="field-group">
+            <div class="field-label"><i class="fa-solid fa-weight-scale"></i> Body Weight</div>
+            <div class="input-wrap">
+              <input type="number" name="weight_kg" placeholder="e.g. 6.7" step="0.1" min="0" required>
+              <span class="unit">kg</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field-label"><i class="fa-solid fa-ruler-vertical"></i> Body Height</div>
+            <div class="input-wrap">
+              <input type="number" name="height_cm" placeholder="e.g. 69.5" step="0.1" min="0" required>
+              <span class="unit">cm</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <button type="submit" class="btn-submit">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+          Check Stunting Risk
+        </button>
+      </form>
+
+      <div class="disclaimer">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>This tool uses a machine learning model and is not a substitute for professional medical advice. Consult a pediatrician for a complete assessment.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Nav carousel (matches parenting-guides behavior) ──
+(function () {
+  const scrollEl = document.getElementById('navScroll');
+  const list     = document.getElementById('navLinks');
+  const btnPrev  = document.getElementById('navPrev');
+  const btnNext  = document.getElementById('navNext');
+
+  let offset = 0;
+  const STEP = 100;
+
+  function maxOffset() {
+    const prev = list.style.paddingLeft;
+    list.style.paddingLeft = '0px';
+    const max = Math.max(0, list.scrollWidth - scrollEl.clientWidth);
+    list.style.paddingLeft = prev;
+    return max;
+  }
+
+  function render() {
+    const max = maxOffset();
+    offset = Math.max(0, Math.min(offset, max));
+    list.style.transform = `translateX(${-offset}px)`;
+
+    if (max === 0) {
+      const slack = scrollEl.clientWidth - list.scrollWidth;
+      list.style.paddingLeft = slack > 0 ? `${slack / 2}px` : '0px';
+    } else {
+      list.style.paddingLeft = '0px';
+    }
+
+    btnPrev.classList.toggle('visible', offset > 0);
+    btnNext.classList.toggle('visible', offset < max);
+  }
+
+  btnPrev.addEventListener('click', () => { offset -= STEP; render(); });
+  btnNext.addEventListener('click', () => { offset += STEP; render(); });
+
+  new ResizeObserver(render).observe(scrollEl);
+  render();
+})();
+
+function setGender(value, btn) {
+  document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('genderInput').value = value;
+}
+
+function handleSubmit() {
+  const childSelect = document.getElementById('childSelect');
+
+  if (!childSelect.value) {
+    alert('Please select a child profile first.');
+    childSelect.focus();
+    return false;
+  }
+
+  document.getElementById('loadingOverlay').classList.add('show');
+  return true;
+}
+</script>
+</body>
+</html>

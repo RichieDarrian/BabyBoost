@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parenting Guides | BabyBoost</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --pink: #FEA4AA;
+  --blue: #024774;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background: #fff;
+  color: var(--blue);
+  width: 100%;
+}
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  align-items: center;
+  padding: 14px 48px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-svg { width: 32px; height: 32px; }
+.logo-text { font-size: 1.25rem; font-weight: 700; line-height: 1; }
+.logo-text .b { color: var(--blue); }
+.logo-text .p { color: var(--pink); }
+
+/* ── NAV LINKS CAROUSEL ── */
+.nav-links-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  min-width: 0;
+  flex: 1;
+}
+
+.nav-arrow {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s;
+  padding: 0;
+}
+.nav-arrow:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  box-shadow: 0 2px 8px rgba(2,71,116,0.15);
+}
+.nav-arrow:active { background: #f0f6fc; }
+.nav-arrow svg { width: 13px; height: 13px; pointer-events: none; }
+.nav-arrow.visible { display: flex; }
+
+.nav-links-scroll {
+  overflow: hidden;
+  min-width: 0;
+  flex: 1;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  width: max-content;
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              padding-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-links li { display: flex; align-items: center; flex-shrink: 0; }
+.nav-links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.nav-links a.active { color: var(--blue); font-weight: 700; }
+.nav-links a:hover  { color: var(--blue); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.btn-login {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-login:hover {
+  background: #035a92;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(2,71,116,0.28);
+}
+.btn-login:active {
+  transform: translateY(0px) scale(0.97);
+  box-shadow: 0 2px 6px rgba(2,71,116,0.2);
+}
+
+/* ── HERO ── */
+.hero {
+  background: #F8F3F3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 48px 70px;
+  gap: 40px;
+}
+
+.hero-left { flex: 1 1 0; min-width: 0; }
+
+.hero-left h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--blue);
+  margin-bottom: 18px;
+}
+
+.hero-left p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #37678D;
+  margin-bottom: 32px;
+  max-width: 480px;
+  font-weight: 400;
+}
+
+/* ── SEARCH BOX ── */
+.search-box {
+  display: flex;
+  max-width: 560px;
+  height: 52px;
+  border: 2px solid var(--blue);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: var(--blue);
+}
+
+.search-box input::placeholder { color: #aaa; }
+
+.search-box button {
+  width: 56px;
+  border: none;
+  background: var(--blue);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.search-box button:hover { background: #035a92; }
+
+/* ── HERO RIGHT ── */
+.hero-right {
+  position: relative;
+  width: 380px;
+  height: 280px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pink-circle {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  background: #F7DDE1;
+  border-radius: 50%;
+}
+
+.hero-right img {
+  width: 260px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── CATEGORY ── */
+.category-section {
+  padding: 28px 70px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.category {
+  border: none;
+  padding: 10px 22px;
+  border-radius: 25px;
+  background: #F1F1F1;
+  color: var(--blue);
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.category:hover { background: #fcd0db; transform: translateY(-1px); }
+.category.active-category { background: var(--pink); color: #fff; }
+
+/* ── FEATURED ── */
+.featured-section {
+  padding: 0 70px 40px;
+}
+
+.featured-section h2,
+.latest-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+
+.featured-container {
+  display: flex;
+  gap: 24px;
+}
+
+/* Main card */
+.featured-main-card {
+  width: 58%;
+  border: 1.5px solid #f0dde6;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.featured-main-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 28px rgba(254,164,170,0.18);
+  border-color: var(--pink);
+}
+
+.featured-main-card img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+}
+
+.featured-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--blue);
+  margin-bottom: 16px;
+  flex: 1; /* pushes footer down */
+}
+
+/* Side articles */
+.side-articles {
+  width: 42%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.side-card {
+  display: flex;
+  border: 1.5px solid #f0dde6;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+.side-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(254,164,170,0.18);
+  border-color: var(--pink);
+}
+
+.side-card img {
+  width: 160px;
+  min-width: 160px;
+  object-fit: cover;
+}
+
+.side-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.side-content h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--blue);
+  margin-bottom: 12px;
+  flex: 1; /* pushes footer down */
+}
+
+/* Article footer — shared, always bottom-aligned via flex parent */
+.article-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* no margin-top: auto needed — h3/h4 flex:1 handles it */
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #888;
+  font-size: 0.82rem;
+}
+
+.tag {
+  color: var(--pink);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #fde8ef;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* ── LATEST ── */
+.latest-section {
+  padding: 10px 70px 70px;
+}
+
+.latest-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.latest-card {
+  border: 1.5px solid #f0dde6;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column; /* enables bottom-aligned footer */
+}
+.latest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(254,164,170,0.18);
+  border-color: var(--pink);
+}
+
+.latest-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.latest-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* stretches to fill card height */
+}
+
+.latest-content h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--blue);
+  margin-bottom: 12px;
+  flex: 1; /* grows to push footer to bottom */
+}
+
+/* Load more */
+.load-more-container {
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.load-btn {
+  border: 2px solid var(--blue);
+  background: #fff;
+  color: var(--blue);
+  padding: 11px 28px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.load-btn:hover {
+  background: var(--blue);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(2,71,116,0.2);
+}
+.load-btn:active { transform: translateY(0) scale(0.97); }
+
+/* ── FOOTER ── */
+footer { background: #f8f8f8; border-top: 1px solid #eee; height: 24px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1042px) {
+  nav { padding: 12px 16px; gap: 8px; }
+
+  .hero { flex-direction: column; padding: 32px 24px 36px; gap: 32px; }
+  .hero-left h1 { font-size: 2rem; }
+  .hero-right { width: 240px; height: 200px; }
+  .pink-circle { width: 170px; height: 170px; }
+  .hero-right img { width: 190px; }
+  .search-box { max-width: 100%; }
+
+  .category-section { padding: 20px 24px; }
+
+  .featured-section { padding: 0 24px 32px; }
+  .featured-container { flex-direction: column; }
+  .featured-main-card { width: 100%; }
+  .featured-main-card img { height: 220px; }
+  .featured-content h3 { font-size: 1.1rem; }
+  .side-articles { width: 100%; }
+  .side-card img { width: 120px; min-width: 120px; }
+  .side-content h4 { font-size: 0.9rem; }
+
+  .latest-section { padding: 10px 24px 48px; }
+  .latest-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .btn-login { padding: 8px 14px; font-size: 0.88rem; }
+  .nav-links a { font-size: 0.88rem; }
+  .nav-links { gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .latest-grid { grid-template-columns: 1fr; }
+  .side-card { flex-direction: column; }
+  .side-card img { width: 100%; height: 160px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="logo" href="#">
+    <img src="static-assets/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
+  </a>
+
+  <div class="nav-links-wrapper">
+    <button class="nav-arrow" id="navPrev" aria-label="Show previous items">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="nav-links-scroll" id="navScroll">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stunting-prediction.html">Stunting Prediction</a></li>
+        <li><a href="growth-dashboard.html">Growth Dashboard</a></li>
+        <li><a href="healthy-recipes.html">Healthy Recipes</a></li>
+        <li><a href="parenting-guides.html" class="active">Parenting Guides</a></li>
+        <li><a href="forum.html">Forum</a></li>
+      </ul>
+    </div>
+
+    <button class="nav-arrow" id="navNext" aria-label="Show next items">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="nav-right">
+    <button class="btn-login">Log in</button>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <h1>Parenting Guides</h1>
+    <p>Practical tips, expert insights, and real stories to help your child grow healthy and strong.</p>
+    <div class="search-box">
+      <input type="text" placeholder="Search articles…">
+      <button><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="pink-circle"></div>
+    <img src="static-assets/banner.png" alt="Mother and Baby" onerror="this.style.display='none'">
+  </div>
+</section>
+
+
+<!-- CATEGORY -->
+<section class="category-section">
+  <button class="category active-category">All Articles</button>
+  <button class="category">Nutrition</button>
+  <button class="category">Parenting Tips</button>
+  <button class="category">Mental Health</button>
+</section>
+
+
+<!-- FEATURED -->
+<section class="featured-section">
+  <h2>Featured Article</h2>
+  <div class="featured-container">
+
+    <a href="parenting-article-example.html" class="featured-main-card">
+      <img src="static-assets/artikel 1.png" alt="Baby" onerror="this.style.background='linear-gradient(135deg,#c8dff5,#f5c8d8)';this.style.display='block';this.style.height='340px'">
+      <div class="featured-content">
+        <h3>Signs Your Child is Growing Well<br>(and When to Be Concerned)</h3>
+        <div class="article-footer">
+          <div class="time"><i class="fa-regular fa-clock"></i><span>5 min read</span></div>
+          <span class="tag">Parenting Tips</span>
+        </div>
+      </div>
+    </a>
+
+    <div class="side-articles">
+
+      <div class="side-card">
+        <img src="static-assets/artikel 2.png" alt="" onerror="this.style.background='linear-gradient(135deg,#c8dff5,#f5c8d8)';this.style.display='block'">
+        <div class="side-content">
+          <h4>7 Nutritional Foods to Support Your Child's Growth</h4>
+          <div class="article-footer">
+            <div class="time"><i class="fa-regular fa-clock"></i><span>4 min read</span></div>
+            <span class="tag">Nutrition</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <img src="static-assets/artikel 3.png" alt="" onerror="this.style.background='linear-gradient(135deg,#c8dff5,#f5c8d8)';this.style.display='block'">
+        <div class="side-content">
+          <h4>Building Healthy Habits from an Early Age</h4>
+          <div class="article-footer">
+            <div class="time"><i class="fa-regular fa-clock"></i><span>6 min read</span></div>
+            <span class="tag">Parenting Tips</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <img src="static-assets/artikel 4.png" alt="" onerror="this.style.background='linear-gradient(135deg,#c8dff5,#f5c8d8)';this.style.display='block'">
+        <div class="side-content">
+          <h4>Managing Stress as a Parent</h4>
+          <div class="article-footer">
+            <div class="time"><i class="fa-regular fa-clock"></i><span>3 min read</span></div>
+            <span class="tag">Mental Health</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- LATEST -->
+<section class="latest-section">
+  <h2>Latest Article</h2>
+  <div class="latest-grid">
+
+    <div class="latest-card">
+      <img src="static-assets/artikel 5.png" alt="" onerror="this.style.background='linear-gradient(135deg,#c8dff5,#f5c8d8)';this.style.display='block'">
+      <div class="latest-content">
+        <h4>Meal Plan for Picky Eaters</h4>
+        <div class="article-footer">
+          <div class="time"><i class="fa-regular fa-clock"></i><span>6 min read</span></div>
+          <span class="tag">Nutrition</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="latest-card">
+      <img src="static-assets/artikel 6.png" alt="" onerror="this.style.background='linear-gradient(135deg,#c8dff5,#f5c8d8)';this.style.display='block'">
+      <div class="latest-content">
+        <h4>Smart Parenting: Start with Small Steps</h4>
+        <div class="article-footer">
+          <div class="time"><i class="fa-regular fa-clock"></i><span>3 min read</span></div>
+          <span class="tag">Parenting Tips</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="latest-card">
+      <img src="static-assets/artikel 7.png" alt="" onerror="this.style.background='linear-gradient(135deg,#c8dff5,#f5c8d8)';this.style.display='block'">
+      <div class="latest-content">
+        <h4>Why Parents Need Rest Too</h4>
+        <div class="article-footer">
+          <div class="time"><i class="fa-regular fa-clock"></i><span>5 min read</span></div>
+          <span class="tag">Mental Health</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="latest-card">
+      <img src="static-assets/artikel 8.png" alt="" onerror="this.style.background='linear-gradient(135deg,#c8dff5,#f5c8d8)';this.style.display='block'">
+      <div class="latest-content">
+        <h4>How to Encourage Healthy Eating for Kids</h4>
+        <div class="article-footer">
+          <div class="time"><i class="fa-regular fa-clock"></i><span>5 min read</span></div>
+          <span class="tag">Parenting Tips</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="load-more-container">
+    <button class="load-btn">Load More Articles <i class="fa-solid fa-arrow-down"></i></button>
+  </div>
+</section>
+
+<footer></footer>
+
+<script>
+// ── Category filter ──
+document.querySelectorAll('.category').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.category').forEach(b => b.classList.remove('active-category'));
+    btn.classList.add('active-category');
+  });
+});
+
+// ── Nav carousel ──
+(function () {
+  const scrollEl = document.getElementById('navScroll');
+  const list     = document.getElementById('navLinks');
+  const btnPrev  = document.getElementById('navPrev');
+  const btnNext  = document.getElementById('navNext');
+
+  let offset = 0;
+  const STEP = 100;
+
+  function maxOffset() {
+    const prev = list.style.paddingLeft;
+    list.style.paddingLeft = '0px';
+    const max = Math.max(0, list.scrollWidth - scrollEl.clientWidth);
+    list.style.paddingLeft = prev;
+    return max;
+  }
+
+  function render() {
+    const max = maxOffset();
+    offset = Math.max(0, Math.min(offset, max));
+    list.style.transform = `translateX(${-offset}px)`;
+
+    if (max === 0) {
+      const slack = scrollEl.clientWidth - list.scrollWidth;
+      list.style.paddingLeft = slack > 0 ? `${slack / 2}px` : '0px';
+    } else {
+      list.style.paddingLeft = '0px';
+    }
+
+    btnPrev.classList.toggle('visible', offset > 0);
+    btnNext.classList.toggle('visible', offset < max);
+  }
+
+  btnPrev.addEventListener('click', () => { offset -= STEP; render(); });
+  btnNext.addEventListener('click', () => { offset += STEP; render(); });
+
+  new ResizeObserver(render).observe(scrollEl);
+  render();
+})();
+</script>
+</body>
+</html>

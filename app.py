@@ -32,9 +32,25 @@ def parenting_article():
 def stunting_prediction():
     return render_template('stunting-prediction.html')
 
-@app.route('/prediction-results.html')
+@app.route('/stunting-results.html')
 def hasil_prediksi():
     return render_template('stunting-results.html')
+
+@app.route('/healthy-recipes.html')
+def healthy_recipes():
+    return render_template('healthy-recipes.html')
+
+@app.route('/forum.html')
+def forum():
+    return render_template('forum.html')
+
+@app.route('/forum-example.html')
+def forum_example():
+    return render_template('forum-example.html')
+
+@app.route('/growth-dashboard.html')
+def growth_dashboard():
+    return render_template('growth-dashboard.html')
 
 # ── Prediction ──────────────────────────────────────────
 

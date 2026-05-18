@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="dashboard-page">
+  <h1>Growth Dashboard</h1>
+
+  <section class="dashboard-overview">
+    <div class="overview-profile">
+      {% include "_child_profile.html" %}
+    </div>
+
+    <div class="overview-content">
+      <section class="metric-grid" aria-label="Growth metrics">
+        <article>
+          <span>Height</span>
+          <strong>{{ child.height|round|int if child.height == child.height|round else child.height }} cm</strong>
+        </article>
+        <article>
+          <span>Weight</span>
+          <strong>{{ child.weight }} kg</strong>
+        </article>
+        <article>
+          <span>BMI Scale</span>
+          <strong>{{ child.bmi }}</strong>
+        </article>
+      </section>
+
+      <section class="prediction-panel">
+        <h2>AI Stunting Prediction</h2>
+        <strong>{{ child.prediction }}</strong>
+        <p>{{ child.prediction_note }}</p>
+      </section>
+    </div>
+  </section>
+
+  <section class="dashboard-insights">
+    <section class="chart-card">
+      <div class="chart-head">
+        <div>
+          <p class="eyebrow">Growth History</p>
+          <h2>Height &amp; Weight Progress</h2>
+        </div>
+        <form class="range-form" method="get">
+          <label class="range-btn" for="range">
+            <span aria-hidden="true">[]</span>
+            <select id="range" name="range" onchange="this.form.submit()">
+              {% for value, label in child.period_options %}
+                <option value="{{ value }}" {% if child.selected_period == value %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </label>
+        </form>
+      </div>
+      <div class="legend">
+        <span class="height-key">Height (cm)</span>
+        <span class="weight-key">Weight (kg)</span>
+      </div>
+      <div class="chart-wrap" role="img" aria-label="Height and weight progress chart">
+        <svg viewBox="0 0 760 310" preserveAspectRatio="none">
+          <g class="grid-lines">
+            <line x1="70" y1="40" x2="710" y2="40"></line>
+            <line x1="70" y1="100" x2="710" y2="100"></line>
+            <line x1="70" y1="160" x2="710" y2="160"></line>
+            <line x1="70" y1="220" x2="710" y2="220"></line>
+            <line x1="70" y1="280" x2="710" y2="280"></line>
+          </g>
+          <g class="axis-labels">
+            <text x="35" y="44">80</text>
+            <text x="35" y="104">70</text>
+            <text x="35" y="164">60</text>
+            <text x="35" y="224">50</text>
+            <text x="35" y="284">40</text>
+            <text x="728" y="44">12</text>
+            <text x="728" y="104">10</text>
+            <text x="728" y="164">8</text>
+            <text x="728" y="224">6</text>
+            <text x="728" y="284">4</text>
+          </g>
+          <polyline class="height-line" points="{{ child.height_polyline }}"></polyline>
+          <polyline class="weight-line" points="{{ child.weight_polyline }}"></polyline>
+          {% for point in child.chart_points %}
+            <circle class="height-dot" cx="{{ point.x }}" cy="{{ point.height_y }}" r="5"></circle>
+            <circle class="weight-dot" cx="{{ point.x }}" cy="{{ point.weight_y }}" r="5"></circle>
+            <text class="height-value" x="{{ point.x - 18 }}" y="{{ point.height_y - 16 }}">{{ point.height }}</text>
+            <text class="weight-value" x="{{ point.x - 16 }}" y="{{ point.weight_y + 28 }}">{{ point.weight }}</text>
+            <text class="month-label" x="{{ point.x - 34 }}" y="305">{{ point.month }}</text>
+          {% endfor %}
+          <text class="small-axis height-axis" x="35" y="16">Height (cm)</text>
+          <text class="small-axis weight-axis" x="686" y="16">Weight (kg)</text>
+        </svg>
+      </div>
+      <a class="action-tab" href="{{ url_for('update_data', child_id=child.id) }}">
+        <span aria-hidden="true">+</span>
+        Update Data
+      </a>
+    </section>
+
+    <section class="nutrition-card">
+      <div class="nutrition-head">
+        <div>
+          <p class="eyebrow">Daily Intake</p>
+          <h2>Nutrition Progress (Today)</h2>
+        </div>
+        <span class="reset-pill">Resets Daily</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nutrient</th>
+            <th>Intake</th>
+            <th></th>
+            <th>Status</th>
+            <th>To Goal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for nutrient in child.nutrition %}
+            <tr>
+              <td>{{ nutrient.name }}</td>
+              <td>{{ nutrient.intake }}</td>
+              <td>
+                <span class="progress-track">
+                  <span class="progress-fill" style="width: {{ nutrient.percent }}%"></span>
+                </span>
+              </td>
+              <td class="status">{{ nutrient.percent }}%</td>
+              <td>{{ nutrient.remaining }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a class="action-tab" href="{{ url_for('input_meal', child_id=child.id) }}">
+        <span aria-hidden="true">+</span>
+        Input Meal
+      </a>
+    </section>
+  </section>
+</section>
+{% endblock %}

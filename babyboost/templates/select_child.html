@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="select-shell">
+  <div class="select-panel">
+    <div class="select-hero">
+      <div>
+        <p class="eyebrow">Growth Center</p>
+        <h1>Growth Dashboard</h1>
+        <p class="pink-copy">Ready to see a detailed summary of your child's growth?</p>
+        <p class="intro-copy">Track height, weight, BMI, meal intake, and daily nutrition progress in one clean dashboard.</p>
+      </div>
+      <div class="hero-meter" aria-hidden="true">
+        <span style="height: 46%"></span>
+        <span style="height: 70%"></span>
+        <span style="height: 58%"></span>
+        <span style="height: 86%"></span>
+      </div>
+    </div>
+
+    <div class="select-layout">
+      <section class="selector-surface" aria-labelledby="pick-child-title">
+        <h2 id="pick-child-title">Pick Child</h2>
+        <form class="select-form" action="{{ url_for('confirm_child') }}" method="post">
+          <div class="select-wrap">
+            <select id="child_id" name="child_id" required>
+              <option value="" selected disabled>Select Child</option>
+              {% for child in children %}
+                <option value="{{ child.id }}">{{ child.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button class="primary-btn" type="submit">Confirm</button>
+        </form>
+
+        <div class="child-preview-list">
+          {% for child in children %}
+            <a class="child-preview" href="{{ url_for('dashboard', child_id=child.id) }}">
+              <img src="{{ url_for('static', filename='img/' ~ child.avatar) }}" alt="{{ child.name }}">
+              <span>
+                <strong>{{ child.name }}</strong>
+                <small>{{ child.age }} | {{ child.height }} cm | {{ child.weight }} kg</small>
+              </span>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="add-child-panel" aria-labelledby="add-child-title">
+        <h2 id="add-child-title">Add Child</h2>
+        <form class="add-child-form" action="{{ url_for('add_child') }}" method="post">
+          <input type="text" name="name" placeholder="Child name" required>
+          <input type="number" name="age_months" min="0" max="60" placeholder="Age in months" required>
+          <input type="number" name="height" step="0.1" min="0" placeholder="Height cm" required>
+          <input type="number" name="weight" step="0.1" min="0" placeholder="Weight kg" required>
+          <button class="secondary-btn" type="submit">Add Child</button>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+{% endblock %}

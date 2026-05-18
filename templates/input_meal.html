@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="form-page meal-page">
+  <h1>Growth Dashboard</h1>
+
+  <div class="form-workspace">
+    <aside class="profile-summary">
+      {% include "_child_profile.html" %}
+      <div class="meal-history">
+        {% for meal in child.meals[-3:] %}
+          <span>{{ meal }}</span>
+        {% endfor %}
+      </div>
+    </aside>
+
+    <form class="meal-form task-panel" method="post">
+      <div class="panel-head">
+        <p class="eyebrow">Nutrition Log</p>
+        <h2>Today's Meal</h2>
+      </div>
+      <label>
+        <input type="text" name="meal" list="meal-options" placeholder="Baby omelette" required>
+      </label>
+      <datalist id="meal-options">
+        {% for food in food_names %}
+          <option value="{{ food }}"></option>
+        {% endfor %}
+      </datalist>
+      <div class="food-chip-grid">
+        {% for food in food_names[:8] %}
+          <button type="button" onclick="this.closest('form').meal.value='{{ food }}'">{{ food }}</button>
+        {% endfor %}
+      </div>
+      <button class="primary-btn wide" type="submit">Confirm</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

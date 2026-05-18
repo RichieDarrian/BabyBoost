@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="form-page">
+  <h1>Growth Dashboard</h1>
+  <div class="form-workspace">
+    <aside class="profile-summary">
+      {% include "_child_profile.html" %}
+      <div class="mini-metrics">
+        <span><strong>{{ child.height }}</strong> cm</span>
+        <span><strong>{{ child.weight }}</strong> kg</span>
+        <span><strong>{{ child.bmi }}</strong> BMI</span>
+      </div>
+    </aside>
+
+    <form class="data-form task-panel" method="post">
+      <div class="panel-head">
+        <p class="eyebrow">Growth Update</p>
+        <h2>Update Data</h2>
+      </div>
+      <div class="two-field-grid">
+        <label>
+          <span>Body Height</span>
+          <input type="number" name="height" step="0.1" min="0" placeholder="69 cm" required>
+        </label>
+        <label>
+          <span>Body Weight</span>
+          <input type="number" name="weight" step="0.1" min="0" placeholder="6.7 kg" required>
+        </label>
+      </div>
+      <button class="primary-btn wide" type="submit">Confirm</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

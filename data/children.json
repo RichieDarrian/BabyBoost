@@ -1,0 +1,167 @@
+{
+  "steve": {
+    "id": "steve",
+    "name": "Baby Steve",
+    "age": "6 Months Old",
+    "avatar": "baby-steve.svg",
+    "height": 69.0,
+    "weight": 6.4,
+    "bmi": 13.4,
+    "prediction": "Healthy",
+    "prediction_note": "Baby Steve is growing well! The summary shows that Steve's height and weight are steadily growing, while having a balanced nutritional intake. Keep up the great work!",
+    "history": [
+      {
+        "month": "Dec 2025",
+        "height": 63.2,
+        "weight": 6.8
+      },
+      {
+        "month": "Jan 2026",
+        "height": 64.8,
+        "weight": 7.2
+      },
+      {
+        "month": "Feb 2026",
+        "height": 66.1,
+        "weight": 7.6
+      },
+      {
+        "month": "Mar 2026",
+        "height": 67.3,
+        "weight": 7.9
+      },
+      {
+        "month": "Apr 2026",
+        "height": 68.4,
+        "weight": 8.2
+      },
+      {
+        "month": "May 2026",
+        "height": 69.8,
+        "weight": 8.6
+      },
+      {
+        "month": "May 2026",
+        "height": 69.0,
+        "weight": 6.4
+      }
+    ],
+    "nutrition": [
+      {
+        "name": "Fat",
+        "intake": "15g / 15g",
+        "percent": 100,
+        "remaining": "0% more"
+      },
+      {
+        "name": "Protein",
+        "intake": "24g / 24g",
+        "percent": 100,
+        "remaining": "0% more"
+      },
+      {
+        "name": "Carbohydrates",
+        "intake": "61.2g / 80g",
+        "percent": 76,
+        "remaining": "24% more"
+      },
+      {
+        "name": "Fiber",
+        "intake": "3g / 10g",
+        "percent": 30,
+        "remaining": "70% more"
+      },
+      {
+        "name": "Calcium",
+        "intake": "355mg / 600mg",
+        "percent": 59,
+        "remaining": "41% more"
+      },
+      {
+        "name": "Iron",
+        "intake": "5.9mg / 9mg",
+        "percent": 66,
+        "remaining": "34% more"
+      },
+      {
+        "name": "Vitamin D",
+        "intake": "225 IU / 400 IU",
+        "percent": 56,
+        "remaining": "44% more"
+      }
+    ],
+    "meals": [
+      "Baby omelette",
+      "Omelette",
+      "Steak",
+      "Steak",
+      "Baby Omelette"
+    ],
+    "nutrition_date": "2026-05-18"
+  },
+  "john-doe": {
+    "id": "john-doe",
+    "name": "John Doe",
+    "age": "8 Months Old",
+    "avatar": "baby-steve.svg",
+    "height": 92.0,
+    "weight": 6.5,
+    "bmi": 7.7,
+    "prediction": "Healthy",
+    "prediction_note": "John Doe has been added to the dashboard. Keep updating height, weight, and meals so the growth summary stays accurate.",
+    "history": [
+      {
+        "month": "May 2026",
+        "date": "2026-05-18",
+        "height": 92.0,
+        "weight": 6.5
+      }
+    ],
+    "nutrition": [
+      {
+        "name": "Fat",
+        "intake": "0g / 15g",
+        "percent": 0,
+        "remaining": "100% more"
+      },
+      {
+        "name": "Protein",
+        "intake": "0g / 24g",
+        "percent": 0,
+        "remaining": "100% more"
+      },
+      {
+        "name": "Carbohydrates",
+        "intake": "0g / 80g",
+        "percent": 0,
+        "remaining": "100% more"
+      },
+      {
+        "name": "Fiber",
+        "intake": "0g / 10g",
+        "percent": 0,
+        "remaining": "100% more"
+      },
+      {
+        "name": "Calcium",
+        "intake": "0mg / 600mg",
+        "percent": 0,
+        "remaining": "100% more"
+      },
+      {
+        "name": "Iron",
+        "intake": "0mg / 9mg",
+        "percent": 0,
+        "remaining": "100% more"
+      },
+      {
+        "name": "Vitamin D",
+        "intake": "0 IU / 400 IU",
+        "percent": 0,
+        "remaining": "100% more"
+      }
+    ],
+    "nutrition_date": "2026-05-18",
+    "meals": []
+  }
+}

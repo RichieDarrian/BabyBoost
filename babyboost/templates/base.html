@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Growth Dashboard{% endblock %} - BabyBoost</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('select_child') }}" aria-label="BabyBoost home">
+      <img src="{{ url_for('static', filename='img/logo-mark.svg') }}" alt="">
+      <span>Baby<span>Boost</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="{{ url_for('home_page') }}">Home</a>
+      <a href="{{ url_for('stunting_prediction') }}">Stunting Prediction</a>
+      <a class="active" href="{{ url_for('select_child') }}">Growth Dashboard</a>
+      <a href="{{ url_for('healthy_recipes') }}">Healthy Recipes</a>
+      <a href="{{ url_for('parenting_guides') }}">Parenting Guides</a>
+      <a href="{{ url_for('forum') }}">Forum</a>
+    </nav>
+    <a class="account" href="{{ url_for('profile') }}">
+      <img src="{{ url_for('static', filename='img/user-avatar.svg') }}" alt="">
+      <span>Username</span>
+    </a>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

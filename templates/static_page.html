@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="utility-page">
+  <h1>{{ page_title }}</h1>
+  <p>{{ message }}</p>
+  <a class="primary-btn" href="{{ url_for('select_child') }}">Open Dashboard</a>
+</section>
+{% endblock %}

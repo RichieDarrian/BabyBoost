@@ -473,14 +473,21 @@ def stunting_results():
 
 @app.post("/predict")
 def predict():
-    child_id = request.form["child_id"]
+    child_id = request.form.get("child_id")
 
     data = load_children()
 
-    child = data.get(child_id)
+    if child_id:
+        child = data.get(child_id)
 
-    if not child:
-        return "Child not found", 404
+        if not child:
+            return "Child not found", 404
+
+    else:
+        # Quick prediction mode
+        child = {
+            "name": "Quick Prediction Child"
+        }
 
     gender_s = str(request.form["gender"])
     gender = 1 if gender_s == "laki-laki" else 2

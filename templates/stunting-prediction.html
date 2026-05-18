@@ -283,6 +283,35 @@
     #childModeBtn i { color: #5b9bd5; }
 
 
+    /* ─── Gender toggle ──────────────────────────────────────────── */
+    .gender-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .gender-btn {
+      height: 48px;
+      border: 1.5px solid #e8eef4;
+      border-radius: 10px;
+      background: #fafcff;
+      color: var(--blue-mid);
+      font-family: 'Poppins', sans-serif;
+      font-size: .92rem; font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all .2s;
+    }
+    .gender-btn.male-btn  i { color: #5b9bd5; }
+    .gender-btn.female-btn i { color: var(--pink); }
+
+    .gender-btn.active.male-btn   { border-color: #5b9bd5; background: #edf4fb; color: #2a6aad; }
+    .gender-btn.active.female-btn { border-color: var(--pink); background: var(--pink-light); color: #c0555c; }
+
+    /* Read-only state in child mode */
+    .gender-btn.locked {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+
     /* ─── Submit button ───────────────────────────────────────────── */
     .btn-submit {
       width: 100%; height: 52px;
@@ -449,6 +478,26 @@
 
         <div class="form-divider"></div>
 
+        <!-- Gender -->
+        <div class="field-group">
+          <div class="field-label">
+            <i class="fa-solid fa-venus-mars"></i> Gender
+          </div>
+          <div class="gender-toggle">
+            <button type="button" class="gender-btn male-btn active"
+                    id="genderMale" onclick="setGender('Male', this)">
+              <i class="fa-solid fa-mars"></i> Male
+            </button>
+            <button type="button" class="gender-btn female-btn"
+                    id="genderFemale" onclick="setGender('Female', this)">
+              <i class="fa-solid fa-venus"></i> Female
+            </button>
+          </div>
+          <input type="hidden" name="gender" id="genderInput" value="Male">
+        </div>
+
+        <div class="form-divider"></div>
+
         <!-- Age — years and months side by side -->
         <div class="field-group">
           <div class="field-label">
@@ -567,6 +616,32 @@
   const childrenData = {{ children | tojson }};
 
 
+  /* ── Gender toggle ─────────────────────────────────────────────── */
+  function setGender(value, btn) {
+    document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('genderInput').value = value;
+  }
+
+  function lockGender(gender) {
+    // Show the correct button as active but make both non-interactive
+    const maleBtn   = document.getElementById('genderMale');
+    const femaleBtn = document.getElementById('genderFemale');
+    maleBtn.classList.remove('active');
+    femaleBtn.classList.remove('active');
+    if (gender === 'Male')   maleBtn.classList.add('active');
+    if (gender === 'Female') femaleBtn.classList.add('active');
+    maleBtn.classList.add('locked');
+    femaleBtn.classList.add('locked');
+    document.getElementById('genderInput').value = gender || '';
+  }
+
+  function unlockGender() {
+    document.getElementById('genderMale').classList.remove('locked');
+    document.getElementById('genderFemale').classList.remove('locked');
+  }
+
+
   /* ── Mode toggle ───────────────────────────────────────────────── */
   let currentMode = 'quick';
 
@@ -581,9 +656,18 @@
     document.getElementById('childSelectorWrap').style.display = isChild ? 'block' : 'none';
     document.getElementById('childSelect').value = '';
 
-    // Lock measurement inputs when a child profile drives the values
+    // Lock/unlock measurement inputs and gender
     setInputsLocked(isChild);
     clearMeasurementFields();
+
+    if (!isChild) {
+      // Restore gender to Male (default) and make it interactive
+      unlockGender();
+      setGender('Male', document.getElementById('genderMale'));
+    } else {
+      // Lock gender until a child is selected
+      lockGender('');
+    }
   }
 
 
@@ -597,6 +681,9 @@
     document.querySelector('[name="age_months"]').value = totalMonths % 12;
     document.querySelector('[name="weight_kg"]').value  = child.weight_kg ?? child.weight ?? '';
     document.querySelector('[name="height_cm"]').value  = child.height_cm ?? child.height ?? '';
+
+    // Show child's gender as read-only
+    lockGender(child.gender || '');
   });
 
 

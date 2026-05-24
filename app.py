@@ -613,10 +613,14 @@ def delete_child(child_id):
 @app.route("/growth-dashboard/<child_id>")
 @login_required
 def dashboard(child_id):
-    email = session["user_email"]
+    email = session.get("user_email")
+    if not email:
+        return redirect(url_for("login"))
     period = request.args.get("range", "6_months")
-    children = get_children()
-    selected_child = children.get(child_id) or next(iter(children.values()), None)
+    children = get_children() or {}
+    if not children:
+        return redirect(url_for("select_child"))
+    selected_child = children.get(child_id)
     if not selected_child:
         return redirect(url_for("select_child"))
     refresh_age_months(selected_child)

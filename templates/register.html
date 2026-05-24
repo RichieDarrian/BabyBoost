@@ -28,10 +28,23 @@ html, body {
 nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 14px 48px;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #eee;
+}
+
+.back-home {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: opacity 0.2s;
+}
+
+.back-home:hover {
+  opacity: 0.75;
 }
 
 .logo {
@@ -233,6 +246,7 @@ nav {
     <img src="{{ url_for('static', filename='img/BabyBoost.svg') }}" alt="BabyBoost Logo" class="logo-svg">
     <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
+  <a href="/" class="back-home">Back to Home</a>
 </nav>
 
 <div class="page-body">

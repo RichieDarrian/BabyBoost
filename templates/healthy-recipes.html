@@ -28,7 +28,7 @@ html, body {
   min-height: 100vh;
 }
 
-/* ── NAV ── */
+/* -- NAV -- */
 nav {
   display: flex;
   align-items: center;
@@ -50,23 +50,11 @@ nav {
   flex-shrink: 0;
 }
 
-.logo-svg {
-  width: 32px;
-  height: 32px;
-}
+.logo-svg { width: 32px; height: 32px; }
 
-.logo-text {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.logo-text .b {
-  color: var(--blue);
-}
-
-.logo-text .p {
-  color: var(--pink);
-}
+.logo-text { font-size: 1.25rem; font-weight: 700; }
+.logo-text .b { color: var(--blue); }
+.logo-text .p { color: var(--pink); }
 
 .nav-links-wrapper {
   display: flex;
@@ -99,25 +87,15 @@ nav {
   box-shadow: 0 2px 8px rgba(2,71,116,0.15);
 }
 
-.nav-arrow:active {
-  background: #f0f6fc;
-}
-
 .nav-arrow svg {
   width: 13px;
   height: 13px;
   pointer-events: none;
 }
 
-.nav-arrow.visible {
-  display: flex;
-}
+.nav-arrow.visible { display: flex; }
 
-.nav-links-scroll {
-  overflow: hidden;
-  min-width: 0;
-  flex: 1;
-}
+.nav-links-scroll { overflow: hidden; min-width: 0; flex: 1; }
 
 .nav-links {
   display: flex;
@@ -129,11 +107,7 @@ nav {
   transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), padding-left 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 
-.nav-links li {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
+.nav-links li { display: flex; align-items: center; flex-shrink: 0; }
 
 .nav-links a {
   text-decoration: none;
@@ -144,14 +118,8 @@ nav {
   transition: color 0.2s;
 }
 
-.nav-links a.active {
-  color: var(--blue);
-  font-weight: 700;
-}
-
-.nav-links a:hover {
-  color: var(--blue);
-}
+.nav-links a.active { color: var(--blue); font-weight: 700; }
+.nav-links a:hover { color: var(--blue); }
 
 .nav-right {
   display: flex;
@@ -179,11 +147,7 @@ nav {
   box-shadow: 0 6px 18px rgba(2,71,116,0.28);
 }
 
-.btn-login:active {
-  transform: translateY(0px) scale(0.97);
-}
-
-/* ── HERO ── */
+/* -- HERO -- */
 .hero {
   background: linear-gradient(135deg, var(--blue) 0%, #037abf 100%);
   padding: 56px 48px 48px;
@@ -195,10 +159,8 @@ nav {
 .hero::before {
   content: '';
   position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 280px;
-  height: 280px;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
   border-radius: 50%;
   background: rgba(255,255,255,0.05);
 }
@@ -206,10 +168,8 @@ nav {
 .hero::after {
   content: '';
   position: absolute;
-  bottom: -80px;
-  left: -40px;
-  width: 240px;
-  height: 240px;
+  bottom: -80px; left: -40px;
+  width: 240px; height: 240px;
   border-radius: 50%;
   background: rgba(254,164,170,0.1);
 }
@@ -236,7 +196,7 @@ nav {
   margin-bottom: 32px;
 }
 
-/* ── SEARCH ── */
+/* -- SEARCH -- */
 .search-wrap {
   display: flex;
   max-width: 520px;
@@ -257,9 +217,7 @@ nav {
   color: #333;
 }
 
-.search-wrap input::placeholder {
-  color: #aaa;
-}
+.search-wrap input::placeholder { color: #aaa; }
 
 .search-wrap button {
   background: var(--pink);
@@ -276,17 +234,14 @@ nav {
   transition: background 0.2s;
 }
 
-.search-wrap button:hover {
-  background: #f67a84;
-}
+.search-wrap button:hover { background: #f67a84; }
 
-/* ── STAT STRIP ── */
+/* -- STAT STRIP -- */
 .stat-strip {
   background: #fff;
   border-bottom: 1px solid #eee;
   display: flex;
   justify-content: center;
-  gap: 0;
 }
 
 .stat-item {
@@ -297,13 +252,10 @@ nav {
   border-right: 1px solid #f0e8ed;
 }
 
-.stat-item:last-child {
-  border-right: none;
-}
+.stat-item:last-child { border-right: none; }
 
 .stat-icon {
-  width: 36px;
-  height: 36px;
+  width: 36px; height: 36px;
   border-radius: 10px;
   background: var(--pink-light);
   display: flex;
@@ -314,20 +266,10 @@ nav {
   flex-shrink: 0;
 }
 
-.stat-num {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--blue);
-  line-height: 1;
-}
+.stat-num { font-size: 1.1rem; font-weight: 800; color: var(--blue); line-height: 1; }
+.stat-lbl { font-size: 0.72rem; color: var(--blue-mid); font-weight: 500; }
 
-.stat-lbl {
-  font-size: 0.72rem;
-  color: var(--blue-mid);
-  font-weight: 500;
-}
-
-/* ── FILTERS ── */
+/* -- FILTERS -- */
 .filter-bar {
   padding: 24px 48px 0;
   display: flex;
@@ -375,14 +317,14 @@ nav {
   font-weight: 600;
 }
 
-/* ── MAIN LAYOUT ── */
+/* -- MAIN -- */
 .main {
   max-width: 1248px;
   margin: 0 auto;
   padding: 28px 48px 64px;
 }
 
-/* ── FEATURED BANNER ── */
+/* -- FEATURED -- */
 .featured {
   border-radius: 20px;
   overflow: hidden;
@@ -395,14 +337,8 @@ nav {
 }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .featured-img {
@@ -469,6 +405,7 @@ nav {
   display: flex;
   gap: 16px;
   margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
 .meta-chip {
@@ -483,9 +420,13 @@ nav {
   font-weight: 500;
 }
 
-.meta-chip i {
-  font-size: 0.7rem;
-  color: var(--pink);
+.meta-chip i { font-size: 0.7rem; color: var(--pink); }
+
+/* -- featured actions row -- */
+.featured-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .btn-view {
@@ -511,7 +452,59 @@ nav {
   box-shadow: 0 6px 18px rgba(254,164,170,0.4);
 }
 
-/* ── SECTION HEADER ── */
+/* -- share button -- */
+.btn-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.btn-share:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-share i { font-size: 0.8rem; }
+
+/* -- share toast -- */
+.share-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: var(--blue);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 9998;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(2,71,116,0.25);
+}
+
+.share-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* -- SECTION HEADER -- */
 .section-header {
   display: flex;
   align-items: center;
@@ -550,11 +543,9 @@ nav {
   transition: color 0.2s;
 }
 
-.see-all:hover {
-  color: var(--pink);
-}
+.see-all:hover { color: var(--pink); }
 
-/* ── RECIPE GRID ── */
+/* -- RECIPE GRID -- */
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -599,14 +590,11 @@ nav {
   transition: transform 0.4s ease;
 }
 
-.recipe-card:hover .recipe-img img {
-  transform: scale(1.05);
-}
+.recipe-card:hover .recipe-img img { transform: scale(1.05); }
 
 .time-badge {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 10px; right: 10px;
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(4px);
   padding: 4px 10px;
@@ -621,8 +609,7 @@ nav {
 
 .age-badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 10px; left: 10px;
   background: var(--blue);
   color: #fff;
   padding: 3px 10px;
@@ -651,9 +638,22 @@ nav {
   font-size: 0.83rem;
   color: #888;
   line-height: 1.55;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   flex: 1;
 }
+
+/* -- price row on card -- */
+.recipe-price {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2e7d32;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.recipe-price i { font-size: 0.72rem; opacity: 0.8; }
 
 .recipe-footer {
   display: flex;
@@ -661,11 +661,7 @@ nav {
   justify-content: space-between;
 }
 
-.recipe-tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
+.recipe-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .tag {
   background: var(--blue-light);
@@ -678,19 +674,18 @@ nav {
   letter-spacing: 0.04em;
 }
 
-.tag.pink {
-  background: var(--pink-light);
-  color: #c0555c;
-}
+.tag.pink  { background: var(--pink-light); color: #c0555c; }
+.tag.green { background: #edfaf3; color: #1a6b3c; }
 
-.tag.green {
-  background: #edfaf3;
-  color: #1a6b3c;
+/* -- card actions group -- */
+.card-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .recipe-action {
-  width: 32px;
-  height: 32px;
+  width: 32px; height: 32px;
   border-radius: 8px;
   border: 1.5px solid #eee;
   background: #fff;
@@ -700,7 +695,6 @@ nav {
   align-items: center;
   justify-content: center;
   font-size: 0.8rem;
-  flex-shrink: 0;
   transition: all 0.2s;
 }
 
@@ -710,7 +704,14 @@ nav {
   background: var(--pink-light);
 }
 
-/* ── NUTRITION TIP BANNER ── */
+/* -- card share button specific hover -- */
+.recipe-action.share-btn:hover {
+  border-color: #037abf;
+  color: #037abf;
+  background: var(--blue-light);
+}
+
+/* -- TIP BANNER -- */
 .tip-banner {
   background: var(--pink-light);
   border: 1.5px solid #f5c1c7;
@@ -723,8 +724,7 @@ nav {
 }
 
 .tip-icon {
-  width: 44px;
-  height: 44px;
+  width: 44px; height: 44px;
   border-radius: 12px;
   background: var(--pink);
   color: #fff;
@@ -735,20 +735,10 @@ nav {
   flex-shrink: 0;
 }
 
-.tip-title {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #c0555c;
-  margin-bottom: 3px;
-}
+.tip-title { font-size: 0.85rem; font-weight: 700; color: #c0555c; margin-bottom: 3px; }
+.tip-text  { font-size: 0.82rem; color: #9a3a45; line-height: 1.5; }
 
-.tip-text {
-  font-size: 0.82rem;
-  color: #9a3a45;
-  line-height: 1.5;
-}
-
-/* ── MODAL ── */
+/* -- MODAL -- */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -761,9 +751,7 @@ nav {
   padding: 20px;
 }
 
-.modal-overlay.show {
-  display: flex;
-}
+.modal-overlay.show { display: flex; }
 
 .modal {
   background: #fff;
@@ -776,14 +764,8 @@ nav {
 }
 
 @keyframes modalIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .modal-img {
@@ -792,18 +774,12 @@ nav {
   position: relative;
 }
 
-.modal-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.modal-img img { width: 100%; height: 100%; object-fit: cover; }
 
 .modal-img .close-btn {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 36px;
-  height: 36px;
+  top: 14px; right: 14px;
+  width: 36px; height: 36px;
   border-radius: 50%;
   background: rgba(255,255,255,0.9);
   border: none;
@@ -817,13 +793,9 @@ nav {
   backdrop-filter: blur(4px);
 }
 
-.modal-img .close-btn:hover {
-  background: #fff;
-}
+.modal-img .close-btn:hover { background: #fff; }
 
-.modal-body {
-  padding: 28px 32px 36px;
-}
+.modal-body { padding: 28px 32px 36px; }
 
 .modal-age-badge {
   display: inline-block;
@@ -855,6 +827,7 @@ nav {
   gap: 12px;
   margin-bottom: 24px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .modal-chip {
@@ -869,9 +842,42 @@ nav {
   font-weight: 600;
 }
 
-.modal-chip i {
-  color: var(--pink);
+.modal-chip i { color: var(--pink); }
+
+/* -- price chip in modal -- */
+.modal-chip.price-chip {
+  background: #edfaf3;
+  color: #1a6b3c;
 }
+
+.modal-chip.price-chip i { color: #2e7d32; }
+
+/* -- modal share button -- */
+.modal-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  color: var(--blue-mid);
+  border: 1.5px solid #dde8f2;
+  border-radius: 10px;
+  padding: 7px 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.modal-share-btn:hover {
+  background: var(--blue-light);
+  border-color: var(--blue-mid);
+  color: var(--blue);
+  transform: translateY(-1px);
+}
+
+.modal-share-btn i { font-size: 0.75rem; }
 
 .modal-section-title {
   font-size: 0.72rem;
@@ -925,15 +931,10 @@ nav {
   gap: 12px;
 }
 
-.step-item {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
+.step-item { display: flex; gap: 14px; align-items: flex-start; }
 
 .step-num {
-  width: 28px;
-  height: 28px;
+  width: 28px; height: 28px;
   border-radius: 8px;
   background: var(--blue);
   color: #fff;
@@ -946,101 +947,143 @@ nav {
   margin-top: 1px;
 }
 
-.step-text {
-  font-size: 0.88rem;
-  color: #555;
-  line-height: 1.6;
+.step-text { font-size: 0.88rem; color: #555; line-height: 1.6; }
+
+/* -- user menu -- */
+.user-menu { position: relative; }
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1.5px solid #dde6ef;
+  border-radius: 50px;
+  padding: 5px 12px 5px 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* ── RESPONSIVE ── */
+.user-btn:hover {
+  border-color: var(--blue);
+  box-shadow: 0 2px 8px rgba(2,71,116,0.12);
+}
+
+.user-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; display: block; }
+
+.user-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px); right: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(2,71,116,0.1);
+  min-width: 140px;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.user-dropdown.open { display: block; }
+
+.dropdown-item {
+  display: block;
+  padding: 11px 16px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover { background: #f7f9fb; }
+.dropdown-item-logout { color: #c0536a; }
+.dropdown-item-logout:hover { background: #fde8ef; }
+
+/* -- RESPONSIVE -- */
 @media (max-width: 900px) {
-  nav {
-    padding: 12px 16px;
-  }
-  
-  .hero {
-    padding: 36px 20px 36px;
-  }
-  
-  .hero h1 {
-    font-size: 1.9rem;
-  }
-  
-  .stat-strip {
-    flex-wrap: wrap;
-  }
-  
-  .stat-item {
-    padding: 14px 20px;
-  }
-  
-  .filter-bar {
-    padding: 20px 20px 0;
-  }
-  
-  .main {
-    padding: 24px 20px 56px;
-  }
-  
-  .featured {
-    grid-template-columns: 1fr;
-  }
-  
-  .featured-img {
-    min-height: 200px;
-  }
-  
-  .featured-img::after {
-    background: linear-gradient(0deg, var(--blue) 20%, transparent);
-  }
-  
-  .recipe-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  .modal-body {
-    padding: 22px 20px 28px;
-  }
+  nav { padding: 12px 16px; }
+  .hero { padding: 36px 20px 36px; }
+  .hero h1 { font-size: 1.9rem; }
+  .stat-strip { flex-wrap: wrap; }
+  .stat-item { padding: 14px 20px; }
+  .filter-bar { padding: 20px 20px 0; }
+  .main { padding: 24px 20px 56px; }
+  .featured { grid-template-columns: 1fr; }
+  .featured-img { min-height: 200px; }
+  .featured-img::after { background: linear-gradient(0deg, var(--blue) 20%, transparent); }
+  .recipe-grid { grid-template-columns: 1fr 1fr; }
+  .modal-body { padding: 22px 20px 28px; }
 }
 
 @media (max-width: 580px) {
-  .recipe-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .stat-strip {
-    display: none;
-  }
+  .recipe-grid { grid-template-columns: 1fr; }
+  .stat-strip { display: none; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="logo" href="index.html">
-      <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
-      <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
+  <a class="logo" href="/">
+    <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
+
   <div class="nav-links-wrapper">
     <button class="nav-arrow" id="navPrev" aria-label="Show previous items">
-      <svg viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 14 14" fill="none">
+        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
+
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="stunting-prediction.html">Stunting Prediction</a></li>
-        <li><a href="growth-dashboard.html">Growth Dashboard</a></li>
-        <li><a href="healthy-recipes.html" class="active">Healthy Recipes</a></li>
-        <li><a href="parenting-guides.html">Parenting Guides</a></li>
-        <li><a href="forum.html">Forum</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/stunting-prediction.html">Stunting Prediction</a></li>
+        <li><a href="/growth-dashboard.html">Growth Dashboard</a></li>
+        <li><a href="/healthy-recipes.html" class="active">Healthy Recipes</a></li>
+        <li><a href="/parenting-guides.html">Parenting Guides</a></li>
+        <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
+
     <button class="nav-arrow" id="navNext" aria-label="Show next items">
-      <svg viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 14 14" fill="none">
+        <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
   </div>
+
   <div class="nav-right">
-    <button class="btn-login">Log in</button>
+    {% if current_user %}
+    <div class="user-menu">
+      <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+        <img
+          src="{{ url_for('static', filename=current_picture) if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+          alt="Profile"
+          class="user-avatar"
+        >
+        <span class="user-name">{{ current_user }}</span>
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <a href="/account" class="dropdown-item">Account details</a>
+        <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+      </div>
+    </div>
+    {% else %}
+    <a href="/login" class="btn-login">Log in</a>
+    {% endif %}
   </div>
 </nav>
 
@@ -1049,7 +1092,7 @@ nav {
     <h1>Healthy Recipes</h1>
     <p>Delicious, nutritious, and easy-to-make meals curated by pediatric nutritionists to support your child's optimal growth and help prevent stunting.</p>
     <div class="search-wrap">
-      <input type="text" id="searchInput" placeholder="Search by ingredient or recipe name…" oninput="filterRecipes()">
+      <input type="text" id="searchInput" placeholder="Search by ingredient or recipe name..." oninput="filterRecipes()">
       <button><i class="fa-solid fa-magnifying-glass"></i> Search</button>
     </div>
   </div>
@@ -1080,7 +1123,7 @@ nav {
   <div class="stat-item">
     <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
     <div>
-      <div class="stat-num">≤ 45</div>
+      <div class="stat-num">&#8804 45</div>
       <div class="stat-lbl">Minutes to Prepare</div>
     </div>
   </div>
@@ -1089,9 +1132,9 @@ nav {
 <div class="filter-bar" id="filterBar">
   <span class="filter-bar-label"><i class="fa-solid fa-filter" style="margin-right:4px"></i>Filter:</span>
   <button class="filter-pill active" onclick="setFilter('all', this)">All Recipes</button>
-  <button class="filter-pill" onclick="setFilter('6-8m', this)">MPASI 6–8 Months</button>
-  <button class="filter-pill" onclick="setFilter('9-11m', this)">MPASI 9–11 Months</button>
-  <button class="filter-pill" onclick="setFilter('1-3y', this)">Ages 1–3 Years</button>
+  <button class="filter-pill" onclick="setFilter('6-8m', this)">MPASI 6-8 Months</button>
+  <button class="filter-pill" onclick="setFilter('9-11m', this)">MPASI 9-11 Months</button>
+  <button class="filter-pill" onclick="setFilter('1-3y', this)">Ages 1-3 Years</button>
   <button class="filter-pill" onclick="setFilter('iron', this)">High Iron</button>
   <button class="filter-pill" onclick="setFilter('bb', this)">Weight Booster</button>
   <button class="filter-pill" onclick="setFilter('omega', this)">Rich in Omega-3</button>
@@ -1106,15 +1149,21 @@ nav {
     <div class="featured-info">
       <div class="featured-label"><i class="fa-solid fa-star"></i> Featured Recipe</div>
       <div class="featured-title">Chicken Liver & Vegetable Rice Porridge</div>
-      <div class="featured-desc">A soft, iron-rich porridge packed with vegetables and protein — the perfect first solid food for babies starting MPASI. Loved by little ones and easy to batch-cook.</div>
+      <div class="featured-desc">A soft, iron-rich porridge packed with vegetables and protein -- the perfect first solid food for babies starting MPASI. Loved by little ones and easy to batch-cook.</div>
       <div class="featured-meta">
         <div class="meta-chip"><i class="fa-solid fa-clock"></i> 25 min</div>
-        <div class="meta-chip"><i class="fa-solid fa-child"></i> 6–8 Months</div>
+        <div class="meta-chip"><i class="fa-solid fa-child"></i> 6-8 Months</div>
         <div class="meta-chip"><i class="fa-solid fa-fire-flame-curved"></i> High Iron</div>
+        <div class="meta-chip"><i class="fa-solid fa-tag"></i> ~Rp 18.000</div>
       </div>
-      <button class="btn-view" onclick="openModal(0)">
-        <i class="fa-solid fa-book-open"></i> View Recipe
-      </button>
+      <div class="featured-actions">
+        <button class="btn-view" onclick="openModal(0)">
+          <i class="fa-solid fa-book-open"></i> View Recipe
+        </button>
+        <button class="btn-share" onclick="shareRecipe(0, event)">
+          <i class="fa-solid fa-share-nodes"></i> Share
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1131,8 +1180,7 @@ nav {
     <a href="#" class="see-all">See all <i class="fa-solid fa-arrow-right" style="font-size:0.7rem"></i></a>
   </div>
 
-  <div class="recipe-grid" id="recipeGrid">
-    </div>
+  <div class="recipe-grid" id="recipeGrid"></div>
 
 </main>
 
@@ -1157,64 +1205,70 @@ nav {
   </div>
 </div>
 
+<!-- share toast -->
+<div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+
 <script>
-/* ── NAV CAROUSEL ── */
+/* -- NAV CAROUSEL -- */
 (function () {
-  const scrollEl = document.getElementById('navScroll');
-  const list     = document.getElementById('navLinks');
-  const btnPrev  = document.getElementById('navPrev');
-  const btnNext  = document.getElementById('navNext');
-  
-  let offset = 0;
-  const STEP = 100;
-  
+  var scrollEl = document.getElementById('navScroll');
+  var list     = document.getElementById('navLinks');
+  var btnPrev  = document.getElementById('navPrev');
+  var btnNext  = document.getElementById('navNext');
+  var offset   = 0;
+  var STEP     = 100;
+
   function maxOffset() {
-    const prev = list.style.paddingLeft;
+    var prev = list.style.paddingLeft;
     list.style.paddingLeft = '0px';
-    const max = Math.max(0, list.scrollWidth - scrollEl.clientWidth);
+    var max = Math.max(0, list.scrollWidth - scrollEl.clientWidth);
     list.style.paddingLeft = prev;
     return max;
   }
-  
+
   function render() {
-    const max = maxOffset();
-    
+    var max = maxOffset();
     offset = Math.max(0, Math.min(offset, max));
-    list.style.transform = `translateX(${-offset}px)`;
-    
+    list.style.transform = 'translateX(' + (-offset) + 'px)';
+
     if (max === 0) {
-      const slack = scrollEl.clientWidth - list.scrollWidth;
-      list.style.paddingLeft = slack > 0 ? `${slack / 2}px` : '0px';
+      var slack = scrollEl.clientWidth - list.scrollWidth;
+      list.style.paddingLeft = slack > 0 ? (slack / 2) + 'px' : '0px';
     } else {
       list.style.paddingLeft = '0px';
     }
-    
+
     btnPrev.classList.toggle('visible', offset > 0);
     btnNext.classList.toggle('visible', offset < max);
   }
-  
-  btnPrev.addEventListener('click', () => {
-    offset -= STEP;
-    render();
-  });
-  
-  btnNext.addEventListener('click', () => {
-    offset += STEP;
-    render();
-  });
-  
+
+  btnPrev.addEventListener('click', function () { offset -= STEP; render(); });
+  btnNext.addEventListener('click', function () { offset += STEP; render(); });
   new ResizeObserver(render).observe(scrollEl);
-  
   render();
 })();
 
-/* ── RECIPE DATA ── */
-const RECIPES = [
+/* -- user menu -- */
+var userMenuBtn  = document.getElementById('userMenuBtn');
+var userDropdown = document.getElementById('userDropdown');
+if (userMenuBtn && userDropdown) {
+  userMenuBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    userDropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', function () {
+    userDropdown.classList.remove('open');
+  });
+}
+
+/* -- RECIPE DATA -- */
+var RECIPES = [
   {
     title: "Chicken Liver & Vegetable Rice Porridge",
-    desc: "Soft, iron-rich porridge with blended vegetables and chicken liver — perfect for babies just starting MPASI.",
-    age: "6–8 Months",
+    desc: "Soft, iron-rich porridge with blended vegetables and chicken liver - perfect for babies just starting MPASI.",
+    age: "6-8 Months",
     time: "25 min",
+    price: "~Rp 18.000",
     tags: ["iron", "6-8m"],
     tagLabels: ["High Iron"],
     img: "static/img/Chicken-Liver-Congee-1.png",
@@ -1238,13 +1292,14 @@ const RECIPES = [
   },
   {
     title: "Steamed Tempe & Carrot Nuggets",
-    desc: "High-protein, plant-based finger food made from tempe and carrots — great for independent eating practice.",
-    age: "1–3 Years",
+    desc: "High-protein, plant-based finger food made from tempe and carrots -- great for independent eating practice.",
+    age: "1-3 Years",
     time: "40 min",
+    price: "~Rp 14.000",
     tags: ["bb", "1-3y"],
     tagLabels: ["Weight Booster"],
     img: "static/img/tempe-nugget.png",
-    servings: "8–10 pieces",
+    servings: "8-10 pieces",
     calories: "~180 kcal",
     ingredients: [
       "150g tempe, steamed and mashed",
@@ -1264,9 +1319,10 @@ const RECIPES = [
   },
   {
     title: "Salmon & Macaroni Cream Soup",
-    desc: "Rich in Omega-3 and healthy calories — this creamy soup supports brain development and healthy weight gain.",
-    age: "9–11 Months",
+    desc: "Rich in Omega-3 and healthy calories -- this creamy soup supports brain development and healthy weight gain.",
+    age: "9-11 Months",
     time: "30 min",
+    price: "~Rp 35.000",
     tags: ["omega", "bb", "9-11m"],
     tagLabels: ["Omega-3", "Weight Booster"],
     img: "static/img/macaroni-soup.png",
@@ -1276,15 +1332,15 @@ const RECIPES = [
       "50g elbow macaroni",
       "60g fresh salmon fillet, diced",
       "100ml full-fat UHT milk",
-      "½ small onion, minced",
+      "1/2 small onion, minced",
       "1 tsp unsalted butter",
       "200ml water",
       "A pinch of dried dill (optional)"
     ],
     steps: [
       "Cook macaroni according to package directions. Drain and set aside.",
-      "Melt butter in a small pot. Sauté onion until translucent, about 2 minutes.",
-      "Add salmon and cook for 3–4 minutes until opaque.",
+      "Melt butter in a small pot. Saute onion until translucent, about 2 minutes.",
+      "Add salmon and cook for 3-4 minutes until opaque.",
       "Pour in water and milk. Bring to a gentle simmer for 5 minutes.",
       "Add cooked macaroni and stir. Blend partially for a creamier texture if desired.",
       "Sprinkle with dill and serve warm."
@@ -1293,8 +1349,9 @@ const RECIPES = [
   {
     title: "Spinach & Tofu Egg Drop Porridge",
     desc: "A gentle, protein-packed breakfast porridge loaded with iron from spinach and complete protein from egg and tofu.",
-    age: "6–8 Months",
+    age: "6-8 Months",
     time: "20 min",
+    price: "~Rp 12.000",
     tags: ["iron", "6-8m"],
     tagLabels: ["High Iron"],
     img: "static/img/egg-drop-soup.png",
@@ -1306,7 +1363,7 @@ const RECIPES = [
       "3 spinach leaves, chopped",
       "1 egg yolk",
       "400ml water",
-      "½ tsp sesame oil (optional, from 8 months)"
+      "1/2 tsp sesame oil (optional, from 8 months)"
     ],
     steps: [
       "Combine rice flour and water in a pot. Cook over medium heat, stirring, until thick.",
@@ -1319,36 +1376,38 @@ const RECIPES = [
   {
     title: "Sweet Potato & Banana Pancakes",
     desc: "Naturally sweet, flourless mini pancakes bursting with complex carbohydrates, potassium, and vitamin A.",
-    age: "9–11 Months",
+    age: "9-11 Months",
     time: "20 min",
+    price: "~Rp 10.000",
     tags: ["bb", "9-11m"],
     tagLabels: ["Weight Booster"],
     img: "static/img/banana-pancakes.png",
     servings: "6 mini pancakes",
     calories: "~95 kcal",
     ingredients: [
-      "½ cup mashed sweet potato (cooked)",
+      "1/2 cup mashed sweet potato (cooked)",
       "1 ripe banana, mashed",
       "2 eggs, beaten",
-      "¼ tsp cinnamon",
+      "1/4 tsp cinnamon",
       "A little coconut oil for the pan"
     ],
     steps: [
       "Combine mashed sweet potato, banana, eggs, and cinnamon in a bowl. Mix until smooth.",
       "Heat a non-stick pan over low-medium heat and grease lightly with coconut oil.",
-      "Pour 2 tbsp of batter per pancake. Cook for 2–3 minutes per side until set.",
+      "Pour 2 tbsp of batter per pancake. Cook for 2-3 minutes per side until set.",
       "Cool before serving. Cut into small pieces or serve whole as finger food."
     ]
   },
   {
     title: "Red Bean & Beef Soft Meatballs",
-    desc: "Tender meatballs packed with complete protein and red bean fiber — an excellent double iron source for toddlers.",
-    age: "1–3 Years",
+    desc: "Tender meatballs packed with complete protein and red bean fiber -- an excellent double iron source for toddlers.",
+    age: "1-3 Years",
     time: "35 min",
+    price: "~Rp 28.000",
     tags: ["iron", "bb", "1-3y"],
     tagLabels: ["High Iron", "Weight Booster"],
     img: "static/img/meatballs.png",
-    servings: "10–12 pieces",
+    servings: "10-12 pieces",
     calories: "~200 kcal",
     ingredients: [
       "150g lean ground beef",
@@ -1367,65 +1426,66 @@ const RECIPES = [
   }
 ];
 
-let activeFilter = 'all';
-let searchQuery  = '';
+var activeFilter = 'all';
+var searchQuery  = '';
+var currentModalIdx = -1;
 
 function renderCards() {
-  const grid = document.getElementById('recipeGrid');
-  const query = searchQuery.toLowerCase();
+  var grid  = document.getElementById('recipeGrid');
+  var query = searchQuery.toLowerCase();
 
-  const filtered = RECIPES.filter((r, i) => {
+  var filtered = RECIPES.filter(function (r, i) {
     if (i === 0) return false;
-    const matchFilter = activeFilter === 'all' || r.tags.includes(activeFilter);
-    const matchSearch = !query || r.title.toLowerCase().includes(query) || r.ingredients.some(ing => ing.toLowerCase().includes(query));
+    var matchFilter = activeFilter === 'all' || r.tags.indexOf(activeFilter) !== -1;
+    var matchSearch = !query || r.title.toLowerCase().indexOf(query) !== -1
+      || r.ingredients.some(function (ing) { return ing.toLowerCase().indexOf(query) !== -1; });
     return matchFilter && matchSearch;
   });
 
-  const featuredCard = document.getElementById('featuredCard');
-  const r0 = RECIPES[0];
-  const featuredMatch = (activeFilter === 'all' || r0.tags.includes(activeFilter)) &&
-    (!searchQuery || r0.title.toLowerCase().includes(query) || r0.ingredients.some(ing => ing.toLowerCase().includes(query)));
-  
+  var featuredCard = document.getElementById('featuredCard');
+  var r0 = RECIPES[0];
+  var featuredMatch = (activeFilter === 'all' || r0.tags.indexOf(activeFilter) !== -1)
+    && (!query || r0.title.toLowerCase().indexOf(query) !== -1
+        || r0.ingredients.some(function (ing) { return ing.toLowerCase().indexOf(query) !== -1; }));
+
   featuredCard.style.display = featuredMatch ? '' : 'none';
 
   if (filtered.length === 0 && !featuredMatch) {
-    grid.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:#aaa;font-size:0.95rem;">
-        <i class="fa-solid fa-magnifying-glass" style="font-size:2rem;margin-bottom:12px;display:block;"></i>
-        No recipes found. Try a different filter or search term.
-      </div>`;
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:#aaa;font-size:0.95rem;">'
+      + '<i class="fa-solid fa-magnifying-glass" style="font-size:2rem;margin-bottom:12px;display:block;"></i>'
+      + 'No recipes found. Try a different filter or search term.</div>';
     return;
   }
 
-  grid.innerHTML = filtered.map((r, i) => {
-    const realIdx = RECIPES.indexOf(r);
-    const tagHtml = r.tagLabels.map(t => `<span class="tag pink">${t}</span>`).join('');
-    
-    return `
-      <div class="recipe-card" onclick="openModal(${realIdx})">
-        <div class="recipe-img">
-          <img src="${r.img}" alt="${r.title}" loading="lazy">
-          <span class="time-badge"><i class="fa-regular fa-clock"></i> ${r.time}</span>
-          <span class="age-badge">${r.age}</span>
-        </div>
-        <div class="recipe-body">
-          <div class="recipe-title">${r.title}</div>
-          <div class="recipe-desc">${r.desc}</div>
-          <div class="recipe-footer">
-            <div class="recipe-tags">${tagHtml}</div>
-            <button class="recipe-action" title="View Recipe"><i class="fa-solid fa-arrow-right"></i></button>
-          </div>
-        </div>
-      </div>`;
+  grid.innerHTML = filtered.map(function (r) {
+    var realIdx = RECIPES.indexOf(r);
+    var tagHtml = r.tagLabels.map(function (t) { return '<span class="tag pink">' + t + '</span>'; }).join('');
+    return '<div class="recipe-card" onclick="openModal(' + realIdx + ')">'
+      + '<div class="recipe-img">'
+      + '<img src="' + r.img + '" alt="' + r.title + '" loading="lazy">'
+      + '<span class="time-badge"><i class="fa-regular fa-clock"></i> ' + r.time + '</span>'
+      + '<span class="age-badge">' + r.age + '</span>'
+      + '</div>'
+      + '<div class="recipe-body">'
+      + '<div class="recipe-title">' + r.title + '</div>'
+      + '<div class="recipe-desc">' + r.desc + '</div>'
+      + '<div class="recipe-price"><i class="fa-solid fa-tag"></i> ' + r.price + ' / serving</div>'
+      + '<div class="recipe-footer">'
+      + '<div class="recipe-tags">' + tagHtml + '</div>'
+      + '<div class="card-actions">'
+      + '<button class="recipe-action share-btn" title="Share" onclick="shareRecipe(' + realIdx + ', event)"><i class="fa-solid fa-share-nodes"></i></button>'
+      + '<button class="recipe-action" title="View Recipe"><i class="fa-solid fa-arrow-right"></i></button>'
+      + '</div>'
+      + '</div>'
+      + '</div>'
+      + '</div>';
   }).join('');
 }
 
 function setFilter(f, btn) {
   activeFilter = f;
-  
-  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.filter-pill').forEach(function (p) { p.classList.remove('active'); });
   btn.classList.add('active');
-  
   renderCards();
 }
 
@@ -1434,32 +1494,69 @@ function filterRecipes() {
   renderCards();
 }
 
-/* ── MODAL ── */
+/* -- SHARE -- */
+var toastTimer = null;
+
+function shareRecipe(idx, e) {
+  if (e) e.stopPropagation();
+  var r   = RECIPES[idx];
+  var url = window.location.origin + window.location.pathname + '?recipe=' + encodeURIComponent(r.title);
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function () { showToast('Link copied to clipboard!'); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    ta.style.position = 'fixed';
+    ta.style.opacity  = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('Link copied to clipboard!');
+    } catch (err) {
+      showToast('Could not copy link -- try manually.');
+    }
+    document.body.removeChild(ta);
+  }
+}
+
+function showToast(msg) {
+  var toast = document.getElementById('shareToast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2400);
+}
+
+/* -- MODAL -- */
 function openModal(idx) {
-  const r = RECIPES[idx];
-  
-  document.getElementById('modalImg').src = r.img;
-  document.getElementById('modalAge').textContent = r.age;
+  currentModalIdx = idx;
+  var r = RECIPES[idx];
+
+  document.getElementById('modalImg').src       = r.img;
+  document.getElementById('modalAge').textContent   = r.age;
   document.getElementById('modalTitle').textContent = r.title;
-  document.getElementById('modalDesc').textContent = r.desc;
-  
-  document.getElementById('modalMeta').innerHTML = `
-    <div class="modal-chip"><i class="fa-solid fa-clock"></i> ${r.time}</div>
-    <div class="modal-chip"><i class="fa-solid fa-bowl-food"></i> ${r.servings}</div>
-    <div class="modal-chip"><i class="fa-solid fa-fire-flame-curved"></i> ${r.calories}</div>`;
-    
+  document.getElementById('modalDesc').textContent  = r.desc;
+
+  document.getElementById('modalMeta').innerHTML =
+    '<div class="modal-chip"><i class="fa-solid fa-clock"></i> ' + r.time + '</div>'
+    + '<div class="modal-chip"><i class="fa-solid fa-bowl-food"></i> ' + r.servings + '</div>'
+    + '<div class="modal-chip"><i class="fa-solid fa-fire-flame-curved"></i> ' + r.calories + '</div>'
+    + '<div class="modal-chip price-chip"><i class="fa-solid fa-tag"></i> ' + r.price + ' / serving</div>'
+    + '<button class="modal-share-btn" onclick="shareRecipe(' + idx + ', event)"><i class="fa-solid fa-share-nodes"></i> Share</button>';
+
   document.getElementById('modalIngredients').innerHTML = r.ingredients
-    .map(ing => `<li><i class="fa-solid fa-circle-dot"></i>${ing}</li>`)
+    .map(function (ing) { return '<li><i class="fa-solid fa-circle-dot"></i>' + ing + '</li>'; })
     .join('');
-    
+
   document.getElementById('modalSteps').innerHTML = r.steps
-    .map((s, i) => `
-      <li class="step-item">
-        <div class="step-num">${i+1}</div>
-        <div class="step-text">${s}</div>
-      </li>`)
+    .map(function (s, i) {
+      return '<li class="step-item"><div class="step-num">' + (i + 1) + '</div><div class="step-text">' + s + '</div></li>';
+    })
     .join('');
-    
+
   document.getElementById('modalOverlay').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
@@ -1470,15 +1567,11 @@ function closeModal() {
 }
 
 function closeModalOnBg(e) {
-  if (e.target === document.getElementById('modalOverlay')) {
-    closeModal();
-  }
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeModal();
-  }
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closeModal();
 });
 
 renderCards();

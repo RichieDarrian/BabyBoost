@@ -10,22 +10,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* ─── Design tokens ─────────────────────────────────────────────── */
     :root {
-      --pink:     #FEA4AA;
-      --pink-h:   #f67a84;
-      --pink-l:   #fde8ef;
-      --pink-m:   #fcd0db;
-      --blue:     #024774;
+      --pink: #FEA4AA;
+      --pink-h: #f67a84;
+      --pink-l: #fde8ef;
+      --pink-m: #fcd0db;
+      --blue: #024774;
       --blue-mid: #37678D;
-      --blue-l:   #e8f2fb;
-      --bg:       #F0F4F8;
-      --card:     #ffffff;
-      --brd:      #f0dde6;
-      --brd2:     #e8eef4;
+      --blue-l: #e8f2fb;
+      --bg: #F0F4F8;
+      --card: #ffffff;
+      --brd: #f0dde6;
+      --brd2: #e8eef4;
     }
 
-    /* ─── Reset ─────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -35,10 +33,6 @@
       min-height: 100vh;
     }
 
-
-    /* ═══════════════════════════════════════════════════════════════════
-       NAV
-    ═══════════════════════════════════════════════════════════════════ */
     nav {
       display: flex;
       align-items: center;
@@ -52,7 +46,6 @@
       z-index: 1000;
     }
 
-    /* Logo */
     .logo {
       display: flex;
       align-items: center;
@@ -60,12 +53,11 @@
       text-decoration: none;
       flex-shrink: 0;
     }
-    .logo-svg  { width: 32px; height: 32px; }
+    .logo-svg { width: 32px; height: 32px; }
     .logo-text { font-size: 1.25rem; font-weight: 700; line-height: 1; }
     .logo-text .b { color: var(--blue); }
     .logo-text .p { color: var(--pink); }
 
-    /* Scrollable nav links */
     .nav-links-wrapper {
       display: flex;
       align-items: center;
@@ -84,15 +76,15 @@
       background: #fff;
       color: #555;
       cursor: pointer;
-      display: none;          /* shown via JS when needed */
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 0;
       transition: border-color .2s, color .2s, background .2s, box-shadow .2s;
     }
-    .nav-arrow:hover  { border-color: var(--blue); color: var(--blue); box-shadow: 0 2px 8px rgba(2,71,116,0.15); }
+    .nav-arrow:hover { border-color: var(--blue); color: var(--blue); box-shadow: 0 2px 8px rgba(2,71,116,0.15); }
     .nav-arrow:active { background: #f0f6fc; }
-    .nav-arrow svg    { width: 13px; height: 13px; pointer-events: none; }
+    .nav-arrow svg { width: 13px; height: 13px; pointer-events: none; }
     .nav-arrow.visible { display: flex; }
 
     .nav-links-scroll { overflow: hidden; min-width: 0; flex: 1; }
@@ -117,7 +109,7 @@
       white-space: nowrap;
       transition: color .2s;
     }
-    .nav-links a:hover  { color: var(--blue); }
+    .nav-links a:hover { color: var(--blue); }
     .nav-links a.active { color: var(--blue); font-weight: 700; }
 
     .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
@@ -135,20 +127,16 @@
       white-space: nowrap;
       transition: background .2s, transform .15s, box-shadow .2s;
     }
-    .btn-login:hover  { background: #035a92; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2,71,116,0.28); }
+    .btn-login:hover { background: #035a92; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2,71,116,0.28); }
     .btn-login:active { transform: translateY(0) scale(0.97); }
 
     @media (max-width: 1042px) {
-      nav             { padding: 12px 16px; gap: 8px; }
-      .btn-login      { padding: 8px 14px; font-size: .88rem; }
-      .nav-links a    { font-size: .88rem; }
-      .nav-links      { gap: 16px; }
+      nav { padding: 12px 16px; gap: 8px; }
+      .btn-login { padding: 8px 14px; font-size: .88rem; }
+      .nav-links a { font-size: .88rem; }
+      .nav-links { gap: 16px; }
     }
 
-
-    /* ═══════════════════════════════════════════════════════════════════
-       PAGE SHELL
-    ═══════════════════════════════════════════════════════════════════ */
     .page {
       padding: 28px 20px 48px;
       display: flex;
@@ -157,8 +145,6 @@
       gap: 20px;
     }
 
-
-    /* ─── Hero banner ─────────────────────────────────────────────── */
     .hero {
       width: 100%;
       max-width: 900px;
@@ -171,7 +157,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* Decorative circles */
     .hero::before {
       content: '';
       position: absolute;
@@ -199,9 +184,9 @@
       flex-shrink: 0;
       position: relative; z-index: 1;
     }
-    .hero-txt          { position: relative; z-index: 1; }
-    .hero-txt h1       { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 3px; }
-    .hero-txt p        { font-size: .82rem; color: rgba(255,255,255,.68); }
+    .hero-txt { position: relative; z-index: 1; }
+    .hero-txt h1 { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 3px; }
+    .hero-txt p { font-size: .82rem; color: rgba(255,255,255,.68); }
 
     .hero-badge {
       margin-left: auto;
@@ -218,8 +203,6 @@
     }
     .hdot { width: 7px; height: 7px; border-radius: 50%; background: #7eefb2; }
 
-
-    /* ─── Stats row ───────────────────────────────────────────────── */
     .stats {
       width: 100%; max-width: 900px;
       display: grid;
@@ -227,11 +210,9 @@
       gap: 12px;
     }
     .stat-box { background: var(--card); border: 1px solid var(--brd); border-radius: 14px; padding: 14px 16px; text-align: center; }
-    .stat-val  { font-size: 1.4rem; font-weight: 800; color: var(--blue); }
-    .stat-lbl  { font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--blue-mid); margin-top: 2px; }
+    .stat-val { font-size: 1.4rem; font-weight: 800; color: var(--blue); }
+    .stat-lbl { font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--blue-mid); margin-top: 2px; }
 
-
-    /* ─── Two-column layout ───────────────────────────────────────── */
     .cols {
       width: 100%; max-width: 900px;
       display: grid;
@@ -239,10 +220,6 @@
       gap: 18px;
     }
 
-
-    /* ═══════════════════════════════════════════════════════════════════
-       CARD SHELL (shared by both panels)
-    ═══════════════════════════════════════════════════════════════════ */
     .card { background: var(--card); border-radius: 18px; border: 1px solid var(--brd); overflow: hidden; }
 
     .card-head {
@@ -260,12 +237,10 @@
     .ch-icon.blue { background: var(--blue-l); color: var(--blue); }
     .ch-icon.pink { background: var(--pink-l); color: #c0516a; }
     .ch-title { font-size: .92rem; font-weight: 700; color: var(--blue); margin-bottom: 2px; }
-    .ch-sub   { font-size: .72rem; color: var(--blue-mid); }
+    .ch-sub { font-size: .72rem; color: var(--blue-mid); }
 
     .card-body { padding: 20px 24px 24px; }
 
-
-    /* ─── Form elements (Add Child card) ─────────────────────────── */
     .fgrp { margin-bottom: 14px; }
 
     .flbl {
@@ -292,18 +267,15 @@
       appearance: none;
       transition: border-color .2s, box-shadow .2s;
     }
-    .inp:focus        { border-color: var(--pink); background: #fff; box-shadow: 0 0 0 3px rgba(254,164,170,.18); }
+    .inp:focus { border-color: var(--pink); background: #fff; box-shadow: 0 0 0 3px rgba(254,164,170,.18); }
     .inp::placeholder { color: #b0c4d8; }
 
     .inp-w { position: relative; }
-    .unit  { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: .7rem; font-weight: 700; color: var(--blue-mid); pointer-events: none; }
-    .chev  { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: .7rem; color: var(--blue-mid); pointer-events: none; }
+    .unit { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: .7rem; font-weight: 700; color: var(--blue-mid); pointer-events: none; }
 
-    .two     { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .divider { height: 1px; background: var(--brd); margin: 4px 0 14px; }
 
-
-    /* ─── Section label (child list) ──────────────────────────────── */
     .sec-lbl {
       font-size: .68rem;
       font-weight: 700;
@@ -315,22 +287,14 @@
     }
     .sec-lbl::after { content: ''; flex: 1; height: 1px; background: var(--brd); }
 
-
-    /* ═══════════════════════════════════════════════════════════════════
-       CHILD LIST
-       Delete is revealed via a "Remove" button that slides in from the
-       right on hover/focus — no floating trash icon.
-    ═══════════════════════════════════════════════════════════════════ */
     .child-list { display: flex; flex-direction: column; gap: 7px; }
 
-    /* Clip container so the Remove panel slides into view */
     .child-item-wrap {
       border-radius: 11px;
       overflow: hidden;
       position: relative;
     }
 
-    /* Main clickable row */
     .child-item {
       display: flex;
       align-items: center;
@@ -348,9 +312,6 @@
     }
     .child-item:hover { border-color: var(--pink); background: var(--pink-l); box-shadow: 0 4px 14px rgba(254,164,170,.18); }
 
-    /* ─── Edit mode toggle ────────────────────────────────────────── */
-
-    /* Header row above the list: "Quick access" label + Edit button */
     .sec-lbl-row {
       display: flex;
       align-items: center;
@@ -362,7 +323,6 @@
       flex: 1;
     }
 
-    /* Small Edit / Done toggle button */
     .btn-edit-mode {
       flex-shrink: 0;
       height: 28px;
@@ -379,15 +339,9 @@
       display: flex; align-items: center; gap: 5px;
       transition: border-color .2s, color .2s, background .2s;
     }
-    .btn-edit-mode:hover          { border-color: var(--blue); color: var(--blue); background: var(--blue-l); }
-    .btn-edit-mode.done           { border-color: var(--pink); color: #c0414a;     background: var(--pink-l); }
+    .btn-edit-mode:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-l); }
+    .btn-edit-mode.done { border-color: var(--pink); color: #c0414a; background: var(--pink-l); }
 
-    /*
-      Delete button — hidden by default, shown in edit mode.
-      Sits to the LEFT of the avatar as a red minus circle,
-      identical to the iOS home-screen pattern.
-      The child-item link itself stays fully clickable in normal mode.
-    */
     .delete-trigger {
       flex-shrink: 0;
       width: 22px; height: 22px;
@@ -397,33 +351,29 @@
       color: #fff;
       font-size: .8rem;
       cursor: pointer;
-      display: none;               /* hidden until edit mode */
+      display: none;
       align-items: center; justify-content: center;
       transition: transform .15s, background .15s;
       margin-right: 2px;
     }
-    .delete-trigger:hover  { background: #b8001a; transform: scale(1.12); }
+    .delete-trigger:hover { background: #b8001a; transform: scale(1.12); }
     .delete-trigger:active { transform: scale(0.95); }
 
-    /* Edit mode — show delete triggers, wobble cards */
-    .child-list.editing .delete-trigger       { display: flex; }
-    .child-list.editing .child-item           { pointer-events: none; cursor: default; }
-    .child-list.editing .child-item-wrap      { animation: wobble 1.4s ease-in-out infinite; }
+    .child-list.editing .delete-trigger { display: flex; }
+    .child-list.editing .child-item { pointer-events: none; cursor: default; }
+    .child-list.editing .child-item-wrap { animation: wobble 1.4s ease-in-out infinite; }
 
-    /* Stagger wobble so cards don't all move identically */
     .child-list.editing .child-item-wrap:nth-child(2) { animation-delay: .1s; }
     .child-list.editing .child-item-wrap:nth-child(3) { animation-delay: .2s; }
     .child-list.editing .child-item-wrap:nth-child(4) { animation-delay: .3s; }
     .child-list.editing .child-item-wrap:nth-child(5) { animation-delay: .4s; }
 
     @keyframes wobble {
-      0%,100% { transform: rotate(0deg);    }
-      20%      { transform: rotate(-1.2deg); }
-      60%      { transform: rotate(1.2deg);  }
+      0%,100% { transform: rotate(0deg); }
+      20% { transform: rotate(-1.2deg); }
+      60% { transform: rotate(1.2deg); }
     }
 
-
-    /* ─── Avatar ──────────────────────────────────────────────────── */
     .av {
       width: 38px; height: 38px;
       border-radius: 50%;
@@ -434,23 +384,19 @@
       overflow: hidden;
     }
     .av img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .av-p   { background: var(--pink-l); color: #c0516a; border-color: #f7d0d8; }
-    .av-b   { background: var(--blue-l); color: #2a6aad; border-color: #c0d8f0; }
-    .av-g   { background: #eaf5ea;       color: #2a6e2a; border-color: #b5ddb5; }
+    .av-p { background: var(--pink-l); color: #c0516a; border-color: #f7d0d8; }
+    .av-b { background: var(--blue-l); color: #2a6aad; border-color: #c0d8f0; }
+    .av-g { background: #eaf5ea; color: #2a6e2a; border-color: #b5ddb5; }
 
-
-    /* ─── Child meta chips ────────────────────────────────────────── */
-    .cm          { flex: 1; min-width: 0; }
-    .cm strong   { display: block; font-size: .82rem; font-weight: 700; color: var(--blue); }
+    .cm { flex: 1; min-width: 0; }
+    .cm strong { display: block; font-size: .82rem; font-weight: 700; color: var(--blue); }
 
     .chips { display: flex; gap: 4px; margin-top: 3px; flex-wrap: wrap; }
-    .chip  { font-size: .63rem; font-weight: 700; padding: 2px 7px; border-radius: 20px; }
+    .chip { font-size: .63rem; font-weight: 700; padding: 2px 7px; border-radius: 20px; }
     .chip-a { background: var(--blue-l); color: #0c447c; }
-    .chip-h { background: #eaf5ea;       color: #27500a; }
-    .chip-w { background: #fff5e6;       color: #633806; }
+    .chip-h { background: #eaf5ea; color: #27500a; }
+    .chip-w { background: #fff5e6; color: #633806; }
 
-
-    /* ─── Prediction status badge ─────────────────────────────────── */
     .status {
       font-size: .63rem;
       font-weight: 700;
@@ -460,15 +406,13 @@
       white-space: nowrap;
       margin-right: 12px;
     }
-    .st-ok   { background: #e8f7ee; color: #1a7a40; }
+    .st-ok { background: #e8f7ee; color: #1a7a40; }
     .st-risk { background: #fff4e6; color: #8a4a00; }
 
-    .sdot      { width: 5px; height: 5px; border-radius: 50%; }
-    .sdot-ok   { background: #2ea55a; }
+    .sdot { width: 5px; height: 5px; border-radius: 50%; }
+    .sdot-ok { background: #2ea55a; }
     .sdot-risk { background: #e68200; }
 
-
-    /* ─── Info box ────────────────────────────────────────────────── */
     .info-box {
       display: flex; align-items: flex-start; gap: 8px;
       margin-top: 14px;
@@ -481,9 +425,7 @@
     }
     .info-box i { color: var(--blue); margin-top: 1px; flex-shrink: 0; }
 
-
-    /* ─── Gender toggle ───────────────────────────────────────────── */
-    .gender-w   { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .gender-w { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
     .gender-btn {
       height: 44px;
       border: 1.5px solid var(--brd2);
@@ -496,11 +438,9 @@
       display: flex; align-items: center; justify-content: center; gap: 6px;
       transition: all .2s;
     }
-    .gender-btn.male.on   { border-color: #5b9bd5; background: #edf4fb; color: #2a6aad; }
+    .gender-btn.male.on { border-color: #5b9bd5; background: #edf4fb; color: #2a6aad; }
     .gender-btn.female.on { border-color: var(--pink); background: var(--pink-l); color: #c0555c; }
 
-
-    /* ─── Photo upload box ────────────────────────────────────────── */
     .upload-box {
       width: 100%;
       min-height: 120px;
@@ -516,11 +456,10 @@
       transition: .25s;
     }
     .upload-box:hover { border-color: var(--pink); background: var(--pink-l); }
-    .upload-box i     { font-size: 1.5rem; color: var(--pink); }
-    .upload-box span  { font-size: .9rem; font-weight: 700; color: var(--blue); }
+    .upload-box i { font-size: 1.5rem; color: var(--pink); }
+    .upload-box span { font-size: .9rem; font-weight: 700; color: var(--blue); }
     .upload-box small { font-size: .72rem; color: var(--blue-mid); }
 
-    /* Preview state: hide the placeholder text, show the image */
     #previewImage {
       width: 92px; height: 92px;
       object-fit: cover;
@@ -535,22 +474,13 @@
     .upload-box.has-image span,
     .upload-box.has-image small { display: none; }
 
-
-    /* ─── CTA buttons ─────────────────────────────────────────────── */
-    .btn-pink {
-      width: 100%; height: 48px;
-      background: var(--pink);
-      color: #fff;
-      border: none;
-      border-radius: 11px;
-      font-family: 'Poppins', sans-serif;
-      font-size: .92rem; font-weight: 700;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      margin-top: 2px;
-      transition: transform .2s, box-shadow .2s, filter .2s;
+    .age-display {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--blue-mid);
+      padding: 6px 0 2px 2px;
+      min-height: 22px;
     }
-    .btn-pink:hover  { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(254,164,170,.38); filter: brightness(1.04); }
 
     .btn-out {
       width: 100%; height: 48px;
@@ -567,8 +497,6 @@
     }
     .btn-out:hover { border-color: var(--blue); background: var(--blue-l); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(2,71,116,.1); }
 
-
-    /* ─── Loading overlay ─────────────────────────────────────────── */
     .loading-overlay {
       display: none;
       position: fixed; inset: 0;
@@ -596,66 +524,133 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .loading-card p { font-size: .9rem; color: var(--blue-mid); font-weight: 500; }
+
+    .user-menu { position: relative; }
+
+    .user-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 1.5px solid #dde6ef;
+      border-radius: 50px;
+      padding: 5px 12px 5px 5px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--blue);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .user-btn:hover { border-color: var(--blue); box-shadow: 0 2px 8px rgba(2,71,116,0.12); }
+
+    .user-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; display: block; }
+
+    .user-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .user-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(2,71,116,0.1);
+      min-width: 140px;
+      overflow: hidden;
+      z-index: 999;
+    }
+    .user-dropdown.open { display: block; }
+
+    .dropdown-item {
+      display: block;
+      padding: 11px 16px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    }
+    .dropdown-item:hover { background: #f7f9fb; }
+    .dropdown-item-logout { color: #c0536a; }
+    .dropdown-item-logout:hover { background: #fde8ef; }
+
+    .req {
+      color: #e03040;
+      margin-left: 3px;
+    }
   </style>
 </head>
 <body>
 
-<!-- ── Loading overlay ────────────────────────────────────────────── -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-card">
     <div class="spinner"></div>
-    <p>Loading dashboard…</p>
+    <p>Loading dashboard...</p>
   </div>
 </div>
 
-
-<!-- ── Navbar ─────────────────────────────────────────────────────── -->
 <nav>
-  <a class="logo" href="#">
-    <img src="{{ url_for('static', filename='img/BabyBoost.svg') }}"
-         alt="BabyBoost Logo" class="logo-svg">
-    <span class="logo-text">
-      <span class="b">Baby</span><span class="p">Boost</span>
-    </span>
+  <a class="logo" href="/">
+    <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
 
   <div class="nav-links-wrapper">
-    <button class="nav-arrow" id="navPrev" aria-label="Scroll links left">
+    <button class="nav-arrow" id="navPrev" aria-label="Show previous items">
       <svg viewBox="0 0 14 14" fill="none">
-        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
 
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('stunting_prediction') }}">Stunting Prediction</a></li>
-        <li><a href="{{ url_for('select_child') }}" class="active">Growth Dashboard</a></li>
-        <li><a href="{{ url_for('healthy_recipes') }}">Healthy Recipes</a></li>
-        <li><a href="{{ url_for('parenting_guides') }}">Parenting Guides</a></li>
-        <li><a href="{{ url_for('forum') }}">Forum</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/stunting-prediction.html">Stunting Prediction</a></li>
+        <li><a href="/growth-dashboard.html" class="active">Growth Dashboard</a></li>
+        <li><a href="/healthy-recipes.html">Healthy Recipes</a></li>
+        <li><a href="/parenting-guides.html">Parenting Guides</a></li>
+        <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
 
-    <button class="nav-arrow" id="navNext" aria-label="Scroll links right">
+    <button class="nav-arrow" id="navNext" aria-label="Show next items">
       <svg viewBox="0 0 14 14" fill="none">
-        <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
   </div>
 
   <div class="nav-right">
-    <button class="btn-login">Log in</button>
+  {% if current_user %}
+  <div class="user-menu">
+    <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+      <img
+        src="{{ url_for('static', filename=current_picture) if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+        alt="Profile"
+        class="user-avatar"
+      >
+      <span class="user-name">{{ current_user }}</span>
+      <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+        <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="user-dropdown" id="userDropdown">
+      <a href="/account" class="dropdown-item">Account details</a>
+      <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+    </div>
+  </div>
+  {% else %}
+  <a href="/login" class="btn-login">Log in</a>
+  {% endif %}
   </div>
 </nav>
 
-
-<!-- ── Page ───────────────────────────────────────────────────────── -->
 <div class="page">
 
-  <!-- Hero -->
   <div class="hero">
     <div class="hero-icon"><i class="fa-solid fa-chart-line"></i></div>
     <div class="hero-txt">
@@ -668,14 +663,11 @@
     </div>
   </div>
 
-  <!-- Stats -->
   <div class="stats">
-
     <div class="stat-box">
       <div class="stat-val">{{ children|length }}</div>
       <div class="stat-lbl">Children</div>
     </div>
-
     <div class="stat-box">
       <div class="stat-val" style="color:#2ea55a;">
         {{ (children|selectattr('prediction','equalto','Normal')|list|length)
@@ -683,7 +675,6 @@
       </div>
       <div class="stat-lbl">Normal Growth</div>
     </div>
-
     <div class="stat-box">
       <div class="stat-val" style="color:#e68200;">
         {{ (children|selectattr('prediction','equalto','Stunted')|list|length)
@@ -691,18 +682,11 @@
       </div>
       <div class="stat-lbl">At Risk</div>
     </div>
-
   </div>
 
-
-  <!-- Two-column layout -->
   <div class="cols">
 
-    <!-- ══════════════════════════════════════════════════
-         LEFT — Select child
-    ══════════════════════════════════════════════════ -->
     <div class="card">
-
       <div class="card-head">
         <div class="ch-icon blue"><i class="fa-solid fa-user-group"></i></div>
         <div>
@@ -712,13 +696,10 @@
       </div>
 
       <div class="card-body">
-
-        <!-- Child list is the primary navigation hub -->
         {% if children %}
         <div class="sec-lbl-row">
           <div class="sec-lbl">{{ children|length }} profile{{ 's' if children|length != 1 }}</div>
-          <button type="button" class="btn-edit-mode" id="editToggle"
-                  onclick="toggleEditMode()">
+          <button type="button" class="btn-edit-mode" id="editToggle" onclick="toggleEditMode()">
             <i class="fa-solid fa-pen-to-square"></i> Edit
           </button>
         </div>
@@ -726,11 +707,6 @@
         <div class="child-list" id="childList">
           {% for child in children %}
           <div class="child-item-wrap">
-
-            <!--
-              Delete trigger — visible only in edit mode.
-              Submits its own form; the link is disabled in edit mode.
-            -->
             <form action="{{ url_for('delete_child', child_id=child.id) }}"
                   method="post"
                   onsubmit="return confirm('Remove {{ child.name }}? This cannot be undone.')">
@@ -739,18 +715,12 @@
               </button>
             </form>
 
-            <!-- Main clickable row -->
-            <a class="child-item"
-               href="{{ url_for('dashboard', child_id=child.id) }}">
-
+            <a class="child-item" href="{{ url_for('dashboard', child_id=child.id) }}">
               <div class="av {{ child.avatar_class }}">
                 {% if child.profile_picture %}
-                  <img src="{{ url_for('static', filename=child.profile_picture) }}"
-                       alt="{{ child.name }}">
+                  <img src="{{ url_for('static', filename=child.profile_picture) }}" alt="{{ child.name }}">
                 {% elif child.avatar %}
-                  <img src="{{ url_for('static', filename='img/' ~ child.avatar) }}"
-                       alt="{{ child.name }}"
-                       onerror="this.style.display='none'">
+                  <img src="{{ url_for('static', filename='img/' ~ child.avatar) }}" alt="{{ child.name }}" onerror="this.style.display='none'">
                 {% else %}
                   {{ child.name[0] }}
                 {% endif %}
@@ -766,19 +736,13 @@
               </div>
 
               {% if child.prediction in ['Normal', 'Tall'] %}
-                <span class="status st-ok">
-                  <span class="sdot sdot-ok"></span>{{ child.prediction }}
-                </span>
+                <span class="status st-ok"><span class="sdot sdot-ok"></span>{{ child.prediction }}</span>
               {% elif child.prediction in ['Stunted', 'Severely Stunted'] %}
-                <span class="status st-risk">
-                  <span class="sdot sdot-risk"></span>{{ child.prediction }}
-                </span>
+                <span class="status st-risk"><span class="sdot sdot-risk"></span>{{ child.prediction }}</span>
               {% else %}
                 <span class="status">{{ child.prediction or 'No Prediction' }}</span>
               {% endif %}
-
             </a>
-
           </div>
           {% endfor %}
         </div>
@@ -791,21 +755,12 @@
 
         <div class="info-box">
           <i class="fa-solid fa-circle-info"></i>
-          <span>
-            Growth data updates each time you log a meal or measurement.
-            Keep records consistent for the most accurate tracking.
-          </span>
+          <span>Growth data updates each time you log a meal or measurement. Keep records consistent for the most accurate tracking.</span>
         </div>
-
       </div>
     </div>
 
-
-    <!-- ══════════════════════════════════════════════════
-         RIGHT — Add child
-    ══════════════════════════════════════════════════ -->
     <div class="card">
-
       <div class="card-head">
         <div class="ch-icon pink"><i class="fa-solid fa-user-plus"></i></div>
         <div>
@@ -815,21 +770,15 @@
       </div>
 
       <div class="card-body">
+        <form action="{{ url_for('add_child') }}" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
 
-        <form action="{{ url_for('add_child') }}" method="post"
-              enctype="multipart/form-data"
-              onsubmit="showLoading()">
-
-          <!-- Name -->
           <div class="fgrp">
-            <div class="flbl"><i class="fa-solid fa-pen"></i> Child name</div>
+            <div class="flbl"><i class="fa-solid fa-pen"></i> Child name <span class="req">*</span></div>
             <div class="inp-w">
-              <input class="inp" type="text" name="name"
-                     placeholder="e.g. Baby Steve" required>
+              <input class="inp" type="text" name="name" placeholder="e.g. Baby Steve" required>
             </div>
           </div>
 
-          <!-- Photo upload -->
           <div class="fgrp">
             <div class="flbl"><i class="fa-solid fa-camera"></i> Profile Picture</div>
             <label class="upload-box" for="profile_picture" id="uploadBox">
@@ -840,54 +789,48 @@
               </div>
               <img id="previewImage" src="#" alt="Preview">
             </label>
-            <input type="file" id="profile_picture" name="profile_picture"
-                   accept="image/*" hidden>
+            <input type="file" id="profile_picture" name="profile_picture" accept="image/*" hidden>
           </div>
 
-          <!-- Gender -->
           <div class="fgrp">
-            <div class="flbl"><i class="fa-solid fa-venus-mars"></i> Gender</div>
+            <div class="flbl"><i class="fa-solid fa-venus-mars"></i> Gender <span class="req">*</span></div>
             <div class="gender-w">
-              <button type="button" class="gender-btn male on"
-                      id="gM" onclick="setGender('male')">
+              <button type="button" class="gender-btn male on" id="gM" onclick="setGender('male')">
                 <i class="fa-solid fa-mars"></i> Male
               </button>
-              <button type="button" class="gender-btn female"
-                      id="gF" onclick="setGender('female')">
+              <button type="button" class="gender-btn female" id="gF" onclick="setGender('female')">
                 <i class="fa-solid fa-venus"></i> Female
               </button>
             </div>
             <input type="hidden" name="gender" id="genderVal" value="male">
           </div>
 
-          <!-- Age -->
           <div class="fgrp">
-            <div class="flbl"><i class="fa-solid fa-calendar-days"></i> Age</div>
+            <div class="flbl"><i class="fa-solid fa-calendar-days"></i> Date of Birth <span class="req">*</span></div>
             <div class="inp-w">
-              <input class="inp" type="number" name="age_months"
-                     placeholder="Age in months e.g. 6"
-                     min="0" max="60" required>
-              <span class="unit">mo</span>
+              <input class="inp" type="date" name="birthdate" id="birthdateInput" max="{{ today }}" required>
             </div>
+          </div>
+
+          <div class="fgrp">
+            <div class="flbl"><i class="fa-solid fa-clock"></i> Age</div>
+            <div class="age-display" id="ageDisplay"></div>
           </div>
 
           <div class="divider"></div>
 
-          <!-- Height & Weight -->
           <div class="two">
             <div class="fgrp">
-              <div class="flbl"><i class="fa-solid fa-ruler-vertical"></i> Height</div>
+              <div class="flbl"><i class="fa-solid fa-ruler-vertical"></i> Height <span class="req">*</span></div>
               <div class="inp-w">
-                <input class="inp" type="number" name="height"
-                       placeholder="67.0" step="0.1" min="0" required>
+                <input class="inp" type="number" name="height" placeholder="67.0" step="0.1" min="0" required>
                 <span class="unit">cm</span>
               </div>
             </div>
             <div class="fgrp">
-              <div class="flbl"><i class="fa-solid fa-weight-scale"></i> Weight</div>
+              <div class="flbl"><i class="fa-solid fa-weight-scale"></i> Weight <span class="req">*</span></div>
               <div class="inp-w">
-                <input class="inp" type="number" name="weight"
-                       placeholder="7.8" step="0.1" min="0" required>
+                <input class="inp" type="number" name="weight" placeholder="7.8" step="0.1" min="0" required>
                 <span class="unit">kg</span>
               </div>
             </div>
@@ -900,96 +843,116 @@
           </button>
 
         </form>
-
       </div>
     </div>
 
-  </div><!-- /.cols -->
-</div><!-- /.page -->
-
+  </div>
+</div>
 
 <script>
-  /* ── Scrollable navbar ─────────────────────────────────────────── */
   (function () {
-    const scroll = document.getElementById('navScroll');
-    const links  = document.getElementById('navLinks');
-    const prev   = document.getElementById('navPrev');
-    const next   = document.getElementById('navNext');
-    let offset   = 0;
-    const STEP   = 100;
+    var scroll = document.getElementById('navScroll');
+    var links = document.getElementById('navLinks');
+    var prev = document.getElementById('navPrev');
+    var next = document.getElementById('navNext');
+    var offset = 0;
+    var STEP = 100;
 
     function maxOffset() {
-      const saved = links.style.paddingLeft;
+      var saved = links.style.paddingLeft;
       links.style.paddingLeft = '0px';
-      const max = Math.max(0, links.scrollWidth - scroll.clientWidth);
+      var max = Math.max(0, links.scrollWidth - scroll.clientWidth);
       links.style.paddingLeft = saved;
       return max;
     }
 
     function render() {
-      const max = maxOffset();
+      var max = maxOffset();
       offset = Math.max(0, Math.min(offset, max));
-      links.style.transform = `translateX(${-offset}px)`;
-
-      // Centre the links when there's spare space
+      links.style.transform = 'translateX(' + (-offset) + 'px)';
       if (max === 0) {
-        const spare = scroll.clientWidth - links.scrollWidth;
-        links.style.paddingLeft = spare > 0 ? `${spare / 2}px` : '0px';
+        var spare = scroll.clientWidth - links.scrollWidth;
+        links.style.paddingLeft = spare > 0 ? (spare / 2) + 'px' : '0px';
       } else {
         links.style.paddingLeft = '0px';
       }
-
       prev.classList.toggle('visible', offset > 0);
       next.classList.toggle('visible', offset < max);
     }
 
-    prev.addEventListener('click', () => { offset -= STEP; render(); });
-    next.addEventListener('click', () => { offset += STEP; render(); });
-
+    prev.addEventListener('click', function () { offset -= STEP; render(); });
+    next.addEventListener('click', function () { offset += STEP; render(); });
     new ResizeObserver(render).observe(scroll);
     render();
   })();
 
+  var userMenuBtn = document.getElementById('userMenuBtn');
+  var userDropdown = document.getElementById('userDropdown');
 
-  /* ── Edit mode toggle (delete children) ───────────────────────── */
+  if (userMenuBtn && userDropdown) {
+    userMenuBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      userDropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', function () {
+      userDropdown.classList.remove('open');
+    });
+  }
+
   function toggleEditMode() {
-    const list   = document.getElementById('childList');
-    const btn    = document.getElementById('editToggle');
-    const active = list.classList.toggle('editing');
-    btn.innerHTML = active
-      ? '<i class="fa-solid fa-check"></i> Done'
-      : '<i class="fa-solid fa-pen-to-square"></i> Edit';
+    var list = document.getElementById('childList');
+    var btn = document.getElementById('editToggle');
+    var active = list.classList.toggle('editing');
+    btn.innerHTML = active ? '<i class="fa-solid fa-check"></i> Done' : '<i class="fa-solid fa-pen-to-square"></i> Edit';
     btn.classList.toggle('done', active);
   }
 
-
-  /* ── Gender toggle ─────────────────────────────────────────────── */
   function setGender(gender) {
     document.getElementById('gM').classList.toggle('on', gender === 'male');
     document.getElementById('gF').classList.toggle('on', gender === 'female');
     document.getElementById('genderVal').value = gender;
   }
 
-
-  /* ── Loading overlay ───────────────────────────────────────────── */
   function showLoading() {
     document.getElementById('loadingOverlay').classList.add('show');
   }
 
-
-  /* ── Photo preview ─────────────────────────────────────────────── */
-  const profileInput = document.getElementById('profile_picture');
-  const previewImage = document.getElementById('previewImage');
-  const uploadBox    = document.getElementById('uploadBox');
+  var profileInput = document.getElementById('profile_picture');
+  var previewImage = document.getElementById('previewImage');
+  var uploadBox = document.getElementById('uploadBox');
 
   if (profileInput) {
     profileInput.addEventListener('change', function (e) {
-      const file = e.target.files[0];
+      var file = e.target.files[0];
       if (!file) return;
       previewImage.src = URL.createObjectURL(file);
       previewImage.style.display = 'block';
       uploadBox.classList.add('has-image');
     });
+  }
+
+  function calcAge(dateStr) {
+    var display = document.getElementById('ageDisplay');
+    if (!dateStr) { display.textContent = ''; return; }
+    var birth = new Date(dateStr);
+    var now = new Date();
+    var months = (now.getFullYear() - birth.getFullYear()) * 12 + (now.getMonth() - birth.getMonth());
+    if (now.getDate() < birth.getDate()) months--;
+    if (months < 0) { display.textContent = 'Date is in the future'; return; }
+    var years = Math.floor(months / 12);
+    var rem = months % 12;
+    var parts = [];
+    if (years) parts.push(years + ' year' + (years !== 1 ? 's' : ''));
+    if (rem) parts.push(rem + ' month' + (rem !== 1 ? 's' : ''));
+    if (!parts.length) parts.push('Less than 1 month');
+    display.textContent = parts.join(', ') + ' (' + months + ' months total)';
+  }
+
+  var birthdateInput = document.getElementById('birthdateInput');
+  if (birthdateInput) {
+    birthdateInput.addEventListener('change', function () { calcAge(this.value); });
+    birthdateInput.addEventListener('input', function () { calcAge(this.value); });
+    calcAge(birthdateInput.value);
   }
 </script>
 </body>

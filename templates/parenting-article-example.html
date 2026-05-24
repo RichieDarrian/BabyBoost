@@ -25,12 +25,10 @@ html, body {
   width: 100%;
 }
 
-/* ── PROGRESS BAR ── */
+/* -- PROGRESS BAR -- */
 #scrollBar {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   height: 36px;
   background: #fff;
   border-top: 1.5px solid #f0dde6;
@@ -42,7 +40,6 @@ html, body {
   padding: 0 24px;
   gap: 12px;
 }
-
 #scrollBar::before {
   content: 'Reading Progress';
   font-family: 'Poppins', sans-serif;
@@ -51,7 +48,6 @@ html, body {
   color: var(--blue-mid);
   white-space: nowrap;
 }
-
 #scrollBarTrack {
   flex: 1;
   height: 4px;
@@ -59,7 +55,6 @@ html, body {
   border-radius: 10px;
   overflow: hidden;
 }
-
 #scrollBarFill {
   height: 100%;
   width: 0%;
@@ -67,7 +62,6 @@ html, body {
   border-radius: 10px;
   transition: width 0.1s ease;
 }
-
 #scrollBarPct {
   font-family: 'Poppins', sans-serif;
   font-size: 0.72rem;
@@ -77,7 +71,7 @@ html, body {
   text-align: right;
 }
 
-/* ── NAV ── */
+/* -- NAV -- */
 nav {
   display: flex;
   align-items: center;
@@ -90,15 +84,12 @@ nav {
   z-index: 1000;
   gap: 16px;
 }
-
 .logo { display: flex; align-items: center; gap: 6px; text-decoration: none; flex-shrink: 0; }
 .logo-svg { width: 32px; height: 32px; }
 .logo-text { font-size: 1.25rem; font-weight: 700; line-height: 1; }
 .logo-text .b { color: var(--blue); }
 .logo-text .p { color: var(--pink); }
-
 .nav-links-wrapper { display: flex; align-items: center; gap: 4px; margin-left: auto; min-width: 0; flex: 1; }
-
 .nav-arrow {
   flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
   border: 1.5px solid #ddd; background: #fff; color: #555;
@@ -106,12 +97,9 @@ nav {
   transition: border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s; padding: 0;
 }
 .nav-arrow:hover { border-color: var(--blue); color: var(--blue); box-shadow: 0 2px 8px rgba(2,71,116,0.15); }
-.nav-arrow:active { background: #f0f6fc; }
 .nav-arrow svg { width: 13px; height: 13px; pointer-events: none; }
 .nav-arrow.visible { display: flex; }
-
 .nav-links-scroll { overflow: hidden; min-width: 0; flex: 1; }
-
 .nav-links {
   display: flex; align-items: center; gap: 20px; list-style: none;
   width: max-content; transform: translateX(0);
@@ -121,57 +109,49 @@ nav {
 .nav-links a { display: flex; align-items: center; text-decoration: none; color: #333; font-size: 1rem; font-weight: 500; white-space: nowrap; transition: color 0.2s; }
 .nav-links a.active { color: var(--blue); font-weight: 700; }
 .nav-links a:hover { color: var(--blue); }
-
 .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-
 .btn-login {
   background: var(--blue); color: #fff; border: none; padding: 9px 22px;
   border-radius: 6px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600;
   cursor: pointer; white-space: nowrap; transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
 }
 .btn-login:hover { background: #035a92; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2,71,116,0.28); }
-.btn-login:active { transform: translateY(0px) scale(0.97); box-shadow: 0 2px 6px rgba(2,71,116,0.2); }
 
-/* ── PAGE LAYOUT ── */
+/* -- PAGE LAYOUT -- */
 .page-body {
-  max-width: 980px; margin: 44px auto 72px; padding: 0 20px;
+  max-width: 980px; margin: 44px auto 100px; padding: 0 20px;
   display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start;
 }
 
-/* ── MAIN ARTICLE ── */
+/* -- ARTICLE -- */
 .article-main { background: #fff; border-radius: 18px; overflow: hidden; border: 1.5px solid #f0dde6; }
 
-/* ── HERO ── */
+/* -- HERO -- */
 .article-hero { position: relative; width: 100%; height: 380px; overflow: hidden; }
 .article-hero > img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .article-hero::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%;
   background: linear-gradient(to bottom, transparent, rgba(2,30,55,0.72)); pointer-events: none;
 }
-
 .hero-category {
   position: absolute; top: 18px; left: 20px; z-index: 2;
   background: var(--pink); color: #fff; font-size: 0.75rem; font-weight: 600;
   padding: 5px 15px; border-radius: 20px; letter-spacing: 0.03em;
 }
-
 .hero-overlay {
   position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
   padding: 20px 28px 24px; display: flex; align-items: flex-end; gap: 16px;
 }
-
 .hero-author-avatar {
   flex-shrink: 0; width: 62px; height: 62px; border-radius: 50%; overflow: hidden;
   border: 3px solid rgba(255,255,255,0.85); box-shadow: 0 3px 12px rgba(0,0,0,0.3);
 }
 .hero-author-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-
 .hero-author-avatar-fallback {
   flex-shrink: 0; width: 62px; height: 62px; border-radius: 50%; background: var(--pink);
   border: 3px solid rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center;
   font-size: 1.4rem; font-weight: 700; color: #fff; box-shadow: 0 3px 12px rgba(0,0,0,0.3);
 }
-
 .hero-text { flex: 1; min-width: 0; }
 .hero-text h1 { font-size: 1.35rem; font-weight: 800; color: #fff; line-height: 1.35; margin-bottom: 6px; text-shadow: 0 1px 4px rgba(0,0,0,0.25); }
 .hero-byline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -179,20 +159,48 @@ nav {
 .hero-byline-sep { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.5); }
 .hero-byline-role { font-size: 0.78rem; color: rgba(255,255,255,0.72); font-weight: 400; }
 
-/* ── META BAR ── */
-.article-meta { display: flex; align-items: center; gap: 20px; padding: 16px 28px; border-bottom: 1px solid #f4eaf0; background: #fdf9fb; flex-wrap: wrap; }
+/* -- META BAR -- */
+.article-meta {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 28px; border-bottom: 1px solid #f4eaf0;
+  background: #fdf9fb; flex-wrap: wrap;
+}
 .meta-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: var(--blue-mid); font-weight: 500; }
 .meta-item i { font-size: 0.9rem; color: var(--pink); }
 .meta-divider { width: 1px; height: 16px; background: #f0dde6; }
+.meta-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 
-/* ── CONTENT ── */
-.article-body { padding: 36px 34px 50px; }
+.btn-like, .btn-share-article {
+  display: inline-flex; align-items: center; gap: 6px;
+  border-radius: 8px; padding: 6px 14px;
+  font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; border: 1.5px solid;
+}
+.btn-like {
+  background: #fff; color: #c0555c; border-color: #f5c1c7;
+}
+.btn-like:hover, .btn-like.active {
+  background: var(--pink-light); border-color: var(--pink); color: #c0555c; transform: scale(1.04);
+}
+.btn-like.active i { animation: heartPop 0.25s ease; }
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.45); }
+  100% { transform: scale(1); }
+}
+.btn-share-article {
+  background: #fff; color: var(--blue-mid); border-color: #dde8f2;
+}
+.btn-share-article:hover {
+  background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue); transform: scale(1.04);
+}
 
+/* -- CONTENT -- */
+.article-body { padding: 36px 34px 40px; }
 .article-body > p:first-child::first-letter {
   float: left; font-size: 3.8rem; font-weight: 800; line-height: 0.78;
   color: var(--pink); margin-right: 8px; margin-top: 4px;
 }
-
 .article-body p { font-size: 0.97rem; line-height: 2; color: var(--blue-mid); margin-bottom: 22px; font-weight: 400; text-align: justify; }
 .article-body p:last-child { margin-bottom: 0; }
 
@@ -214,12 +222,93 @@ nav {
 .callout-warning-icon { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: #ffb347; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem; }
 .callout-warning p { margin-bottom: 0 !important; color: #7a4d10 !important; font-size: 0.92rem !important; }
 
-/* ── SIDEBAR ── */
+/* -- COMMENT SECTION -- */
+.comments-section { border-top: 1.5px solid #f0dde6; padding: 32px 34px 40px; }
+.comments-heading {
+  font-size: 1.05rem; font-weight: 700; color: var(--blue);
+  margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
+}
+.comments-heading span {
+  background: var(--pink-light); color: var(--pink);
+  border-radius: 20px; padding: 2px 10px; font-size: 0.78rem; font-weight: 700;
+}
+
+/* -- WRITE COMMENT BOX -- */
+.comment-form {
+  background: #fdf9fb; border: 1.5px solid #f0dde6;
+  border-radius: 14px; padding: 18px 20px; margin-bottom: 28px;
+}
+.comment-form-label { font-size: 0.78rem; font-weight: 600; color: var(--blue-mid); margin-bottom: 10px; display: block; }
+.comment-form textarea {
+  width: 100%; border: 1.5px solid #eee; border-radius: 10px;
+  padding: 12px 14px; font-family: 'Poppins', sans-serif; font-size: 0.88rem;
+  color: var(--blue); resize: none; outline: none; line-height: 1.6;
+  min-height: 80px; background: #fff; transition: border-color 0.2s;
+}
+.comment-form textarea:focus { border-color: var(--pink); }
+.comment-form textarea::placeholder { color: #bbb; }
+.comment-form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+.comment-form-hint { font-size: 0.75rem; color: #bbb; }
+.btn-post-comment {
+  background: var(--blue); color: #fff; border: none; border-radius: 8px;
+  padding: 8px 20px; font-family: 'Poppins', sans-serif; font-size: 0.85rem;
+  font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-post-comment:hover { background: #035a92; transform: translateY(-1px); }
+.btn-post-comment:active { transform: translateY(0) scale(0.97); }
+
+/* -- COMMENT LIST -- */
+.comment-list { display: flex; flex-direction: column; gap: 18px; }
+.comment-item { display: flex; gap: 12px; align-items: flex-start; }
+.comment-avatar {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; font-weight: 700; color: #fff;
+  border: 2px solid #f0dde6; overflow: hidden;
+}
+.comment-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.comment-bubble {
+  flex: 1; background: #fafcff; border: 1px solid #eef3f9;
+  border-radius: 12px; padding: 12px 14px;
+}
+.comment-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.comment-name { font-size: 0.84rem; font-weight: 700; color: var(--blue); }
+.comment-role {
+  font-size: 0.68rem; font-weight: 600;
+  background: var(--pink-light); color: #c0555c; padding: 2px 8px; border-radius: 10px;
+}
+.comment-role.verified { background: #e8f5e9; color: #2e7d32; }
+.comment-time { font-size: 0.72rem; color: #bbb; margin-left: auto; }
+.comment-text { font-size: 0.86rem; color: #556; line-height: 1.65; margin-bottom: 10px; }
+.comment-actions { display: flex; align-items: center; gap: 10px; }
+.btn-comment-like {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: none; border: 1px solid #eee; border-radius: 6px; padding: 4px 10px;
+  font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 500;
+  color: #999; cursor: pointer; transition: all 0.2s;
+}
+.btn-comment-like:hover { border-color: var(--pink); color: #c0555c; background: var(--pink-light); }
+.btn-comment-like.liked { border-color: var(--pink); color: #c0555c; background: var(--pink-light); }
+.btn-comment-like.liked i { color: var(--pink); }
+.btn-comment-like i { font-size: 0.7rem; }
+
+.btn-comment-delete {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: none; border: 1px solid #eee; border-radius: 6px; padding: 4px 10px;
+  font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 500;
+  color: #ccc; cursor: pointer; transition: all 0.2s; margin-left: auto;
+}
+.btn-comment-delete:hover {
+  border-color: #f5c1c7; color: #c0555c; background: #fff5f5;
+}
+.btn-comment-delete i { font-size: 0.7rem; }
+
+/* -- SIDEBAR -- */
 .sidebar { display: flex; flex-direction: column; gap: 20px; }
 .sidebar-card { background: #fff; border-radius: 16px; border: 1.5px solid #f0dde6; overflow: hidden; }
 .sidebar-card-header { background: var(--pink-light); padding: 14px 20px 12px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); }
 .sidebar-card-body { padding: 20px; }
-
 .author-card-inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
 .author-card-avatar { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 3px solid var(--pink-light); }
 .author-card-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
@@ -227,11 +316,6 @@ nav {
 .author-card-role { font-size: 0.8rem; color: var(--blue-mid); margin-bottom: 10px; }
 .author-card-bio { font-size: 0.82rem; line-height: 1.7; color: #5a7a92; text-align: center; }
 .author-badge-pill { display: inline-block; background: var(--pink); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
-
-.reading-progress-card { background: #fff; border-radius: 16px; border: 1.5px solid #f0dde6; padding: 20px; }
-.progress-label { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; color: var(--blue); margin-bottom: 10px; }
-.progress-bar-track { width: 100%; height: 6px; background: #f0dde6; border-radius: 10px; overflow: hidden; }
-.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--pink), #f67a84); border-radius: 10px; width: 0%; transition: width 0.2s ease; }
 
 .tags-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag { background: var(--blue-light); color: var(--blue); font-size: 0.75rem; font-weight: 600; padding: 5px 13px; border-radius: 20px; border: 1px solid #cde4f6; }
@@ -243,21 +327,54 @@ nav {
 .related-title { font-size: 0.82rem; font-weight: 600; color: var(--blue); line-height: 1.45; }
 .related-meta { font-size: 0.72rem; color: var(--blue-mid); margin-top: 3px; }
 
-/* ── RESPONSIVE ── */
+/* -- TOAST -- */
+.share-toast {
+  position: fixed; bottom: 52px; left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: var(--blue); color: #fff; padding: 10px 20px;
+  border-radius: 10px; font-size: 0.85rem; font-weight: 500;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+  z-index: 9998; white-space: nowrap; box-shadow: 0 4px 16px rgba(2,71,116,0.25);
+}
+.share-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* -- USER MENU -- */
+.user-menu { position: relative; }
+.user-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: none; border: 1.5px solid #dde6ef; border-radius: 50px;
+  padding: 5px 12px 5px 5px; cursor: pointer;
+  font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600;
+  color: var(--blue); transition: border-color 0.2s, box-shadow 0.2s;
+}
+.user-btn:hover { border-color: var(--blue); box-shadow: 0 2px 8px rgba(2,71,116,0.12); }
+.user-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; display: block; }
+.user-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.user-dropdown {
+  display: none; position: absolute; top: calc(100% + 8px); right: 0;
+  background: #fff; border: 1px solid #eee; border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(2,71,116,0.1); min-width: 140px; overflow: hidden; z-index: 999;
+}
+.user-dropdown.open { display: block; }
+.dropdown-item { display: block; padding: 11px 16px; font-size: 0.88rem; font-weight: 500; color: #333; text-decoration: none; transition: background 0.15s; white-space: nowrap; }
+.dropdown-item:hover { background: #f7f9fb; }
+.dropdown-item-logout { color: #c0536a; }
+.dropdown-item-logout:hover { background: #fde8ef; }
+
+/* -- RESPONSIVE -- */
 @media (max-width: 1042px) {
   nav { padding: 12px 16px; gap: 8px; }
   .btn-login { padding: 8px 14px; font-size: 0.88rem; }
-  .nav-links a { font-size: 0.88rem; }
-  .nav-links { gap: 16px; }
 }
 @media (max-width: 860px) {
-  .page-body { grid-template-columns: 1fr; margin: 24px auto 48px; }
+  .page-body { grid-template-columns: 1fr; margin: 24px auto 80px; }
   .sidebar { display: none; }
   .article-hero { height: 260px; }
   .hero-text h1 { font-size: 1.1rem; }
   .hero-overlay { padding: 14px 18px 18px; }
   .article-body { padding: 26px 20px 36px; }
-  .article-meta { padding: 14px 20px; }
+  .article-meta { padding: 12px 16px; gap: 10px; }
+  .comments-section { padding: 24px 20px 36px; }
 }
 </style>
 </head>
@@ -269,36 +386,57 @@ nav {
 </div>
 
 <nav>
-  <a class="logo" href="#">
+  <a class="logo" href="/">
     <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
     <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
   <div class="nav-links-wrapper">
     <button class="nav-arrow" id="navPrev" aria-label="Show previous items">
-      <svg viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 14 14" fill="none">
+        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="stunting-prediction.html">Stunting Prediction</a></li>
-        <li><a href="growth-dashboard.html">Growth Dashboard</a></li>
-        <li><a href="healthy-recipes.html">Healthy Recipes</a></li>
-        <li><a href="parenting-guides.html" class="active">Parenting Guides</a></li>
-        <li><a href="forum.html">Forum</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/stunting-prediction.html">Stunting Prediction</a></li>
+        <li><a href="/growth-dashboard.html">Growth Dashboard</a></li>
+        <li><a href="/healthy-recipes.html">Healthy Recipes</a></li>
+        <li><a href="/parenting-guides.html" class="active">Parenting Guides</a></li>
+        <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
     <button class="nav-arrow" id="navNext" aria-label="Show next items">
-      <svg viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 14 14" fill="none">
+        <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
   </div>
   <div class="nav-right">
-    <button class="btn-login">Log in</button>
+    {% if current_user %}
+    <div class="user-menu">
+      <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+        <img src="{{ url_for('static', filename=current_picture) if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+          alt="Profile" class="user-avatar">
+        <span class="user-name">{{ current_user }}</span>
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <a href="/account" class="dropdown-item">Account details</a>
+        <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+      </div>
+    </div>
+    {% else %}
+    <a href="/login" class="btn-login">Log in</a>
+    {% endif %}
   </div>
 </nav>
 
 <div class="page-body">
-
   <article class="article-main">
+
     <div class="article-hero">
       <span class="hero-category">Parenting Tips</span>
       <img src="static/img/artikel-1.png" alt="Baby growing well" onerror="this.src=''; this.style.display='none'">
@@ -324,9 +462,17 @@ nav {
       <span class="meta-divider"></span>
       <span class="meta-item"><i class="fa-regular fa-clock"></i> 5 min read</span>
       <span class="meta-divider"></span>
-      <span class="meta-item"><i class="fa-regular fa-eye"></i> 2.4k views</span>
+      <span class="meta-item"><i class="fa-regular fa-eye"></i> <span id="viewCount">2.4k</span> views</span>
       <span class="meta-divider"></span>
-      <span class="meta-item"><i class="fa-regular fa-heart"></i> 148 likes</span>
+      <span class="meta-item"><i class="fa-regular fa-heart"></i> <span id="likeCount">148</span> likes</span>
+      <div class="meta-actions">
+        <button class="btn-like" id="btnLike" onclick="toggleLike()">
+          <i class="fa-regular fa-heart" id="likeIcon"></i> Like
+        </button>
+        <button class="btn-share-article" onclick="shareArticle()">
+          <i class="fa-solid fa-share-nodes"></i> Share
+        </button>
+      </div>
     </div>
 
     <div class="article-body" id="articleBody">
@@ -334,7 +480,7 @@ nav {
       <p>Watching your child grow is one of the most meaningful parts of parenting. From their first smile to their first steps, every stage of development can feel exciting and memorable. However, many parents also experience moments of worry, especially when comparing their child's growth with other children of the same age.</p>
       <p>The truth is that every child grows differently. Some children may grow taller earlier, while others develop certain skills more slowly or quickly than their peers. Growth is influenced by many factors, including genetics, nutrition, sleep quality, physical activity, emotional well-being, and overall health.</p>
       <div class="pull-quote">
-        <p>"Children don't need to be the tallest or heaviest — they simply need to keep growing consistently along their own curve."</p>
+        <p>"Children don't need to be the tallest or heaviest - they simply need to keep growing consistently along their own curve."</p>
       </div>
       <div class="dots-divider"><span></span><span></span><span></span></div>
       <span class="section-label">Key Signs of Healthy Growth</span>
@@ -362,6 +508,27 @@ nav {
         <p>While many differences in growth are completely normal, there are situations where parents should pay closer attention. A child who suddenly loses weight, has very little appetite for an extended period, frequently gets sick, or shows extremely low energy may need a medical evaluation. Always trust your instincts as a parent and consult your pediatrician when something feels off.</p>
       </div>
     </div>
+
+    <!-- COMMENTS -->
+    <div class="comments-section">
+      <div class="comments-heading">
+        Comments <span id="commentCountLabel">0</span>
+      </div>
+
+      <div class="comment-form">
+        <label class="comment-form-label">Leave a comment</label>
+        <textarea id="commentInput" placeholder="Share your thoughts or questions..." maxlength="500"></textarea>
+        <div class="comment-form-footer">
+          <span class="comment-form-hint">Posting as {{ current_user if current_user else 'Guest' }}</span>
+          <button class="btn-post-comment" onclick="postComment()">
+            <i class="fa-regular fa-paper-plane"></i> Post
+          </button>
+        </div>
+      </div>
+
+      <div class="comment-list" id="commentList"></div>
+    </div>
+
   </article>
 
   <aside class="sidebar">
@@ -402,78 +569,283 @@ nav {
         <div class="related-item">
           <div class="related-num">1</div>
           <div>
-            <p class="related-title">Nutrition Tips for Toddlers 1–3 Years Old</p>
-            <p class="related-meta">4 min read · 1.8k views</p>
+            <p class="related-title">Nutrition Tips for Toddlers 1-3 Years Old</p>
+            <p class="related-meta">4 min read &middot; 1.8k views</p>
           </div>
         </div>
         <div class="related-item">
           <div class="related-num">2</div>
           <div>
             <p class="related-title">Understanding Your Baby's Growth Chart</p>
-            <p class="related-meta">6 min read · 3.1k views</p>
+            <p class="related-meta">6 min read &middot; 3.1k views</p>
           </div>
         </div>
         <div class="related-item">
           <div class="related-num">3</div>
           <div>
             <p class="related-title">Sleep Routines That Support Healthy Development</p>
-            <p class="related-meta">5 min read · 2.2k views</p>
+            <p class="related-meta">5 min read &middot; 2.2k views</p>
           </div>
         </div>
       </div>
     </div>
   </aside>
-
 </div>
 
+<div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+
 <script>
+/* -- NAV -- */
 (function () {
-  const scrollEl = document.getElementById('navScroll');
-  const list     = document.getElementById('navLinks');
-  const btnPrev  = document.getElementById('navPrev');
-  const btnNext  = document.getElementById('navNext');
-  let offset = 0;
-  const STEP = 100;
+  var scrollEl = document.getElementById('navScroll');
+  var list     = document.getElementById('navLinks');
+  var btnPrev  = document.getElementById('navPrev');
+  var btnNext  = document.getElementById('navNext');
+  var offset   = 0;
+  var STEP     = 100;
   function maxOffset() {
-    const prev = list.style.paddingLeft;
+    var prev = list.style.paddingLeft;
     list.style.paddingLeft = '0px';
-    const max = Math.max(0, list.scrollWidth - scrollEl.clientWidth);
+    var max = Math.max(0, list.scrollWidth - scrollEl.clientWidth);
     list.style.paddingLeft = prev;
     return max;
   }
   function render() {
-    const max = maxOffset();
+    var max = maxOffset();
     offset = Math.max(0, Math.min(offset, max));
-    list.style.transform = `translateX(${-offset}px)`;
+    list.style.transform = 'translateX(' + (-offset) + 'px)';
     if (max === 0) {
-      const slack = scrollEl.clientWidth - list.scrollWidth;
-      list.style.paddingLeft = slack > 0 ? `${slack / 2}px` : '0px';
+      var slack = scrollEl.clientWidth - list.scrollWidth;
+      list.style.paddingLeft = slack > 0 ? (slack / 2) + 'px' : '0px';
     } else {
       list.style.paddingLeft = '0px';
     }
     btnPrev.classList.toggle('visible', offset > 0);
     btnNext.classList.toggle('visible', offset < max);
   }
-  btnPrev.addEventListener('click', () => { offset -= STEP; render(); });
-  btnNext.addEventListener('click', () => { offset += STEP; render(); });
+  btnPrev.addEventListener('click', function () { offset -= STEP; render(); });
+  btnNext.addEventListener('click', function () { offset += STEP; render(); });
   new ResizeObserver(render).observe(scrollEl);
   render();
 })();
 
+/* -- USER MENU -- */
+var userMenuBtn  = document.getElementById('userMenuBtn');
+var userDropdown = document.getElementById('userDropdown');
+if (userMenuBtn && userDropdown) {
+  userMenuBtn.addEventListener('click', function (e) { e.stopPropagation(); userDropdown.classList.toggle('open'); });
+  document.addEventListener('click', function () { userDropdown.classList.remove('open'); });
+}
+
+/* -- SCROLL PROGRESS -- */
 (function () {
-  const fill    = document.getElementById('scrollBarFill');
-  const pct     = document.getElementById('scrollBarPct');
+  var fill = document.getElementById('scrollBarFill');
+  var pct  = document.getElementById('scrollBarPct');
   function update() {
-    const scrolled = window.scrollY;
-    const total    = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = total > 0 ? Math.min(100, Math.round((scrolled / total) * 100)) : 0;
-    const w = progress + '%';
-    fill.style.width = w;
+    var scrolled = window.scrollY;
+    var total    = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = total > 0 ? Math.min(100, Math.round((scrolled / total) * 100)) : 0;
+    fill.style.width = progress + '%';
     pct.textContent  = progress + '%';
   }
   window.addEventListener('scroll', update, { passive: true });
   update();
 })();
+
+/* -- ARTICLE LIKE -- */
+var liked     = false;
+var likeCount = 148;
+
+function toggleLike() {
+  liked = !liked;
+  likeCount += liked ? 1 : -1;
+  var btn     = document.getElementById('btnLike');
+  var icon    = document.getElementById('likeIcon');
+  var countEl = document.getElementById('likeCount');
+  btn.classList.toggle('active', liked);
+  icon.className = liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+  countEl.textContent = likeCount >= 1000 ? (likeCount / 1000).toFixed(1) + 'k' : likeCount;
+}
+
+/* -- SHARE -- */
+var toastTimer = null;
+
+function shareArticle() {
+  var url = window.location.href;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function () { showToast('Link copied to clipboard!'); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand('copy'); showToast('Link copied to clipboard!'); } catch (e) { showToast('Could not copy link.'); }
+    document.body.removeChild(ta);
+  }
+}
+
+function showToast(msg) {
+  var t = document.getElementById('shareToast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2400);
+}
+
+/* -- COMMENTS -- */
+var COMMENTS = [
+  {
+    name: 'Rina Kusuma',
+    initials: 'RK',
+    color: 'background: linear-gradient(135deg, #6aaee0, #2e7fc1)',
+    role: 'Parent',
+    roleClass: '',
+    time: '2 hours ago',
+    text: 'This is really helpful! My son is 18 months and I was worried because he is shorter than most of his playgroup friends. Good to know that consistent growth matters more than the numbers themselves.',
+    likes: 14,
+    liked: false
+  },
+  {
+    name: 'Sherly Tunnel',
+    initials: 'ST',
+    img: 'static/img/sherly-tunnel.png',
+    role: 'Author',
+    roleClass: 'verified',
+    time: '1 hour ago',
+    text: 'Thank you Rina! Yes, exactly -- as long as he is following his own growth curve consistently, that is the most important thing. If you are ever unsure, a quick check-in with your pediatrician can give you peace of mind.',
+    likes: 22,
+    liked: false
+  },
+  {
+    name: 'Budi Hartono',
+    initials: 'BH',
+    color: 'background: linear-gradient(135deg, #5dc9b0, #2a9b82)',
+    role: 'Parent',
+    roleClass: '',
+    time: '45 minutes ago',
+    text: 'The section on sleep really hit home. We have been struggling to get our 2-year-old to bed at a consistent time. Did not realize how much it affects growth hormone release.',
+    likes: 7,
+    liked: false
+  },
+  {
+    name: 'Dewi Santoso',
+    initials: 'DS',
+    color: 'background: linear-gradient(135deg, #c47cc5, #9a3e9b)',
+    role: 'Parent',
+    roleClass: '',
+    time: '30 minutes ago',
+    text: 'Great article! I bookmarked it to share with my husband. We have our daughter\'s checkup next week and I will bring up the milestones mentioned here.',
+    likes: 5,
+    liked: false
+  }
+];
+
+var CURRENT_USER  = '{{ current_user if current_user else "" }}';
+var CURRENT_PIC   = '{{ url_for("static", filename=current_picture) if current_picture else "" }}';
+
+function formatLikes(n) {
+  return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);
+}
+
+function updateCommentCount() {
+  document.getElementById('commentCountLabel').textContent = COMMENTS.length;
+}
+
+function renderComments() {
+  var list = document.getElementById('commentList');
+  if (COMMENTS.length === 0) {
+    list.innerHTML = '<div style="text-align:center;padding:32px 0;color:#bbb;font-size:0.88rem;">No comments yet. Be the first to share your thoughts!</div>';
+    return;
+  }
+  list.innerHTML = COMMENTS.map(function (c, i) {
+    var avatarHtml;
+    if (c.img) {
+      avatarHtml = '<div class="comment-avatar">'
+        + '<img src="' + c.img + '" alt="' + c.name + '" '
+        + 'onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'' + c.initials + '\';this.parentElement.style.background=\'linear-gradient(135deg,#FEA4AA,#f67a84)\'">'
+        + '</div>';
+    } else {
+      avatarHtml = '<div class="comment-avatar" style="' + c.color + '">' + c.initials + '</div>';
+    }
+
+    var roleHtml = '<span class="comment-role">' + (c.role || 'Parent') + '</span>';
+
+    var deleteHtml = c.isOwn
+      ? '<button class="btn-comment-delete" onclick="deleteComment(' + i + ')" title="Delete comment">'
+        + '<i class="fa-regular fa-trash-can"></i> Delete'
+        + '</button>'
+      : '';
+
+    return '<div class="comment-item" id="comment-' + i + '">'
+      + avatarHtml
+      + '<div class="comment-bubble">'
+      + '<div class="comment-header">'
+      + '<span class="comment-name">' + c.name + '</span>'
+      + roleHtml
+      + '<span class="comment-time">' + c.time + '</span>'
+      + '</div>'
+      + '<div class="comment-text">' + c.text + '</div>'
+      + '<div class="comment-actions">'
+      + '<button class="btn-comment-like' + (c.liked ? ' liked' : '') + '" onclick="likeComment(' + i + ')" id="clbtn-' + i + '">'
+      + '<i class="fa-' + (c.liked ? 'solid' : 'regular') + ' fa-heart"></i>'
+      + ' <span id="clcount-' + i + '">' + formatLikes(c.likes) + '</span>'
+      + '</button>'
+      + deleteHtml
+      + '</div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function likeComment(i) {
+  COMMENTS[i].liked = !COMMENTS[i].liked;
+  COMMENTS[i].likes += COMMENTS[i].liked ? 1 : -1;
+  var btn   = document.getElementById('clbtn-' + i);
+  var count = document.getElementById('clcount-' + i);
+  btn.classList.toggle('liked', COMMENTS[i].liked);
+  btn.querySelector('i').className = COMMENTS[i].liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+  count.textContent = formatLikes(COMMENTS[i].likes);
+}
+
+function deleteComment(i) {
+  COMMENTS.splice(i, 1);
+  updateCommentCount();
+  renderComments();
+}
+
+function postComment() {
+  var input = document.getElementById('commentInput');
+  var text  = input.value.trim();
+  if (!text) return;
+
+  var name    = CURRENT_USER || 'Guest';
+  var initial = name.charAt(0).toUpperCase();
+  var img     = CURRENT_PIC || '';
+
+  COMMENTS.push({
+    name:    name,
+    initials: initial,
+    img:     img,
+    color:   'background: linear-gradient(135deg, #FEA4AA, #f67a84)',
+    role:    'Parent',
+    roleClass: '',
+    time:    'just now',
+    text:    text.replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+    likes:   0,
+    liked:   false,
+    isOwn:   true
+  });
+
+  input.value = '';
+  updateCommentCount();
+  renderComments();
+
+  var list = document.getElementById('commentList');
+  var last = list.lastElementChild;
+  if (last) last.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+renderComments();
+updateCommentCount();
 </script>
 </body>
 </html>

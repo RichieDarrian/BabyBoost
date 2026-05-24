@@ -24,7 +24,6 @@
       color: #333;
     }
 
-    /* ── NAV (identical to forum.html) ── */
     nav {
       display: flex;
       align-items: center;
@@ -65,101 +64,49 @@
     .btn-login {
       background: var(--blue); color: #fff; border: none; padding: 9px 22px; border-radius: 6px;
       font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; white-space: nowrap;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s; text-decoration: none; display: inline-block;
     }
     .btn-login:hover { background: #035a92; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2,71,116,0.28); }
     .btn-login:active { transform: translateY(0px) scale(0.97); }
 
-    /* ── BREADCRUMB ── */
     .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 48px;
-      font-size: 0.82rem;
-      color: #aaa;
-      background: #fff;
-      border-bottom: 1px solid #f0f0f0;
+      display: flex; align-items: center; gap: 8px;
+      padding: 16px 48px; font-size: 0.82rem; color: #aaa;
+      background: #fff; border-bottom: 1px solid #f0f0f0;
     }
     .breadcrumb a { color: #aaa; text-decoration: none; transition: color 0.2s; }
     .breadcrumb a:hover { color: var(--blue); }
     .breadcrumb .sep { color: #ddd; }
     .breadcrumb .current { color: var(--blue); font-weight: 600; }
 
-    /* ── PAGE LAYOUT ── */
     .page-layout {
-      display: flex;
-      gap: 28px;
-      padding: 36px 48px 72px;
-      align-items: flex-start;
-      max-width: 1400px;
-      margin: 0 auto;
+      display: flex; gap: 28px; padding: 36px 48px 72px;
+      align-items: flex-start; max-width: 1400px; margin: 0 auto;
     }
 
-    /* ── MAIN CONTENT ── */
     .discussion-main { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
 
-    /* Back button */
     .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--blue);
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-decoration: none;
-      padding: 8px 0;
-      transition: gap 0.2s, opacity 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--blue); font-size: 0.88rem; font-weight: 600;
+      text-decoration: none; padding: 8px 0; transition: gap 0.2s, opacity 0.2s;
     }
     .back-btn:hover { gap: 12px; opacity: 0.75; }
 
-    /* Original post card */
-    .post-card {
-      background: #fff;
-      border: 1.5px solid #f0dde6;
-      border-radius: 18px;
-      overflow: hidden;
-    }
+    .post-card { background: #fff; border: 1.5px solid #f0dde6; border-radius: 18px; overflow: hidden; }
     .post-card-header {
       background: linear-gradient(135deg, #FEF0F2 0%, #f0f8ff 100%);
-      padding: 28px 32px 24px;
-      border-bottom: 1.5px solid #f0dde6;
+      padding: 28px 32px 24px; border-bottom: 1.5px solid #f0dde6;
     }
-    .post-card-header h1 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--blue);
-      line-height: 1.3;
-      margin-bottom: 16px;
-    }
-    .post-meta-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .post-tag {
-      padding: 5px 14px;
-      border-radius: 20px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      background: #fde8ef;
-      color: #c0516a;
-    }
+    .post-card-header h1 { font-size: 1.5rem; font-weight: 800; color: var(--blue); line-height: 1.3; margin-bottom: 16px; }
+    .post-meta-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .post-tag { padding: 5px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; background: #fde8ef; color: #c0516a; }
     .post-meta-row .dot { color: #ddd; }
-    .post-meta-row .meta-item {
-      display: flex; align-items: center; gap: 5px;
-      font-size: 0.8rem; color: #aaa; font-weight: 500;
-    }
+    .post-meta-row .meta-item { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; color: #aaa; font-weight: 500; }
     .post-meta-row .meta-item i { font-size: 0.75rem; }
 
     .post-card-body { padding: 28px 32px; }
-    .post-author-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
+    .post-author-row { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
     .avatar {
       width: 48px; height: 48px; min-width: 48px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
@@ -172,201 +119,239 @@
     .av-red    { background: linear-gradient(135deg, #e07a7a, #c04040); }
     .av-orange { background: linear-gradient(135deg, #f0a86b, #e07830); }
     .av-indigo { background: linear-gradient(135deg, #8b9de8, #5563c1); }
+    .av-pink   { background: linear-gradient(135deg, #f4a0b8, #e05580); }
 
     .author-info .author-name { font-size: 0.95rem; font-weight: 700; color: var(--blue); }
     .author-info .author-time { font-size: 0.78rem; color: #aaa; margin-top: 2px; }
 
     .post-text {
-      font-size: 0.95rem;
-      color: #444;
-      line-height: 1.8;
-      padding: 20px 24px;
-      background: #fafafa;
-      border-radius: 12px;
-      border-left: 3px solid var(--pink);
+      font-size: 0.95rem; color: #444; line-height: 1.8;
+      padding: 20px 24px; background: #fafafa;
+      border-radius: 12px; border-left: 3px solid var(--pink);
     }
 
-    .post-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid #f5f5f5;
-    }
-    .action-btn {
-      display: flex; align-items: center; gap: 6px;
-      padding: 8px 16px; border-radius: 8px; border: 1.5px solid #f0dde6;
-      background: #fff; font-family: 'Poppins', sans-serif;
-      font-size: 0.8rem; font-weight: 600; color: #888; cursor: pointer;
-      transition: all 0.2s;
-    }
-    .action-btn:hover { border-color: var(--pink); color: var(--blue); background: var(--pink-light); }
-    .action-btn.liked { border-color: var(--pink); color: #c0516a; background: var(--pink-light); }
-    .action-btn i { font-size: 0.85rem; }
+    .post-actions { display: flex; align-items: center; gap: 8px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #f5f5f5; }
 
-    /* Replies section */
+    .btn-like, .btn-save, .btn-share-post {
+      display: inline-flex; align-items: center; gap: 6px;
+      border-radius: 8px; padding: 6px 14px;
+      font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; border: 1.5px solid;
+    }
+    .btn-like { background: #fff; color: #c0555c; border-color: #f5c1c7; }
+    .btn-like:hover, .btn-like.active { background: var(--pink-light); border-color: var(--pink); color: #c0555c; transform: scale(1.04); }
+    .btn-like.active i { animation: heartPop 0.25s ease; }
+    .btn-save { background: #fff; color: var(--blue); border-color: #cde4f6; }
+    .btn-save:hover, .btn-save.active { background: var(--blue-light); border-color: var(--blue); color: var(--blue); transform: scale(1.04); }
+    .btn-save.active i { animation: bookmarkPop 0.25s ease; }
+    .btn-share-post { background: #fff; color: #37678D; border-color: #dde8f2; }
+    .btn-share-post:hover { background: var(--blue-light); border-color: #37678D; color: var(--blue); transform: scale(1.04); }
+    .btn-share-post.copied { background: #f0faf0; border-color: #4ea346; color: #4ea346; }
+
+    @keyframes heartPop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.5); }
+      70% { transform: scale(0.85); }
+      100% { transform: scale(1); }
+    }
+    @keyframes bookmarkPop {
+      0% { transform: scale(1) translateY(0); }
+      40% { transform: scale(1.2) translateY(-3px); }
+      100% { transform: scale(1) translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .replies-section { display: flex; flex-direction: column; gap: 0; }
-    .replies-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 16px;
-    }
+    .replies-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
     .replies-header h2 { font-size: 1.15rem; font-weight: 700; color: var(--blue); }
-    .replies-count {
-      background: var(--blue); color: #fff;
-      font-size: 0.72rem; font-weight: 700;
-      padding: 3px 10px; border-radius: 20px;
-    }
+    .replies-count { background: var(--blue); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
 
     .reply-list { display: flex; flex-direction: column; gap: 12px; }
 
     .reply-card {
-      background: #fff;
-      border: 1.5px solid #f0dde6;
-      border-radius: 14px;
-      padding: 20px 24px;
+      background: #fff; border: 1.5px solid #f0dde6; border-radius: 14px; padding: 20px 24px;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     .reply-card:hover { border-color: var(--pink); box-shadow: 0 4px 16px rgba(254,164,170,0.12); }
+    .reply-card.is-own { border-color: #cde4f6; }
+    .reply-card.new-reply { animation: slideIn 0.35s cubic-bezier(0.22,1,0.36,1); }
 
-    .reply-author-row {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
-    }
+    .reply-author-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
     .reply-author-row .avatar { width: 40px; height: 40px; min-width: 40px; font-size: 0.95rem; }
     .reply-author-info .reply-name { font-size: 0.9rem; font-weight: 700; color: var(--blue); }
     .reply-author-info .reply-time { font-size: 0.75rem; color: #bbb; margin-top: 1px; }
 
     .reply-text { font-size: 0.88rem; color: #555; line-height: 1.75; }
 
-    .reply-actions {
-      display: flex; align-items: center; gap: 10px;
-      margin-top: 14px; padding-top: 12px; border-top: 1px solid #f8f8f8;
-    }
+    .reply-actions { display: flex; align-items: center; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #f8f8f8; }
     .reply-action {
       display: flex; align-items: center; gap: 5px;
       font-size: 0.75rem; font-weight: 600; color: #bbb;
-      background: none; border: none; cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      transition: color 0.2s;
-      padding: 4px 8px; border-radius: 6px;
+      background: none; border: 1px solid transparent; cursor: pointer;
+      font-family: 'Poppins', sans-serif; transition: color 0.2s, background 0.2s, border-color 0.2s;
+      padding: 4px 10px; border-radius: 6px;
     }
-    .reply-action:hover { color: var(--blue); background: var(--blue-light); }
+    .reply-action:hover { color: var(--blue); background: var(--blue-light); border-color: #cde4f6; }
+    .reply-action.liked-reply { color: #c0555c; background: var(--pink-light); border-color: #f5c1c7; }
+    .reply-action.liked-reply i { animation: heartPop 0.25s ease; }
     .reply-action i { font-size: 0.8rem; }
+    .reply-action-delete { margin-left: auto; }
+    .reply-action-delete:hover { color: #c0555c; background: var(--pink-light); border-color: #f5c1c7; }
 
-    /* ── SIDEBAR ── */
-    .discussion-sidebar {
-      width: 300px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .nested-reply-form {
+      margin-top: 14px; background: #f8fbff; border: 1.5px solid #d6eaf8;
+      border-radius: 10px; padding: 14px 16px; display: none; animation: slideIn 0.25s ease;
     }
+    .nested-reply-form.open { display: block; }
+    .nested-reply-form textarea {
+      width: 100%; border: 1.5px solid #eee; border-radius: 8px;
+      padding: 10px 12px; font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem; color: #333; resize: none; height: 72px;
+      outline: none; background: #fff; transition: border-color 0.2s;
+    }
+    .nested-reply-form textarea:focus { border-color: var(--blue); }
+    .nested-reply-form-footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+    .btn-cancel-reply {
+      background: none; border: 1.5px solid #e0e0e0; color: #999;
+      padding: 7px 16px; border-radius: 7px; font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-cancel-reply:hover { border-color: #bbb; color: #666; }
+    .btn-post-nested {
+      background: var(--blue); color: #fff; border: none; padding: 7px 18px; border-radius: 7px;
+      font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s, transform 0.15s;
+    }
+    .btn-post-nested:hover { background: #035a92; transform: translateY(-1px); }
 
-    /* Reply box */
-    .reply-box {
-      background: #fff;
-      border: 1.5px solid #f0dde6;
-      border-radius: 14px;
-      padding: 24px 22px;
+    .nested-replies { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+    .nested-reply-card { display: flex; gap: 10px; align-items: flex-start; }
+    .nested-reply-card .avatar { width: 32px; height: 32px; min-width: 32px; font-size: 0.78rem; }
+    .nested-reply-bubble {
+      background: #f8fbff; border: 1px solid #e6f1fb;
+      border-radius: 10px; padding: 10px 14px; flex: 1;
     }
-    .reply-box h3 {
-      font-size: 1.05rem; font-weight: 700; color: var(--blue); margin-bottom: 6px;
-    }
-    .reply-box .reply-box-sub {
-      font-size: 0.78rem; color: #aaa; margin-bottom: 16px;
-    }
-    .reply-box textarea {
-      width: 100%; border: 1.5px solid #e8e8e8; border-radius: 10px;
-      padding: 12px 14px; font-family: 'Poppins', sans-serif;
-      font-size: 0.88rem; color: #333; resize: vertical; min-height: 110px;
-      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-      background: #fafafa;
-    }
-    .reply-box textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(2,71,116,0.08); background: #fff; }
-    .reply-box textarea::placeholder { color: #bbb; }
-    .reply-box button {
-      margin-top: 12px; width: 100%;
-      background: var(--pink); color: #fff; border: none;
-      padding: 12px 20px; border-radius: 8px;
-      font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600;
-      cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-    .reply-box button:hover { background: #e8848b; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(254,164,170,0.38); }
-    .reply-box button:active { transform: translateY(0) scale(0.97); }
+    .nested-reply-bubble .nr-name { font-size: 0.8rem; font-weight: 700; color: var(--blue); }
+    .nested-reply-bubble .nr-time { font-size: 0.7rem; color: #bbb; margin-left: 6px; }
+    .nested-reply-bubble .nr-text { font-size: 0.82rem; color: #555; line-height: 1.6; margin-top: 4px; }
 
-    /* Discussion info card */
-    .info-card {
-      background: #fff; border: 1.5px solid #f0dde6; border-radius: 14px; padding: 24px 22px;
+    .inline-reply-box {
+      background: #fff; border: 1.5px solid #d6eaf8; border-radius: 14px;
+      padding: 24px 28px; margin-top: 8px; transition: border-color 0.2s, box-shadow 0.2s;
     }
+    .inline-reply-box:focus-within { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(2,71,116,0.07); }
+    .inline-reply-box-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .inline-reply-box-header .avatar { width: 40px; height: 40px; min-width: 40px; font-size: 0.95rem; }
+    .inline-reply-box-header-text h3 { font-size: 0.95rem; font-weight: 700; color: var(--blue); }
+    .inline-reply-box-header-text p { font-size: 0.75rem; color: #aaa; margin-top: 1px; }
+    .inline-reply-box textarea {
+      width: 100%; border: 1.5px solid #eee; border-radius: 10px;
+      padding: 14px 16px; font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem; color: #333; resize: vertical; min-height: 100px;
+      outline: none; background: #fafafa; line-height: 1.6; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .inline-reply-box textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(2,71,116,0.06); background: #fff; }
+    .inline-reply-box textarea::placeholder { color: #ccc; }
+    .inline-reply-box-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; gap: 12px; flex-wrap: wrap; }
+    .char-count { font-size: 0.72rem; color: #bbb; }
+    .char-count.warn { color: #e07a50; }
+    .submit-reply-btn {
+      background: var(--pink); color: #fff; border: none; padding: 11px 24px; border-radius: 8px;
+      font-family: 'Poppins', sans-serif; font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .submit-reply-btn:hover { background: #e8848b; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(254,164,170,0.38); }
+    .submit-reply-btn:active { transform: translateY(0) scale(0.97); }
+    .submit-reply-btn:disabled { background: #f0c0c4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .discussion-sidebar { width: 300px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
+
+    .sidebar-reply-teaser {
+      background: linear-gradient(135deg, #fef0f2 0%, #e6f1fb 100%);
+      border: 1.5px solid #f0dde6; border-radius: 14px; padding: 20px 22px; text-align: center;
+    }
+    .sidebar-reply-teaser h3 { font-size: 0.95rem; font-weight: 700; color: var(--blue); margin-bottom: 6px; }
+    .sidebar-reply-teaser p { font-size: 0.78rem; color: #888; margin-bottom: 14px; line-height: 1.5; }
+    .sidebar-reply-teaser button {
+      background: var(--pink); color: #fff; border: none; padding: 11px 22px; border-radius: 8px;
+      font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s; width: 100%; justify-content: center;
+    }
+    .sidebar-reply-teaser button:hover { background: #e8848b; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(254,164,170,0.38); }
+
+    .info-card { background: #fff; border: 1.5px solid #f0dde6; border-radius: 14px; padding: 24px 22px; }
     .info-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--blue); margin-bottom: 16px; }
-    .info-stat {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 0; border-bottom: 1px solid #f5f5f5;
-      font-size: 0.82rem;
-    }
+    .info-stat { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f5f5f5; font-size: 0.82rem; }
     .info-stat:last-child { border-bottom: none; }
     .info-stat .stat-label { color: #999; display: flex; align-items: center; gap: 7px; }
     .info-stat .stat-label i { color: var(--pink); width: 14px; text-align: center; }
     .info-stat .stat-value { font-weight: 700; color: var(--blue); }
 
-    /* Welcome card */
-    .welcome-card {
-      background: #fff;
-      border: 1.5px solid #f0dde6;
-      border-radius: 14px;
-      padding: 0 0 24px;
-      text-align: center;
-      overflow: hidden;
-    }
-    .welcome-card .welcome-illustration {
-      width: 100%;
-      background: linear-gradient(160deg, #fef0f2 0%, #f0f8ff 100%);
-      padding: 0;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-    .welcome-card .welcome-illustration img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      display: block;
-    }
+    .welcome-card { background: #fff; border: 1.5px solid #f0dde6; border-radius: 14px; padding: 0 0 24px; text-align: center; overflow: hidden; }
+    .welcome-card .welcome-illustration { width: 100%; background: linear-gradient(160deg, #fef0f2 0%, #f0f8ff 100%); padding: 0; display: flex; align-items: flex-end; justify-content: center; }
+    .welcome-card .welcome-illustration img { width: 100%; height: auto; object-fit: contain; display: block; }
     .welcome-card h3 { font-size: 1rem; font-weight: 800; color: var(--blue); margin: 20px 22px 8px; line-height: 1.3; }
     .welcome-card p { font-size: 0.78rem; color: #888; line-height: 1.6; margin: 0 22px 20px; }
     .welcome-card button {
-      background: #fff; color: var(--blue);
-      border: 1.5px solid #dde8f0; padding: 10px 24px; border-radius: 50px;
+      background: #fff; color: var(--blue); border: 1.5px solid #dde8f0; padding: 10px 24px; border-radius: 50px;
       font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer;
       display: inline-flex; align-items: center; gap: 6px;
       transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
     }
-    .welcome-card button:hover {
-      border-color: var(--blue); background: var(--blue-light);
-      transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2,71,116,0.12);
-    }
+    .welcome-card button:hover { border-color: var(--blue); background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2,71,116,0.12); }
 
-    /* Related topics */
-    .related-card {
-      background: #fff; border: 1.5px solid #f0dde6; border-radius: 14px; padding: 24px 22px;
-    }
+    .related-card { background: #fff; border: 1.5px solid #f0dde6; border-radius: 14px; padding: 24px 22px; }
     .related-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--blue); margin-bottom: 14px; }
-    .related-item {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 10px 0; border-bottom: 1px solid #f5f5f5;
-      text-decoration: none; color: inherit;
-      transition: opacity 0.2s;
-    }
+    .related-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f5f5f5; text-decoration: none; color: inherit; transition: opacity 0.2s; }
     .related-item:last-child { border-bottom: none; padding-bottom: 0; }
     .related-item:hover { opacity: 0.7; }
-    .related-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--pink);
-      flex-shrink: 0; margin-top: 6px;
-    }
+    .related-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pink); flex-shrink: 0; margin-top: 6px; }
     .related-item p { font-size: 0.82rem; font-weight: 500; color: var(--blue); line-height: 1.4; }
     .related-item span { font-size: 0.72rem; color: #bbb; }
 
-    /* ── RESPONSIVE ── */
+    .user-menu { position: relative; }
+    .user-btn {
+      display: flex; align-items: center; gap: 8px; background: none;
+      border: 1.5px solid #dde6ef; border-radius: 50px; padding: 5px 12px 5px 5px;
+      cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600;
+      color: var(--blue); transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .user-btn:hover { border-color: var(--blue); box-shadow: 0 2px 8px rgba(2,71,116,0.12); }
+    .user-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; display: block; }
+    .user-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .user-dropdown { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #fff; border: 1px solid #eee; border-radius: 10px; box-shadow: 0 8px 24px rgba(2,71,116,0.1); min-width: 140px; overflow: hidden; z-index: 999; }
+    .user-dropdown.open { display: block; }
+    .dropdown-item {
+      display: block;
+      padding: 11px 16px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .dropdown-item:hover { background: #f7f9fb; }
+    .dropdown-item-logout { color: #c0536a; }
+    .dropdown-item-logout:hover { background: #fde8ef; }
+
+    .toast {
+      position: fixed; bottom: 32px; right: 32px;
+      background: var(--blue); color: #fff; padding: 12px 22px; border-radius: 10px;
+      font-size: 0.85rem; font-weight: 600; box-shadow: 0 8px 24px rgba(2,71,116,0.25);
+      z-index: 9999; display: flex; align-items: center; gap: 8px;
+      transform: translateY(20px); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.pink { background: linear-gradient(135deg, #e8848b, #c0516a); }
+    .toast.green { background: linear-gradient(135deg, #4ea346, #2a7a28); }
+
     @media (max-width: 1100px) {
       nav { padding: 12px 16px; gap: 8px; }
       .breadcrumb { padding: 12px 20px; }
@@ -380,9 +365,8 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav>
-    <a class="logo" href="index.html">
+    <a class="logo" href="/">
       <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
       <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
     </a>
@@ -392,12 +376,12 @@
       </button>
       <div class="nav-links-scroll" id="navScroll">
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="stunting-prediction.html">Stunting Prediction</a></li>
-          <li><a href="growth-dashboard.html">Growth Dashboard</a></li>
-          <li><a href="healthy-recipes.html">Healthy Recipes</a></li>
-          <li><a href="parenting-guides.html">Parenting Guides</a></li>
-          <li><a href="forum.html" class="active">Forum</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/stunting-prediction.html">Stunting Prediction</a></li>
+          <li><a href="/growth-dashboard.html">Growth Dashboard</a></li>
+          <li><a href="/healthy-recipes.html">Healthy Recipes</a></li>
+          <li><a href="/parenting-guides.html">Parenting Guides</a></li>
+          <li><a href="/forum.html" class="active">Forum</a></li>
         </ul>
       </div>
       <button class="nav-arrow" id="navNext" aria-label="Show next items">
@@ -405,28 +389,38 @@
       </button>
     </div>
     <div class="nav-right">
-      <button class="btn-login">Log in</button>
+      {% if current_user %}
+      <div class="user-menu">
+        <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+          <img src="{{ url_for('static', filename=current_picture) if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}" alt="Profile" class="user-avatar">
+          <span class="user-name">{{ current_user }}</span>
+          <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="user-dropdown" id="userDropdown">
+          <a href="/account" class="dropdown-item">Account details</a>
+          <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+        </div>
+      </div>
+      {% else %}
+      <a href="/login" class="btn-login">Log in</a>
+      {% endif %}
     </div>
   </nav>
 
-  <!-- BREADCRUMB -->
   <div class="breadcrumb">
     <a href="forum.html">Forum</a>
     <span class="sep"><i class="fa-solid fa-chevron-right" style="font-size:0.65rem;"></i></span>
     <span class="current">Tips to Handle Tantrums in Toddler?</span>
   </div>
 
-  <!-- PAGE LAYOUT -->
   <div class="page-layout">
 
-    <!-- MAIN -->
     <div class="discussion-main">
 
       <a href="forum.html" class="back-btn">
         <i class="fa-solid fa-arrow-left"></i> Back to Forum
       </a>
 
-      <!-- ORIGINAL POST -->
       <div class="post-card">
         <div class="post-card-header">
           <h1>Tips to Handle Tantrums in Toddler?</h1>
@@ -435,7 +429,7 @@
             <span class="dot">·</span>
             <span class="meta-item"><i class="fa-regular fa-clock"></i> 2 hours ago</span>
             <span class="dot">·</span>
-            <span class="meta-item"><i class="fa-regular fa-comment"></i> 14 replies</span>
+            <span class="meta-item"><i class="fa-regular fa-comment"></i> <span id="replyCountMeta">14</span> replies</span>
             <span class="dot">·</span>
             <span class="meta-item"><i class="fa-regular fa-eye"></i> 128 views</span>
           </div>
@@ -454,29 +448,28 @@
             I've tried calming him down and distracting him, but it doesn't always work. Do you have any tips or experiences on handling toddler tantrums? Thank you!
           </div>
           <div class="post-actions">
-            <button class="action-btn" id="likeBtn">
-              <i class="fa-solid fa-heart"></i> <span id="likeCount">24</span> Helpful
+            <button class="btn-like" id="likeBtn" onclick="toggleLike()">
+              <i class="fa-regular fa-heart" id="likeIcon"></i> <span id="likeCount">24</span> Helpful
             </button>
-            <button class="action-btn">
-              <i class="fa-regular fa-bookmark"></i> Save
+            <button class="btn-save" id="saveBtn" onclick="toggleSave()">
+              <i class="fa-regular fa-bookmark" id="saveIcon"></i> <span id="saveText">Save</span>
             </button>
-            <button class="action-btn">
+            <button class="btn-share-post" id="shareBtn" onclick="sharePost()">
               <i class="fa-solid fa-share-nodes"></i> Share
             </button>
           </div>
         </div>
       </div>
 
-      <!-- REPLIES -->
       <div class="replies-section">
         <div class="replies-header">
           <h2>Replies</h2>
-          <span class="replies-count">14</span>
+          <span class="replies-count" id="repliesCount">14</span>
         </div>
 
-        <div class="reply-list">
+        <div class="reply-list" id="replyList">
 
-          <div class="reply-card">
+          <div class="reply-card" data-id="1">
             <div class="reply-author-row">
               <div class="avatar av-blue">J</div>
               <div class="reply-author-info">
@@ -485,13 +478,21 @@
               </div>
             </div>
             <p class="reply-text">Staying calm is the single most effective thing I've found. When I match my toddler's energy, things escalate fast. Taking a deep breath and lowering my voice actually helps him come down too. It takes practice but it really works!</p>
+            <div class="nested-replies" id="nested-1"></div>
             <div class="reply-actions">
-              <button class="reply-action"><i class="fa-regular fa-heart"></i> 8</button>
-              <button class="reply-action"><i class="fa-regular fa-comment"></i> Reply</button>
+              <button class="reply-action" onclick="toggleReplyLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-num">8</span></button>
+              <button class="reply-action" onclick="toggleNestedForm('1')"><i class="fa-regular fa-comment"></i> Reply</button>
+            </div>
+            <div class="nested-reply-form" id="nested-form-1">
+              <textarea placeholder="Reply to Joko W..." rows="2"></textarea>
+              <div class="nested-reply-form-footer">
+                <button class="btn-cancel-reply" onclick="cancelNestedForm('1')">Cancel</button>
+                <button class="btn-post-nested" onclick="postNestedReply('1')">Post</button>
+              </div>
             </div>
           </div>
 
-          <div class="reply-card">
+          <div class="reply-card" data-id="2">
             <div class="reply-author-row">
               <div class="avatar av-purple">R</div>
               <div class="reply-author-info">
@@ -500,13 +501,21 @@
               </div>
             </div>
             <p class="reply-text">Giving simple choices works wonders for us. Instead of saying "stop crying," I'll ask "do you want juice or water?" It redirects their attention and gives them a sense of control, which is often what they're really after.</p>
+            <div class="nested-replies" id="nested-2"></div>
             <div class="reply-actions">
-              <button class="reply-action"><i class="fa-regular fa-heart"></i> 15</button>
-              <button class="reply-action"><i class="fa-regular fa-comment"></i> Reply</button>
+              <button class="reply-action" onclick="toggleReplyLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-num">15</span></button>
+              <button class="reply-action" onclick="toggleNestedForm('2')"><i class="fa-regular fa-comment"></i> Reply</button>
+            </div>
+            <div class="nested-reply-form" id="nested-form-2">
+              <textarea placeholder="Reply to Rizky F..." rows="2"></textarea>
+              <div class="nested-reply-form-footer">
+                <button class="btn-cancel-reply" onclick="cancelNestedForm('2')">Cancel</button>
+                <button class="btn-post-nested" onclick="postNestedReply('2')">Post</button>
+              </div>
             </div>
           </div>
 
-          <div class="reply-card">
+          <div class="reply-card" data-id="3">
             <div class="reply-author-row">
               <div class="avatar av-teal">A</div>
               <div class="reply-author-info">
@@ -515,13 +524,21 @@
               </div>
             </div>
             <p class="reply-text">A consistent sleep schedule made a huge difference for us. Overtiredness is a major tantrum trigger that I overlooked for a long time. Since we locked in nap times and bedtime, the frequency dropped noticeably within just two weeks.</p>
+            <div class="nested-replies" id="nested-3"></div>
             <div class="reply-actions">
-              <button class="reply-action"><i class="fa-regular fa-heart"></i> 11</button>
-              <button class="reply-action"><i class="fa-regular fa-comment"></i> Reply</button>
+              <button class="reply-action" onclick="toggleReplyLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-num">11</span></button>
+              <button class="reply-action" onclick="toggleNestedForm('3')"><i class="fa-regular fa-comment"></i> Reply</button>
+            </div>
+            <div class="nested-reply-form" id="nested-form-3">
+              <textarea placeholder="Reply to Aldi T..." rows="2"></textarea>
+              <div class="nested-reply-form-footer">
+                <button class="btn-cancel-reply" onclick="cancelNestedForm('3')">Cancel</button>
+                <button class="btn-post-nested" onclick="postNestedReply('3')">Post</button>
+              </div>
             </div>
           </div>
 
-          <div class="reply-card">
+          <div class="reply-card" data-id="4">
             <div class="reply-author-row">
               <div class="avatar av-red">Z</div>
               <div class="reply-author-info">
@@ -530,13 +547,21 @@
               </div>
             </div>
             <p class="reply-text">Sometimes toddlers just want to feel understood first. I started naming the emotion — "I can see you're really frustrated right now" — before trying to fix anything. It's amazing how often just being acknowledged calms them down.</p>
+            <div class="nested-replies" id="nested-4"></div>
             <div class="reply-actions">
-              <button class="reply-action"><i class="fa-regular fa-heart"></i> 19</button>
-              <button class="reply-action"><i class="fa-regular fa-comment"></i> Reply</button>
+              <button class="reply-action" onclick="toggleReplyLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-num">19</span></button>
+              <button class="reply-action" onclick="toggleNestedForm('4')"><i class="fa-regular fa-comment"></i> Reply</button>
+            </div>
+            <div class="nested-reply-form" id="nested-form-4">
+              <textarea placeholder="Reply to Zeta A..." rows="2"></textarea>
+              <div class="nested-reply-form-footer">
+                <button class="btn-cancel-reply" onclick="cancelNestedForm('4')">Cancel</button>
+                <button class="btn-post-nested" onclick="postNestedReply('4')">Post</button>
+              </div>
             </div>
           </div>
 
-          <div class="reply-card">
+          <div class="reply-card" data-id="5">
             <div class="reply-author-row">
               <div class="avatar av-orange">M</div>
               <div class="reply-author-info">
@@ -545,13 +570,21 @@
               </div>
             </div>
             <p class="reply-text">We created a "calm corner" with a soft mat, some favorite stuffed animals, and a feelings chart. When a tantrum starts, I guide him there and tell him it's a safe place to feel big feelings. It took a few weeks to click but now he goes there on his own sometimes!</p>
+            <div class="nested-replies" id="nested-5"></div>
             <div class="reply-actions">
-              <button class="reply-action"><i class="fa-regular fa-heart"></i> 22</button>
-              <button class="reply-action"><i class="fa-regular fa-comment"></i> Reply</button>
+              <button class="reply-action" onclick="toggleReplyLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-num">22</span></button>
+              <button class="reply-action" onclick="toggleNestedForm('5')"><i class="fa-regular fa-comment"></i> Reply</button>
+            </div>
+            <div class="nested-reply-form" id="nested-form-5">
+              <textarea placeholder="Reply to Maya K..." rows="2"></textarea>
+              <div class="nested-reply-form-footer">
+                <button class="btn-cancel-reply" onclick="cancelNestedForm('5')">Cancel</button>
+                <button class="btn-post-nested" onclick="postNestedReply('5')">Post</button>
+              </div>
             </div>
           </div>
 
-          <div class="reply-card">
+          <div class="reply-card" data-id="6">
             <div class="reply-author-row">
               <div class="avatar av-indigo">D</div>
               <div class="reply-author-info">
@@ -559,30 +592,53 @@
                 <div class="reply-time">1 day ago</div>
               </div>
             </div>
-            <p class="reply-text">Hunger is such an underrated trigger! I started keeping healthy snacks in my bag wherever we go. Half the time the tantrum just needed a cracker and some water. Never underestimate a hangry toddler 😅</p>
+            <p class="reply-text">Hunger is such an underrated trigger! I started keeping healthy snacks in my bag wherever we go. Half the time the tantrum just needed a cracker and some water. Never underestimate a hangry toddler!</p>
+            <div class="nested-replies" id="nested-6"></div>
             <div class="reply-actions">
-              <button class="reply-action"><i class="fa-regular fa-heart"></i> 31</button>
-              <button class="reply-action"><i class="fa-regular fa-comment"></i> Reply</button>
+              <button class="reply-action" onclick="toggleReplyLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-num">31</span></button>
+              <button class="reply-action" onclick="toggleNestedForm('6')"><i class="fa-regular fa-comment"></i> Reply</button>
+            </div>
+            <div class="nested-reply-form" id="nested-form-6">
+              <textarea placeholder="Reply to Dina P..." rows="2"></textarea>
+              <div class="nested-reply-form-footer">
+                <button class="btn-cancel-reply" onclick="cancelNestedForm('6')">Cancel</button>
+                <button class="btn-post-nested" onclick="postNestedReply('6')">Post</button>
+              </div>
             </div>
           </div>
 
         </div>
-      </div>
 
+        <div class="inline-reply-box" id="mainReplyBox">
+          <div class="inline-reply-box-header">
+            <div class="avatar av-pink">Y</div>
+            <div class="inline-reply-box-header-text">
+              <h3>Share your experience</h3>
+              <p>Join the conversation and help other parents</p>
+            </div>
+          </div>
+          <textarea id="mainReplyText" placeholder="Write your reply... What worked for you?" maxlength="1000" oninput="updateCharCount()"></textarea>
+          <div class="inline-reply-box-footer">
+            <span class="char-count" id="charCount">0 / 1000</span>
+            <button class="submit-reply-btn" id="submitReplyBtn" onclick="postMainReply()" disabled>
+              <i class="fa-solid fa-paper-plane"></i> Post Reply
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- SIDEBAR -->
     <div class="discussion-sidebar">
 
-      <!-- Reply box -->
-      <div class="reply-box">
-        <h3>Join this conversation</h3>
-        <p class="reply-box-sub">Share your experience or tips with other parents</p>
-        <textarea placeholder="Write your reply…"></textarea>
-        <button><i class="fa-solid fa-paper-plane" style="margin-right:6px;"></i> Post Reply</button>
+      <div class="sidebar-reply-teaser">
+        <h3>Have a tip to share?</h3>
+        <p>Scroll down to join the conversation and help Adit S. with their toddler!</p>
+        <button onclick="scrollToReply()">
+          <i class="fa-solid fa-comment-dots"></i> Write a Reply
+        </button>
       </div>
 
-      <!-- Discussion info -->
       <div class="info-card">
         <h3>Discussion Info</h3>
         <div class="info-stat">
@@ -591,11 +647,11 @@
         </div>
         <div class="info-stat">
           <span class="stat-label"><i class="fa-regular fa-comment"></i> Replies</span>
-          <span class="stat-value">14</span>
+          <span class="stat-value" id="sidebarReplyCount">14</span>
         </div>
         <div class="info-stat">
           <span class="stat-label"><i class="fa-solid fa-heart"></i> Helpful marks</span>
-          <span class="stat-value">24</span>
+          <span class="stat-value" id="sidebarHelpful">24</span>
         </div>
         <div class="info-stat">
           <span class="stat-label"><i class="fa-regular fa-clock"></i> Posted</span>
@@ -607,7 +663,6 @@
         </div>
       </div>
 
-      <!-- Welcome card -->
       <div class="welcome-card">
         <div class="welcome-illustration">
           <img src="static/img/forum-card.png" alt="Welcome to the Forum">
@@ -617,7 +672,6 @@
         <button onclick="location.href='forum.html'">View More Discussions <i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i></button>
       </div>
 
-      <!-- Related topics -->
       <div class="related-card">
         <h3>Related Discussions</h3>
         <a href="#" class="related-item">
@@ -647,8 +701,12 @@
 
   </div>
 
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-check-circle"></i>
+    <span id="toastMsg">Done!</span>
+  </div>
+
   <script>
-    // Nav scroll logic (identical to forum.html)
     (function () {
       const scrollEl = document.getElementById('navScroll');
       const list     = document.getElementById('navLinks');
@@ -666,23 +724,212 @@
       function render() {
         const max = maxOffset();
         offset = Math.max(0, Math.min(offset, max));
-        list.style.transform = `translateX(${-offset}px)`;
+        list.style.transform = 'translateX(' + (-offset) + 'px)';
         if (max === 0) {
           const slack = scrollEl.clientWidth - list.scrollWidth;
-          list.style.paddingLeft = slack > 0 ? `${slack / 2}px` : '0px';
+          list.style.paddingLeft = slack > 0 ? (slack / 2) + 'px' : '0px';
         } else {
           list.style.paddingLeft = '0px';
         }
         btnPrev.classList.toggle('visible', offset > 0);
         btnNext.classList.toggle('visible', offset < max);
       }
-      btnPrev.addEventListener('click', () => { offset -= STEP; render(); });
-      btnNext.addEventListener('click', () => { offset += STEP; render(); });
+      btnPrev.addEventListener('click', function () { offset -= STEP; render(); });
+      btnNext.addEventListener('click', function () { offset += STEP; render(); });
       new ResizeObserver(render).observe(scrollEl);
       render();
     })();
 
+    var userMenuBtn = document.getElementById('userMenuBtn');
+    var userDropdown = document.getElementById('userDropdown');
+    if (userMenuBtn && userDropdown) {
+      userMenuBtn.addEventListener('click', function (e) { e.stopPropagation(); userDropdown.classList.toggle('open'); });
+      document.addEventListener('click', function () { userDropdown.classList.remove('open'); });
+    }
 
+    function showToast(msg, type) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.className = 'toast' + (type ? ' ' + type : '');
+      void toast.offsetWidth;
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 2800);
+    }
+
+    var postLiked = false;
+    var postSaved = false;
+
+    function toggleLike() {
+      postLiked = !postLiked;
+      const btn = document.getElementById('likeBtn');
+      const icon = document.getElementById('likeIcon');
+      const count = document.getElementById('likeCount');
+      const sidebar = document.getElementById('sidebarHelpful');
+      const cur = parseInt(count.textContent);
+      btn.classList.toggle('active', postLiked);
+      icon.className = postLiked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+      const next = postLiked ? cur + 1 : cur - 1;
+      count.textContent = next;
+      sidebar.textContent = next;
+      showToast(postLiked ? 'Marked as Helpful!' : 'Removed Helpful mark', postLiked ? 'pink' : '');
+    }
+
+    function toggleSave() {
+      postSaved = !postSaved;
+      const btn = document.getElementById('saveBtn');
+      const icon = document.getElementById('saveIcon');
+      const text = document.getElementById('saveText');
+      btn.classList.toggle('active', postSaved);
+      icon.className = postSaved ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark';
+      text.textContent = postSaved ? 'Saved!' : 'Save';
+      showToast(postSaved ? 'Post saved to your bookmarks!' : 'Removed from bookmarks');
+    }
+
+    function sharePost() {
+      const btn = document.getElementById('shareBtn');
+      const url = window.location.href;
+      if (navigator.clipboard) { navigator.clipboard.writeText(url).catch(function(){}); }
+      btn.classList.add('copied');
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+      showToast('Link copied to clipboard!', 'green');
+      setTimeout(function () {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<i class="fa-solid fa-share-nodes"></i> Share';
+      }, 2500);
+    }
+
+    function toggleReplyLike(btn) {
+      const isLiked = btn.classList.toggle('liked-reply');
+      const numEl = btn.querySelector('.like-num');
+      numEl.textContent = parseInt(numEl.textContent) + (isLiked ? 1 : -1);
+      btn.querySelector('i').className = isLiked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+    }
+
+    var openForm = null;
+
+    function toggleNestedForm(id) {
+      const form = document.getElementById('nested-form-' + id);
+      if (openForm && openForm !== form) { openForm.classList.remove('open'); }
+      form.classList.toggle('open');
+      openForm = form.classList.contains('open') ? form : null;
+      if (form.classList.contains('open')) { form.querySelector('textarea').focus(); }
+    }
+
+    function cancelNestedForm(id) {
+      const form = document.getElementById('nested-form-' + id);
+      form.classList.remove('open');
+      form.querySelector('textarea').value = '';
+      openForm = null;
+    }
+
+    var avatarColors = ['av-blue','av-purple','av-teal','av-red','av-orange','av-indigo','av-pink','av-green'];
+    var colorIdx = 0;
+
+    function postNestedReply(id) {
+      const form = document.getElementById('nested-form-' + id);
+      const ta = form.querySelector('textarea');
+      const text = ta.value.trim();
+      if (!text) return;
+      const container = document.getElementById('nested-' + id);
+      const color = avatarColors[colorIdx % avatarColors.length];
+      colorIdx++;
+      const wrap = document.createElement('div');
+      wrap.className = 'nested-reply-card';
+      wrap.innerHTML = '<div class="avatar ' + color + '" style="width:32px;height:32px;min-width:32px;font-size:0.78rem;">Y</div>'
+        + '<div class="nested-reply-bubble">'
+        + '<span class="nr-name">You</span><span class="nr-time">just now</span>'
+        + '<p class="nr-text">' + escHtml(text) + '</p>'
+        + '</div>';
+      container.appendChild(wrap);
+      ta.value = '';
+      form.classList.remove('open');
+      openForm = null;
+      showToast('Reply posted!', 'green');
+    }
+
+    function updateCharCount() {
+      const ta = document.getElementById('mainReplyText');
+      const n = ta.value.length;
+      const el = document.getElementById('charCount');
+      el.textContent = n + ' / 1000';
+      el.className = 'char-count' + (n > 900 ? ' warn' : '');
+      document.getElementById('submitReplyBtn').disabled = n === 0;
+    }
+
+    function postMainReply() {
+      const ta = document.getElementById('mainReplyText');
+      const text = ta.value.trim();
+      if (!text) return;
+
+      const list = document.getElementById('replyList');
+      const box = document.getElementById('mainReplyBox');
+      const uid = 'u' + Date.now();
+
+      const card = document.createElement('div');
+      card.className = 'reply-card new-reply is-own';
+      card.dataset.id = uid;
+      card.innerHTML = '<div class="reply-author-row">'
+        + '<div class="avatar av-pink" style="width:40px;height:40px;min-width:40px;font-size:0.95rem;">Y</div>'
+        + '<div class="reply-author-info"><div class="reply-name">You</div><div class="reply-time">just now</div></div>'
+        + '</div>'
+        + '<p class="reply-text">' + escHtml(text) + '</p>'
+        + '<div class="nested-replies" id="nested-' + uid + '"></div>'
+        + '<div class="reply-actions">'
+        + '<button class="reply-action" onclick="toggleReplyLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-num">0</span></button>'
+        + '<button class="reply-action" onclick="toggleNestedForm(\'' + uid + '\')"><i class="fa-regular fa-comment"></i> Reply</button>'
+        + '<button class="reply-action reply-action-delete" onclick="deleteReply(\'' + uid + '\')"><i class="fa-regular fa-trash-can"></i> Delete</button>'
+        + '</div>'
+        + '<div class="nested-reply-form" id="nested-form-' + uid + '">'
+        + '<textarea placeholder="Write a reply..." rows="2"></textarea>'
+        + '<div class="nested-reply-form-footer">'
+        + '<button class="btn-cancel-reply" onclick="cancelNestedForm(\'' + uid + '\')">Cancel</button>'
+        + '<button class="btn-post-nested" onclick="postNestedReply(\'' + uid + '\')">Post</button>'
+        + '</div></div>';
+
+      list.insertBefore(card, box);
+      ta.value = '';
+      updateCharCount();
+
+      const countEl = document.getElementById('repliesCount');
+      const metaEl = document.getElementById('replyCountMeta');
+      const sidebarEl = document.getElementById('sidebarReplyCount');
+      const next = parseInt(countEl.textContent) + 1;
+      countEl.textContent = next;
+      metaEl.textContent = next;
+      sidebarEl.textContent = next;
+
+      showToast('Your reply was posted!', 'green');
+      setTimeout(function () { card.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
+    }
+
+    function deleteReply(id) {
+      const card = document.querySelector('[data-id="' + id + '"]');
+      if (!card) return;
+      card.style.transition = 'opacity 0.25s, transform 0.25s';
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(-8px)';
+      setTimeout(function () {
+        card.remove();
+        const countEl = document.getElementById('repliesCount');
+        const metaEl = document.getElementById('replyCountMeta');
+        const sidebarEl = document.getElementById('sidebarReplyCount');
+        const next = Math.max(0, parseInt(countEl.textContent) - 1);
+        countEl.textContent = next;
+        metaEl.textContent = next;
+        sidebarEl.textContent = next;
+        showToast('Reply deleted.');
+      }, 250);
+    }
+
+    function scrollToReply() {
+      const box = document.getElementById('mainReplyBox');
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(function () { document.getElementById('mainReplyText').focus(); }, 400);
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
   </script>
 
 </body>

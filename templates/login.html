@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In | BabyBoost</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #FEA4AA;
+  --blue: #024774;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background: #f7f9fb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 14px 48px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.logo-svg {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.logo-text .b { color: var(--blue); }
+.logo-text .p { color: var(--pink); }
+
+.page-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  padding: 40px 40px 36px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 24px rgba(2, 71, 116, 0.07);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.card-header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.card-header p {
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: 400;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 7px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #dde6ef;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: #333;
+  background: #f7f9fb;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--blue);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(2, 71, 116, 0.08);
+}
+
+.form-group input::placeholder {
+  color: #bbb;
+}
+
+.forgot-link {
+  display: block;
+  text-align: right;
+  font-size: 0.82rem;
+  color: var(--blue);
+  text-decoration: none;
+  margin-top: -10px;
+  margin-bottom: 18px;
+  font-weight: 500;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.forgot-link:hover {
+  opacity: 1;
+}
+
+.flash-msg {
+  background: #fde8ef;
+  border: 1.5px solid var(--pink);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  color: #c0536a;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  margin-top: 4px;
+}
+
+.btn-submit:hover {
+  background: #035a92;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(2, 71, 116, 0.28);
+}
+
+.btn-submit:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 2px 6px rgba(2, 71, 116, 0.2);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  color: #ccc;
+  font-size: 0.82rem;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.register-prompt {
+  text-align: center;
+  font-size: 0.88rem;
+  color: #777;
+}
+
+.register-prompt a {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.register-prompt a:hover {
+  color: #035a92;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  nav { padding: 12px 16px; }
+  .card { padding: 28px 20px 24px; }
+  .card-header h1 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">
+    <img src="{{ url_for('static', filename='img/BabyBoost.svg') }}" alt="BabyBoost Logo" class="logo-svg">
+    <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
+  </a>
+</nav>
+
+<div class="page-body">
+  <div class="card">
+    <div class="card-header">
+      <h1>Welcome back</h1>
+      <p>Log in to your BabyBoost account</p>
+    </div>
+
+    {% if error %}
+    <div class="flash-msg">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="/login">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@example.com"
+          required
+          autocomplete="email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+          autocomplete="current-password"
+        >
+      </div>
+
+      <a href="#" class="forgot-link">Forgot password?</a>
+
+      <button type="submit" class="btn-submit">Log in</button>
+    </form>
+
+    <div class="divider">or</div>
+
+    <p class="register-prompt">
+      Don't have an account? <a href="/register">Sign up for free</a>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

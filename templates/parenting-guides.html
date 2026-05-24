@@ -369,6 +369,118 @@ nav {
 .load-btn:hover { background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(254,164,170,0.4); }
 .load-btn:active { transform: translateY(0) scale(0.97); }
 
+.user-menu {
+  position: relative;
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1.5px solid #dde6ef;
+  border-radius: 50px;
+  padding: 5px 12px 5px 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.user-btn:hover {
+  border-color: var(--blue);
+  box-shadow: 0 2px 8px rgba(2, 71, 116, 0.12);
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.user-name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(2, 71, 116, 0.1);
+  min-width: 140px;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.user-dropdown.open {
+  display: block;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 11px 16px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background: #f7f9fb;
+}
+
+.dropdown-item-logout {
+  color: #c0536a;
+}
+
+.dropdown-item-logout:hover {
+  background: #fde8ef;
+}
+
+.card-stats {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.73rem; color: #aab; font-weight: 500;
+}
+.card-stats i { font-size: 0.7rem; }
+
+.card-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+
+.btn-card-like, .btn-card-share {
+  display: inline-flex; align-items: center; gap: 5px;
+  border-radius: 7px; padding: 5px 10px;
+  font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 600;
+  cursor: pointer; transition: all 0.18s; border: 1.5px solid;
+  background: #fff;
+}
+.btn-card-like {
+  color: #c0555c; border-color: #f5c1c7;
+}
+.btn-card-like:hover, .btn-card-like.active {
+  background: #fde8ef; border-color: var(--pink);
+}
+.btn-card-share {
+  color: var(--blue-mid); border-color: #dde8f2;
+}
+.btn-card-share:hover {
+  background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue);
+}
+
+/* stop click on like/share from navigating the card */
+.article-card-footer { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   nav { padding: 12px 16px; gap: 8px; }
@@ -395,32 +507,59 @@ nav {
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a class="logo" href="index.html">
+  <a class="logo" href="/">
     <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
     <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
+
   <div class="nav-links-wrapper">
     <button class="nav-arrow" id="navPrev" aria-label="Show previous items">
-      <svg viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 14 14" fill="none">
+        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
+
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="stunting-prediction.html">Stunting Prediction</a></li>
-        <li><a href="growth-dashboard.html">Growth Dashboard</a></li>
-        <li><a href="healthy-recipes.html">Healthy Recipes</a></li>
-        <li><a href="parenting-guides.html" class="active">Parenting Guides</a></li>
-        <li><a href="forum.html">Forum</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/stunting-prediction.html">Stunting Prediction</a></li>
+        <li><a href="/growth-dashboard.html">Growth Dashboard</a></li>
+        <li><a href="/healthy-recipes.html">Healthy Recipes</a></li>
+        <li><a href="/parenting-guides.html" class="active">Parenting Guides</a></li>
+        <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
+
     <button class="nav-arrow" id="navNext" aria-label="Show next items">
-      <svg viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 14 14" fill="none">
+        <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
   </div>
+
   <div class="nav-right">
-    <button class="btn-login">Log in</button>
+  {% if current_user %}
+  <div class="user-menu">
+    <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+      <img
+        src="{{ url_for('static', filename=current_picture) if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+        alt="Profile"
+        class="user-avatar"
+      >
+      <span class="user-name">{{ current_user }}</span>
+      <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+        <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="user-dropdown" id="userDropdown">
+      <a href="/account" class="dropdown-item">Account details</a>
+      <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+    </div>
+  </div>
+  {% else %}
+  <a href="/login" class="btn-login">Log in</a>
+  {% endif %}
   </div>
 </nav>
 
@@ -518,6 +657,20 @@ nav {
   render();
 })();
 
+var userMenuBtn = document.getElementById('userMenuBtn');
+var userDropdown = document.getElementById('userDropdown');
+
+if (userMenuBtn && userDropdown) {
+  userMenuBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    userDropdown.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function () {
+    userDropdown.classList.remove('open');
+  });
+}
+
 /* ── DATA ── */
 const ARTICLES = [
   {
@@ -528,7 +681,8 @@ const ARTICLES = [
     avatarColor: "background:linear-gradient(135deg,#82c97a,#4ea346)",
     authorImg: "static/img/sherly-tunnel.png",
     img: "static/img/artikel-1.png", grad: "grad-1", icon: "fa-chart-line",
-    featured: true, href: "parenting-article-example.html"
+    featured: true, href: "parenting-article-example.html",
+    views: '2.4k', likes: 148
   },
   {
     title: "7 Nutritional Foods to Support Your Child's Growth",
@@ -537,7 +691,7 @@ const ARTICLES = [
     read: "4 min read", author: "Nurul A.", authorInitial: "N",
     avatarColor: "background:linear-gradient(135deg,#6aaee0,#2e7fc1)",
     img: "static/img/artikel-2.png", grad: "grad-2", icon: "fa-apple-whole",
-    featured: true, href: "#"
+    featured: true, href: "#", views: '1.8k', likes: 92
   },
   {
     title: "Building Healthy Habits from an Early Age",
@@ -546,7 +700,7 @@ const ARTICLES = [
     read: "6 min read", author: "Dr. Budi H.", authorInitial: "B",
     avatarColor: "background:linear-gradient(135deg,#5dc9b0,#2a9b82)",
     img: "static/img/artikel-3.png", grad: "grad-3", icon: "fa-seedling",
-    featured: true, href: "#"
+    featured: true, href: "#", views: '1.2k', likes: 67
   },
   {
     title: "Managing Stress as a Parent",
@@ -555,7 +709,7 @@ const ARTICLES = [
     read: "3 min read", author: "Psych. Ratna P.", authorInitial: "R",
     avatarColor: "background:linear-gradient(135deg,#c47cc5,#9a3e9b)",
     img: "static/img/artikel-4.png", grad: "grad-4", icon: "fa-brain",
-    featured: true, href: "#"
+    featured: true, href: "#", views: '3.1k', likes: 124
   },
   {
     title: "Meal Plan for Picky Eaters",
@@ -564,7 +718,7 @@ const ARTICLES = [
     read: "6 min read", author: "Nurul A.", authorInitial: "N",
     avatarColor: "background:linear-gradient(135deg,#6aaee0,#2e7fc1)",
     img: "static/img/artikel-5.png", grad: "grad-5", icon: "fa-utensils",
-    featured: false, href: "#"
+    featured: false, href: "#", views: '2.1k', likes: 85
   },
   {
     title: "Smart Parenting: Start with Small Steps",
@@ -573,7 +727,7 @@ const ARTICLES = [
     read: "3 min read", author: "Dr. Budi H.", authorInitial: "B",
     avatarColor: "background:linear-gradient(135deg,#5dc9b0,#2a9b82)",
     img: "static/img/artikel-6.png", grad: "grad-6", icon: "fa-baby",
-    featured: false, href: "#"
+    featured: false, href: "#", views: '1.5k', likes: 78
   },
   {
     title: "Why Parents Need Rest Too",
@@ -582,7 +736,7 @@ const ARTICLES = [
     read: "5 min read", author: "Psych. Ratna P.", authorInitial: "R",
     avatarColor: "background:linear-gradient(135deg,#c47cc5,#9a3e9b)",
     img: "static/img/artikel-7.png", grad: "grad-7", icon: "fa-moon",
-    featured: false, href: "#"
+    featured: false, href: "#", views: '2.8k', likes: 105
   },
   {
     title: "How to Encourage Healthy Eating for Kids",
@@ -591,7 +745,7 @@ const ARTICLES = [
     read: "5 min read", author: "Nurul A.", authorInitial: "N",
     avatarColor: "background:linear-gradient(135deg,#6aaee0,#2e7fc1)",
     img: "static/img/artikel-8.png", grad: "grad-8", icon: "fa-carrot",
-    featured: false, href: "#"
+    featured: false, href: "#", views: '2.3k', likes: 91
   }
 ];
 
@@ -625,26 +779,40 @@ function renderFeatured(list) {
   const ts    = tagStyle(main.tag);
 
   const mainHtml = `
-    <a href="${main.href}" class="featured-main">
-      <div class="featured-main-img">
-        ${imgOrGrad(main)}
-        <span class="featured-badge"><i class="fa-solid fa-star"></i> Featured</span>
-        <span class="read-time-badge"><i class="fa-regular fa-clock"></i> ${main.read}</span>
-      </div>
-      <div class="featured-main-body">
-        <span class="article-tag" style="${ts}">${main.tagLabel}</span>
-        <h3>${main.title}</h3>
-        <p>${main.desc}</p>
-        <div class="article-meta">
-          <div class="author-avatar" style="${main.avatarColor}">
-            ${main.authorImg ? `<img src="${main.authorImg}" alt="${main.author}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">` : main.authorInitial}
-          </div>
-          <span>${main.author}</span>
-          <span>·</span>
-          <span><i class="fa-regular fa-clock"></i> ${main.read}</span>
+      <a href="${main.href}" class="featured-main">
+        <div class="featured-main-img">
+          ${imgOrGrad(main)}
+          <span class="featured-badge"><i class="fa-solid fa-star"></i> Featured</span>
+          <span class="read-time-badge"><i class="fa-regular fa-clock"></i> ${main.read}</span>
         </div>
-      </div>
-    </a>`;
+        <div class="featured-main-body">
+          <span class="article-tag" style="${ts}">${main.tagLabel}</span>
+          <h3>${main.title}</h3>
+          <p>${main.desc}</p>
+          <div class="article-meta">
+            <div class="author-avatar" style="${main.avatarColor}">
+              ${main.authorImg ? `<img src="${main.authorImg}" alt="${main.author}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">` : main.authorInitial}
+            </div>
+            <span>${main.author}</span>
+            <span>·</span>
+            <span><i class="fa-regular fa-clock"></i> ${main.read}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #f4eaf0;">
+            <span style="font-size:0.75rem;color:#aab;display:flex;align-items:center;gap:5px;">
+              <i class="fa-regular fa-eye"></i> ${main.views}
+            </span>
+            <span style="font-size:0.75rem;color:#aab;">·</span>
+            <span style="font-size:0.75rem;color:#aab;display:flex;align-items:center;gap:5px;">
+              <i class="fa-regular fa-heart"></i> ${main.likes}
+            </span>
+            <div style="margin-left:auto;">
+              <button class="btn-card-share" onclick="event.preventDefault();shareCard('${main.href}','${main.title}')">
+                <i class="fa-solid fa-share-nodes"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </a>`;
 
   const sidesHtml = sides.map(a => {
     const s = tagStyle(a.tag);
@@ -654,7 +822,18 @@ function renderFeatured(list) {
         <div class="side-card-body">
           <span class="article-tag" style="${s}">${a.tagLabel}</span>
           <h4>${a.title}</h4>
-          <div class="side-card-meta"><i class="fa-regular fa-clock"></i> ${a.read}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
+            <div class="side-card-meta">
+              <i class="fa-regular fa-clock"></i> ${a.read}
+              <span style="margin:0 4px;">·</span>
+              <i class="fa-regular fa-eye"></i> ${a.views}
+              <span style="margin:0 4px;">·</span>
+              <i class="fa-regular fa-heart"></i> ${a.likes}
+            </div>
+            <button class="btn-card-share" onclick="event.preventDefault();shareCard('${a.href}','${a.title}')">
+              <i class="fa-solid fa-share-nodes"></i>
+            </button>
+          </div>
         </div>
       </a>`;
   }).join('');
@@ -690,8 +869,18 @@ function renderLatest() {
           <span class="article-tag" style="${s}">${a.tagLabel}</span>
           <h4>${a.title}</h4>
           <div class="article-card-footer">
-            <div class="read-time"><i class="fa-regular fa-clock"></i> ${a.read}</div>
-            <button class="btn-read"><i class="fa-solid fa-arrow-right"></i></button>
+            <div class="card-stats">
+              <span><i class="fa-regular fa-clock"></i> ${a.read}</span>
+              <span>·</span>
+              <span><i class="fa-regular fa-eye"></i> ${a.views}</span>
+              <span>·</span>
+              <span><i class="fa-regular fa-heart"></i> ${a.likes}</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn-card-share" onclick="event.preventDefault();shareCard('${a.href}','${a.title}')">
+                <i class="fa-solid fa-share-nodes"></i>
+              </button>
+            </div>
           </div>
         </div>
       </a>`;
@@ -720,6 +909,52 @@ function setFilter(f, btn) {
 
 renderFeatured(ARTICLES);
 renderLatest();
+
+/* ── LIKE & SHARE ── */
+const cardLiked = {};
+let featuredLiked = false;
+
+function likeCard(i) {
+  cardLiked[i] = !cardLiked[i];
+  ARTICLES.filter(a => !a.featured)[i].likes += cardLiked[i] ? 1 : -1;
+  const btn = document.getElementById('lb-' + i);
+  const cnt = document.getElementById('lc-' + i);
+  if (btn) { btn.classList.toggle('active', cardLiked[i]); btn.querySelector('i').className = cardLiked[i] ? 'fa-solid fa-heart' : 'fa-regular fa-heart'; }
+  if (cnt) cnt.textContent = ARTICLES.filter(a => !a.featured)[i].likes;
+}
+
+function likeFeatured() {
+  featuredLiked = !featuredLiked;
+  ARTICLES[0].likes += featuredLiked ? 1 : -1;
+  const btn = document.getElementById('flb');
+  const cnt = document.getElementById('flc');
+  if (btn) { btn.classList.toggle('active', featuredLiked); btn.querySelector('i').className = featuredLiked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'; }
+  if (cnt) cnt.textContent = ARTICLES[0].likes;
+}
+
+var shareToastTimer = null;
+function shareCard(href, title) {
+  const url = href.startsWith('http') ? href : window.location.origin + '/' + href;
+  const copy = text => {
+    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(() => showShareToast()); }
+    else { const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch(e){} document.body.removeChild(t); showShareToast(); }
+  };
+  copy(url);
+}
+
+function showShareToast() {
+  let t = document.getElementById('shareToast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'shareToast';
+    t.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--blue);color:#fff;padding:10px 20px;border-radius:10px;font-size:0.85rem;font-weight:500;opacity:0;pointer-events:none;transition:opacity 0.2s,transform 0.2s;z-index:9999;white-space:nowrap;box-shadow:0 4px 16px rgba(2,71,116,0.25);font-family:Poppins,sans-serif;';
+    document.body.appendChild(t);
+  }
+  t.textContent = 'Link copied to clipboard!';
+  t.style.opacity = '1'; t.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(shareToastTimer);
+  shareToastTimer = setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(12px)'; }, 2400);
+}
 </script>
 </body>
 </html>

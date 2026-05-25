@@ -1000,7 +1000,7 @@ var COMMENTS = [
 ];
 
 var CURRENT_USER  = '{{ current_user if current_user else "" }}';
-var CURRENT_PIC   = '{{ url_for("static", filename=current_picture) if current_picture else "" }}';
+var CURRENT_PIC = '{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for("static", filename=current_picture) }}{% else %}{% endif %}';
 
 function formatLikes(n) {
   return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);

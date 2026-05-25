@@ -232,9 +232,33 @@ nav {
 }
 
 @media (max-width: 480px) {
-  nav { padding: 12px 16px; }
-  .card { padding: 28px 20px 24px; }
-  .card-header h1 { font-size: 1.5rem; }
+  nav { padding: 10px 16px; }
+  .logo-text { font-size: 1.1rem; }
+  .logo-svg { width: 26px; height: 26px; }
+  .back-home { font-size: .82rem; }
+
+  .page-body { padding: 24px 14px; align-items: flex-start; padding-top: 36px; }
+  .card { padding: 24px 18px 22px; border-radius: 14px; }
+  .card-header { margin-bottom: 24px; }
+  .card-header h1 { font-size: 1.45rem; }
+  .card-header p { font-size: .84rem; }
+
+  .form-group input { font-size: .88rem; padding: 10px 12px; }
+  .btn-submit { font-size: .92rem; padding: 11px; min-height: 44px; }
+  .forgot-link { font-size: .78rem; }
+  .register-prompt { font-size: .82rem; }
+  .divider { margin: 18px 0; font-size: .78rem; }
+}
+
+@media (max-width: 360px) {
+  .logo-text { font-size: 1rem; }
+  .card { padding: 20px 14px 18px; }
+  .card-header h1 { font-size: 1.3rem; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btn-submit { min-height: 48px; }
+  .form-group input { min-height: 44px; }
 }
 </style>
 </head>

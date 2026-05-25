@@ -112,7 +112,7 @@
     .nav-links a:hover { color: var(--blue); }
     .nav-links a.active { color: var(--blue); font-weight: 700; }
 
-    .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: auto;}
 
     .btn-login {
       background: var(--blue);
@@ -581,6 +581,168 @@
       color: #e03040;
       margin-left: 3px;
     }
+
+    @media (max-width: 900px) {
+      nav { padding: 10px 16px; gap: 8px; }
+      .logo-text { font-size: 1.1rem; }
+      .logo-svg { width: 26px; height: 26px; }
+      .nav-links a { font-size: .82rem; }
+      .nav-links { gap: 14px; }
+      .btn-login { padding: 7px 14px; font-size: .82rem; }
+      .user-btn { padding: 4px 10px 4px 4px; font-size: .82rem; }
+      .user-name { max-width: 90px; }
+      .user-avatar { width: 26px; height: 26px; }
+
+      .page { padding: 20px 16px 48px; gap: 14px; }
+
+      .hero { padding: 20px 20px; gap: 12px; border-radius: 14px; }
+      .hero-icon { width: 42px; height: 42px; font-size: 1.1rem; border-radius: 11px; }
+      .hero-txt h1 { font-size: 1.2rem; }
+      .hero-txt p { font-size: .76rem; }
+      .hero-badge { font-size: .68rem; padding: 5px 11px; }
+
+      .stats { gap: 10px; }
+      .stat-box { padding: 12px 10px; border-radius: 12px; }
+      .stat-val { font-size: 1.2rem; }
+      .stat-lbl { font-size: .6rem; }
+
+      .cols { grid-template-columns: 1fr; gap: 14px; }
+
+      .card-head { padding: 14px 18px; gap: 10px; }
+      .ch-icon { width: 34px; height: 34px; font-size: .88rem; border-radius: 9px; }
+      .ch-title { font-size: .85rem; }
+      .ch-sub { font-size: .68rem; }
+      .card-body { padding: 16px 18px 20px; }
+
+      .child-item { padding: 9px 11px; gap: 10px; }
+      .av { width: 34px; height: 34px; font-size: .7rem; }
+      .cm strong { font-size: .78rem; }
+      .chip { font-size: .58rem; padding: 2px 6px; }
+      .status { font-size: .6rem; padding: 3px 7px; margin-right: 6px; }
+
+      .two { gap: 10px; }
+      .inp { height: 40px; font-size: .84rem; }
+      .gender-btn { height: 40px; font-size: .82rem; }
+      .upload-box { min-height: 100px; }
+      .btn-out { height: 44px; font-size: .88rem; }
+
+      .info-box { font-size: .68rem; padding: 9px 11px; }
+      .flbl { font-size: .64rem; }
+      .age-display { font-size: .78rem; }
+    }
+
+    @media (max-width: 580px) {
+      nav { padding: 8px 12px; }
+      .logo-text { font-size: 1rem; }
+      .logo-svg { width: 22px; height: 22px; }
+      .user-name { max-width: 70px; }
+
+      .page { padding: 14px 12px 40px; }
+
+      .hero { padding: 16px 16px; gap: 10px; border-radius: 12px; }
+      .hero-icon { width: 36px; height: 36px; font-size: 1rem; }
+      .hero-txt h1 { font-size: 1.05rem; }
+      .hero-badge { display: none; }
+
+      .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .stat-box { padding: 10px 8px; border-radius: 10px; }
+      .stat-val { font-size: 1.1rem; }
+
+      .two { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 380px) {
+      .user-name { display: none; }
+      .hero-txt p { display: none; }
+      .stats { gap: 6px; }
+      .stat-val { font-size: 1rem; }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .child-item:hover { border-color: var(--brd); background: #fafcff; box-shadow: none; }
+      .btn-out { min-height: 48px; }
+      .gender-btn { min-height: 44px; }
+      .dropdown-item { padding: 13px 16px; }
+    }
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: 1.5px solid #dde6ef;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 7px 8px;
+    flex-shrink: 0;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .hamburger:hover { border-color: var(--blue); background: #f0f6fc; }
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--blue);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s, width 0.3s;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ── */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0 12px;
+    position: sticky;
+    top: 57px; /* height of nav */
+    z-index: 999;
+    box-shadow: 0 4px 16px rgba(2,71,116,0.08);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .mobile-nav a:hover { background: #f5faff; color: var(--blue); }
+  .mobile-nav a.active {
+    color: var(--blue);
+    font-weight: 700;
+    border-left-color: var(--blue);
+    background: #f0f6fc;
+  }
+  .mobile-nav .mobile-divider {
+    height: 1px;
+    background: #eee;
+    margin: 6px 20px;
+  }
+  .mobile-nav .mobile-login {
+    margin: 6px 20px 0;
+    padding: 11px 20px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-align: center;
+  }
+  .mobile-nav .mobile-login:hover { background: #035a92; border-left-color: transparent; }
+
+  @media (max-width: 680px) {
+    .hamburger { display: flex; }
+    .nav-links-wrapper { display: none; }
+  }
   </style>
 </head>
 <body>
@@ -604,7 +766,6 @@
         <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
         <li><a href="/">Home</a></li>
@@ -615,7 +776,6 @@
         <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
-
     <button class="nav-arrow" id="navNext" aria-label="Show next items">
       <svg viewBox="0 0 14 14" fill="none">
         <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -624,29 +784,49 @@
   </div>
 
   <div class="nav-right">
-  {% if current_user %}
-  <div class="user-menu">
-    <button class="user-btn" id="userMenuBtn" aria-label="User menu">
-      <img
-        src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
-        alt="Profile"
-        class="user-avatar"
-      >
-      <span class="user-name">{{ current_user }}</span>
-      <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
-        <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    <div class="user-dropdown" id="userDropdown">
-      <a href="/account" class="dropdown-item">Account details</a>
-      <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+    {% if current_user %}
+    <div class="user-menu">
+      <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+        <img
+          src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
+          alt="Profile"
+          class="user-avatar"
+        >
+        <span class="user-name">{{ current_user }}</span>
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <a href="/account" class="dropdown-item">Account details</a>
+        <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+      </div>
     </div>
-  </div>
-  {% else %}
-  <a href="/login" class="btn-login">Log in</a>
-  {% endif %}
+    {% else %}
+    <a href="/login" class="btn-login">Log in</a>
+    {% endif %}
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+  <!-- Mobile drawer (renders below nav, above hero) -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/stunting-prediction.html">Stunting Prediction</a>
+    <a href="/growth-dashboard.html" class="active">Growth Dashboard</a>
+    <a href="/healthy-recipes.html">Healthy Recipes</a>
+    <a href="/parenting-guides.html">Parenting Guides</a>
+    <a href="/forum.html">Forum</a>
+    {% if not current_user %}
+    <div class="mobile-divider"></div>
+    <a href="/login" class="mobile-login">Log in</a>
+    {% endif %}
+  </div>
 
 <div class="page">
 
@@ -853,6 +1033,33 @@
 </div>
 
 <script>
+  // Hamburger toggle
+  var hamburger  = document.getElementById('hamburger');
+  var mobileNav  = document.getElementById('mobileNav');
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close drawer when a link inside it is tapped
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  }
+
   (function () {
     var scroll = document.getElementById('navScroll');
     var links = document.getElementById('navLinks');

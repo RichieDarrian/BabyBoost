@@ -151,6 +151,7 @@ nav {
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .btn-login {
@@ -580,6 +581,268 @@ footer {
     gap: 16px;
   }
 }
+
+/* ── Tablet (≤ 1042px) — extends existing breakpoint ── */
+@media (max-width: 1042px) {
+  nav { padding: 10px 16px; gap: 8px; }
+  .logo-text { font-size: 1.1rem; }
+  .logo-svg { width: 26px; height: 26px; }
+  .nav-links a { font-size: .88rem; }
+  .nav-links { gap: 16px; }
+  .btn-login { padding: 8px 14px; font-size: .88rem; }
+  .user-btn { padding: 4px 10px 4px 4px; font-size: .86rem; }
+  .user-name { max-width: 100px; }
+  .user-avatar { width: 28px; height: 28px; }
+
+  /* HERO */
+  .hero { padding: 36px 24px 0; gap: 0; }
+  .hero-left h1 { font-size: 2.4rem; }
+  .hero-left p { font-size: .92rem; margin: 20px 0 28px; }
+  .hero-btns { gap: 14px; margin-bottom: 32px; }
+  .hero-btns button { font-size: .92rem; padding: 11px 16px; }
+
+  /* Hero image — contained, not edge-to-edge at this breakpoint */
+  .hero-right {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .hero-photo {
+    width: 70%;
+    max-width: 420px;
+    border-radius: 10px;
+  }
+
+  /* FEATURES */
+  .features { padding: 44px 24px 56px; }
+  .features h2 { font-size: 1.75rem; }
+  .cards-grid { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
+  .card-forum { width: 60%; }
+
+  .card,
+  .card-forum { padding: 20px 18px; gap: 14px; border-radius: 12px; }
+  .card-icon { width: 56px; height: 56px; min-width: 56px; border-radius: 11px; }
+  .card-icon img { width: 30px; height: 30px; }
+  .card-body h3 { font-size: 1rem; margin-bottom: 6px; }
+  .card-body p { font-size: .84rem; }
+}
+
+/* ── Mobile (≤ 680px) ── */
+@media (max-width: 680px) {
+  .hamburger { display: flex; }
+  .nav-links-wrapper { display: none; }
+  nav { gap: 10px; }
+  .logo-text { font-size: 1rem; }
+  .logo-svg { width: 24px; height: 24px; }
+  .btn-login { padding: 7px 13px; font-size: .82rem; }
+  .user-name { max-width: 80px; }
+
+  /* HERO — single column, image below */
+  .hero {
+    flex-direction: column;
+    padding: 28px 16px 0;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .hero-left { width: 100%; }
+  .hero-left h1 {
+    font-size: 1.85rem;
+    line-height: 1.3;
+  }
+  .hero-left p { font-size: .86rem; margin: 16px 0 24px; }
+
+  /* Stack buttons vertically */
+  .hero-btns {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .hero-btns button {
+    width: 100%;
+    font-size: .9rem;
+    padding: 13px 20px;
+    border-radius: 9px;
+  }
+
+  /* Hero image — full bleed below buttons */
+  .hero-right {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+  .hero-photo {
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  /* FEATURES */
+  .features { padding: 36px 16px 48px; }
+  .features h2 { font-size: 1.5rem; line-height: 1.3; }
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 11px;
+    margin-top: 26px;
+  }
+  .card-forum { width: 100%; }
+
+  .card,
+  .card-forum {
+    padding: 18px 16px;
+    gap: 14px;
+    border-radius: 12px;
+  }
+  .card-icon { width: 52px; height: 52px; min-width: 52px; border-radius: 10px; }
+  .card-icon img { width: 28px; height: 28px; }
+  .card-body h3 { font-size: .95rem; margin-bottom: 5px; }
+  .card-body p { font-size: .82rem; line-height: 1.6; }
+
+  .dropdown-item { padding: 12px 14px; font-size: .84rem; }
+}
+
+/* ── Small phones (≤ 420px) ── */
+@media (max-width: 420px) {
+  nav { padding: 8px 10px; }
+  .logo-text { font-size: .95rem; }
+  .logo-svg { width: 22px; height: 22px; }
+  .user-name { max-width: 64px; }
+
+  .hero { padding: 22px 14px 0; }
+  .hero-left h1 { font-size: 1.6rem; }
+  .hero-left p { font-size: .82rem; }
+  .hero-btns button { font-size: .86rem; padding: 12px 16px; }
+
+  /* Image edge-to-edge */
+  .hero-right {
+    width: calc(100% + 28px);
+    margin-left: -14px;
+    margin-right: -14px;
+  }
+
+  .features { padding: 30px 14px 40px; }
+  .features h2 { font-size: 1.35rem; }
+
+  .card,
+  .card-forum { padding: 15px 13px; gap: 12px; }
+  .card-icon { width: 46px; height: 46px; min-width: 46px; border-radius: 9px; }
+  .card-icon img { width: 24px; height: 24px; }
+  .card-body h3 { font-size: .9rem; }
+  .card-body p { font-size: .78rem; }
+}
+
+/* ── Very small phones (≤ 360px) ── */
+@media (max-width: 360px) {
+  .user-name { display: none; }
+  .hero-left h1 { font-size: 1.45rem; }
+  .hero-btns button { font-size: .82rem; padding: 11px 14px; }
+}
+
+/* ── Touch targets ── */
+@media (hover: none) and (pointer: coarse) {
+  .hero-btns button { min-height: 48px; }
+  .btn-login { min-height: 40px; }
+  .dropdown-item { padding: 13px 16px; }
+
+  /* Disable sticky hover lifts */
+  .card:hover,
+  .card-forum:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: #f0dde6;
+  }
+  .card:hover .card-icon,
+  .card-forum:hover .card-icon {
+    background: #fde8ef;
+    transform: none;
+  }
+  .btn-dark:hover,
+  .btn-pink-outline:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1.5px solid #dde6ef;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 7px 8px;
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
+}
+.hamburger:hover { border-color: var(--blue); background: #f0f6fc; }
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--blue);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE DRAWER ── */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 8px 0 12px;
+  position: sticky;
+  top: 57px; /* height of nav */
+  z-index: 999;
+  box-shadow: 0 4px 16px rgba(2,71,116,0.08);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  border-left: 3px solid transparent;
+}
+.mobile-nav a:hover { background: #f5faff; color: var(--blue); }
+.mobile-nav a.active {
+  color: var(--blue);
+  font-weight: 700;
+  border-left-color: var(--blue);
+  background: #f0f6fc;
+}
+.mobile-nav .mobile-divider {
+  height: 1px;
+  background: #eee;
+  margin: 6px 20px;
+}
+.mobile-nav .mobile-login {
+  margin: 6px 20px 0;
+  padding: 11px 20px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-align: center;
+}
+.mobile-nav .mobile-login:hover { background: #035a92; border-left-color: transparent; }
+
+@media (max-width: 680px) {
+  .hamburger { display: flex; }
+  .nav-links-wrapper { display: none; }
+}
 </style>
 </head>
 <body>
@@ -596,7 +859,6 @@ footer {
         <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
         <li><a href="/" class="active">Home</a></li>
@@ -607,7 +869,6 @@ footer {
         <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
-
     <button class="nav-arrow" id="navNext" aria-label="Show next items">
       <svg viewBox="0 0 14 14" fill="none">
         <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -616,29 +877,49 @@ footer {
   </div>
 
   <div class="nav-right">
-  {% if current_user %}
-  <div class="user-menu">
-    <button class="user-btn" id="userMenuBtn" aria-label="User menu">
-      <img
-        src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
-        alt="Profile"
-        class="user-avatar"
-      >
-      <span class="user-name">{{ current_user }}</span>
-      <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
-        <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    <div class="user-dropdown" id="userDropdown">
-      <a href="/account" class="dropdown-item">Account details</a>
-      <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+    {% if current_user %}
+    <div class="user-menu">
+      <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+        <img
+          src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
+          alt="Profile"
+          class="user-avatar"
+        >
+        <span class="user-name">{{ current_user }}</span>
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <a href="/account" class="dropdown-item">Account details</a>
+        <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+      </div>
     </div>
-  </div>
-  {% else %}
-  <a href="/login" class="btn-login">Log in</a>
-  {% endif %}
+    {% else %}
+    <a href="/login" class="btn-login">Log in</a>
+    {% endif %}
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile drawer (renders below nav, above hero) -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="/" class="active">Home</a>
+  <a href="/stunting-prediction.html">Stunting Prediction</a>
+  <a href="/growth-dashboard.html">Growth Dashboard</a>
+  <a href="/healthy-recipes.html">Healthy Recipes</a>
+  <a href="/parenting-guides.html">Parenting Guides</a>
+  <a href="/forum.html">Forum</a>
+  {% if not current_user %}
+  <div class="mobile-divider"></div>
+  <a href="/login" class="mobile-login">Log in</a>
+  {% endif %}
+</div>
 
 <section class="hero">
   <div class="hero-left">
@@ -733,6 +1014,33 @@ footer {
 <footer></footer>
 
 <script>
+// Hamburger toggle
+var hamburger  = document.getElementById('hamburger');
+var mobileNav  = document.getElementById('mobileNav');
+
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var isOpen = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close drawer when a link inside it is tapped
+  mobileNav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  });
+
+  // Close drawer on outside click
+  document.addEventListener('click', function () {
+    mobileNav.classList.remove('open');
+    hamburger.classList.remove('open');
+  });
+}
+
 (function () {
   var scrollEl = document.getElementById('navScroll');
   var list     = document.getElementById('navLinks');

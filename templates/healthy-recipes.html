@@ -126,6 +126,7 @@ nav {
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .btn-login {
@@ -1027,6 +1028,312 @@ nav {
   .recipe-grid { grid-template-columns: 1fr; }
   .stat-strip { display: none; }
 }
+
+/* ── Tablet (≤ 900px) — extends existing breakpoint ── */
+@media (max-width: 900px) {
+  nav { padding: 10px 16px; gap: 8px; }
+  .logo-text { font-size: 1.1rem; }
+  .logo-svg { width: 26px; height: 26px; }
+  .nav-links a { font-size: .82rem; }
+  .nav-links { gap: 14px; }
+  .btn-login { padding: 7px 14px; font-size: .82rem; }
+  .user-btn { padding: 4px 10px 4px 4px; font-size: .82rem; }
+  .user-name { max-width: 90px; }
+  .user-avatar { width: 26px; height: 26px; }
+
+  /* HERO */
+  .hero { padding: 36px 20px 36px; }
+  .hero h1 { font-size: 1.9rem; }
+  .hero p { font-size: .88rem; margin-bottom: 24px; }
+  .search-wrap input { padding: 12px 16px; font-size: .88rem; }
+  .search-wrap button { padding: 12px 20px; font-size: .88rem; }
+
+  /* STAT STRIP */
+  .stat-strip { flex-wrap: wrap; justify-content: flex-start; }
+  .stat-item { padding: 13px 20px; border-right: none; border-bottom: 1px solid #f0e8ed; width: 50%; }
+  .stat-item:nth-child(odd) { border-right: 1px solid #f0e8ed; }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4) { border-bottom: none; }
+
+  /* FILTERS */
+  .filter-bar { padding: 18px 16px 0; gap: 8px; }
+  .filter-pill { padding: 6px 14px; font-size: .8rem; }
+
+  /* MAIN */
+  .main { padding: 22px 16px 56px; }
+
+  /* FEATURED */
+  .featured { grid-template-columns: 1fr; border-radius: 16px; }
+  .featured-img { min-height: 220px; }
+  .featured-img::after { background: linear-gradient(0deg, var(--blue) 25%, transparent 70%); }
+  .featured-info { padding: 24px 24px 28px; }
+  .featured-title { font-size: 1.35rem; }
+  .featured-desc { font-size: .84rem; margin-bottom: 16px; }
+  .featured-meta { gap: 8px; margin-bottom: 18px; }
+  .meta-chip { padding: 4px 10px; font-size: .74rem; }
+  .btn-view { padding: 10px 20px; font-size: .85rem; }
+  .btn-share { padding: 9px 15px; font-size: .8rem; }
+
+  /* TIP BANNER */
+  .tip-banner { padding: 16px 18px; gap: 12px; border-radius: 14px; margin-bottom: 28px; }
+  .tip-icon { width: 38px; height: 38px; font-size: 1rem; border-radius: 10px; }
+  .tip-title { font-size: .82rem; }
+  .tip-text { font-size: .78rem; }
+
+  /* RECIPE GRID */
+  .recipe-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 32px; }
+  .recipe-img { height: 165px; }
+  .recipe-title { font-size: .92rem; }
+  .recipe-desc { font-size: .78rem; }
+  .recipe-price { font-size: .75rem; margin-bottom: 10px; }
+  .recipe-body { padding: 14px 16px 16px; }
+  .tag { font-size: .65rem; padding: 2px 7px; }
+  .recipe-action { width: 30px; height: 30px; font-size: .75rem; border-radius: 7px; }
+
+  /* MODAL */
+  .modal { border-radius: 18px; max-width: 96vw; }
+  .modal-img { height: 200px; }
+  .modal-body { padding: 22px 20px 28px; }
+  .modal-title { font-size: 1.3rem; }
+  .modal-desc { font-size: .85rem; margin-bottom: 18px; }
+  .modal-meta { gap: 8px; margin-bottom: 18px; }
+  .modal-chip { padding: 6px 11px; font-size: .76rem; }
+  .modal-share-btn { padding: 6px 13px; font-size: .76rem; }
+  .ingredient-list li { font-size: .83rem; padding: 7px 10px; border-radius: 8px; }
+  .step-text { font-size: .83rem; }
+  .step-num { width: 26px; height: 26px; font-size: .7rem; border-radius: 7px; }
+}
+
+/* ── Mobile (≤ 580px) — extends existing breakpoint ── */
+@media (max-width: 580px) {
+  nav { padding: 8px 12px; }
+  .logo-text { font-size: 1rem; }
+  .logo-svg { width: 22px; height: 22px; }
+
+  /* HERO */
+  .hero { padding: 28px 14px 28px; }
+  .hero h1 { font-size: 1.5rem; margin-bottom: 10px; }
+  .hero p { font-size: .82rem; margin-bottom: 20px; }
+  /* Stack search button below input on tiny screens */
+  .search-wrap { border-radius: 12px; }
+  .search-wrap input { padding: 11px 14px; font-size: .84rem; min-width: 0; flex: 1; }
+  .search-wrap button { padding: 11px 14px; flex-shrink: 0; font-size: 0; gap: 0; }
+  .search-wrap button i { font-size: 1rem; }
+  .search-wrap button span { display: none; }
+
+  /* STAT STRIP — hidden by existing CSS, kept hidden */
+
+  /* FILTERS — horizontal scroll */
+  .filter-bar {
+    padding: 14px 12px 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 7px;
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-bar-label { flex-shrink: 0; }
+  .filter-pill { flex-shrink: 0; padding: 6px 13px; font-size: .76rem; }
+
+  /* MAIN */
+  .main { padding: 18px 12px 48px; }
+
+  /* FEATURED */
+  .featured { border-radius: 14px; margin-bottom: 20px; }
+  .featured-img { min-height: 190px; }
+  .featured-info { padding: 18px 18px 22px; }
+  .featured-label { font-size: .66rem; padding: 3px 11px; margin-bottom: 10px; }
+  .featured-title { font-size: 1.15rem; margin-bottom: 8px; }
+  .featured-desc { font-size: .8rem; margin-bottom: 14px; }
+  .featured-meta { gap: 6px; margin-bottom: 16px; }
+  .meta-chip { padding: 4px 9px; font-size: .7rem; border-radius: 7px; }
+  .featured-actions { gap: 8px; }
+  .btn-view { padding: 10px 18px; font-size: .82rem; border-radius: 9px; }
+  .btn-share { padding: 9px 13px; font-size: .78rem; border-radius: 9px; }
+
+  /* TIP BANNER */
+  .tip-banner { padding: 14px 14px; gap: 11px; border-radius: 12px; margin-bottom: 22px; }
+  .tip-icon { width: 34px; height: 34px; font-size: .9rem; border-radius: 9px; flex-shrink: 0; }
+  .tip-title { font-size: .78rem; }
+  .tip-text { font-size: .74rem; }
+
+  /* SECTION HEADER */
+  .section-title { font-size: .68rem; }
+  .see-all { font-size: .75rem; }
+
+  /* RECIPE GRID — single column */
+  .recipe-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
+  .recipe-img { height: 185px; }
+  .age-badge { font-size: .66rem; padding: 3px 8px; }
+  .time-badge { font-size: .7rem; padding: 3px 9px; }
+  .recipe-body { padding: 14px 15px 16px; }
+  .recipe-title { font-size: .95rem; }
+  .recipe-desc { font-size: .8rem; }
+  .recipe-price { font-size: .76rem; }
+  .recipe-action { width: 30px; height: 30px; }
+  .card-actions { gap: 5px; }
+
+  /* MODAL */
+  .modal-overlay {
+    padding: 0 !important;
+    align-items: stretch !important;
+  }
+  .modal {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    animation: none !important;
+  }
+  @keyframes sheetUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .modal-img { height: 180px; }
+  .modal-img .close-btn { top: 10px; right: 10px; width: 32px; height: 32px; font-size: .82rem; }
+  .modal-body { padding: 18px 16px 32px; }
+  .modal-age-badge { font-size: .68rem; padding: 2px 10px; margin-bottom: 8px; }
+  .modal-title { font-size: 1.15rem; margin-bottom: 6px; }
+  .modal-desc { font-size: .82rem; margin-bottom: 16px; }
+  .modal-meta { gap: 6px; margin-bottom: 16px; }
+  .modal-chip { padding: 5px 10px; font-size: .72rem; border-radius: 8px; }
+  .modal-share-btn { padding: 5px 12px; font-size: .72rem; }
+  .modal-section-title { font-size: .66rem; margin-bottom: 10px; }
+  .ingredient-list { gap: 6px; margin-bottom: 18px; }
+  .ingredient-list li { font-size: .8rem; padding: 7px 10px; }
+  .step-list { gap: 10px; }
+  .step-num { width: 24px; height: 24px; font-size: .68rem; border-radius: 6px; }
+  .step-text { font-size: .8rem; }
+
+  /* TOAST — full width on mobile */
+  .share-toast {
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+    transform: translateX(0) translateY(12px);
+    text-align: center;
+    font-size: .8rem;
+    white-space: normal;
+  }
+  .share-toast.show { transform: translateX(0) translateY(0); }
+}
+
+/* ── Very small phones (≤ 380px) ── */
+@media (max-width: 380px) {
+  .user-name { display: none; }
+  .hero h1 { font-size: 1.3rem; }
+  .featured-title { font-size: 1.05rem; }
+  /* Wrap actions when space is too tight */
+  .featured-actions { flex-wrap: wrap; }
+  .btn-view { flex: 1; justify-content: center; }
+  /* Modal meta wraps tightly */
+  .modal-meta { row-gap: 5px; }
+}
+
+/* ── Touch targets ── */
+@media (hover: none) and (pointer: coarse) {
+  .btn-view,
+  .btn-new-post,
+  .search-wrap button { min-height: 44px; }
+  .filter-pill { min-height: 38px; }
+  .recipe-action { min-height: 40px; width: 40px; }
+  .modal-img .close-btn { width: 40px; height: 40px; }
+  .dropdown-item { padding: 13px 16px; }
+
+  /* Kill hover lifts — sticky on touch */
+  .recipe-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: #f0dde6;
+  }
+  .recipe-card:hover .recipe-img img { transform: none; }
+  .stat-card:hover { transform: none; box-shadow: none; border-color: #f0dde6; }
+  .btn-view:hover { transform: none; box-shadow: none; }
+  .btn-share:hover { transform: none; }
+}
+
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1.5px solid #dde6ef;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 7px 8px;
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
+}
+.hamburger:hover { border-color: var(--blue); background: #f0f6fc; }
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--blue);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE DRAWER ── */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 8px 0 12px;
+  position: sticky;
+  top: 57px; /* height of nav */
+  z-index: 999;
+  box-shadow: 0 4px 16px rgba(2,71,116,0.08);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  border-left: 3px solid transparent;
+}
+.mobile-nav a:hover { background: #f5faff; color: var(--blue); }
+.mobile-nav a.active {
+  color: var(--blue);
+  font-weight: 700;
+  border-left-color: var(--blue);
+  background: #f0f6fc;
+}
+.mobile-nav .mobile-divider {
+  height: 1px;
+  background: #eee;
+  margin: 6px 20px;
+}
+.mobile-nav .mobile-login {
+  margin: 6px 20px 0;
+  padding: 11px 20px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-align: center;
+}
+.mobile-nav .mobile-login:hover { background: #035a92; border-left-color: transparent; }
+
+@media (max-width: 680px) {
+  .hamburger { display: flex; }
+  .nav-links-wrapper { display: none; }
+}
 </style>
 </head>
 <body>
@@ -1043,7 +1350,6 @@ nav {
         <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
         <li><a href="/">Home</a></li>
@@ -1054,7 +1360,6 @@ nav {
         <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
-
     <button class="nav-arrow" id="navNext" aria-label="Show next items">
       <svg viewBox="0 0 14 14" fill="none">
         <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1084,8 +1389,28 @@ nav {
     {% else %}
     <a href="/login" class="btn-login">Log in</a>
     {% endif %}
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile drawer (renders below nav, above hero) -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="/">Home</a>
+  <a href="/stunting-prediction.html">Stunting Prediction</a>
+  <a href="/growth-dashboard.html">Growth Dashboard</a>
+  <a href="/healthy-recipes.html" class="active">Healthy Recipes</a>
+  <a href="/parenting-guides.html">Parenting Guides</a>
+  <a href="/forum.html">Forum</a>
+  {% if not current_user %}
+  <div class="mobile-divider"></div>
+  <a href="/login" class="mobile-login">Log in</a>
+  {% endif %}
+</div>
 
 <section class="hero">
   <div class="hero-inner">
@@ -1209,6 +1534,34 @@ nav {
 <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
 
 <script>
+// Hamburger toggle
+var hamburger  = document.getElementById('hamburger');
+var mobileNav  = document.getElementById('mobileNav');
+
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var isOpen = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close drawer when a link inside it is tapped
+  mobileNav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  });
+
+  // Close drawer on outside click
+  document.addEventListener('click', function () {
+    mobileNav.classList.remove('open');
+    hamburger.classList.remove('open');
+  });
+}
+
+
 /* -- NAV CAROUSEL -- */
 (function () {
   var scrollEl = document.getElementById('navScroll');

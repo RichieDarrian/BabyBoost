@@ -59,7 +59,7 @@ nav {
 .nav-links a { text-decoration: none; color: #333; font-size: 1rem; font-weight: 500; white-space: nowrap; transition: color 0.2s; }
 .nav-links a.active { color: var(--blue); font-weight: 700; }
 .nav-links a:hover { color: var(--blue); }
-.nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: auto;}
 .btn-login {
   background: var(--blue); color: #fff; border: none; padding: 9px 22px;
   border-radius: 6px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600;
@@ -484,11 +484,34 @@ nav {
 /* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   nav { padding: 12px 16px; gap: 8px; }
-  .hero { flex-direction: column; min-height: auto; }
-  .hero-inner { padding: 36px 20px 32px; }
-  .hero-image-col { width: 100%; height: 220px; }
-  .hero-image-col::before { background: linear-gradient(180deg, transparent 60%, #fde8ef 100%); }
+
+  .hero {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .hero-inner {
+    padding: 36px 28px 28px;
+    width: 100%;
+    order: 1;
+    /* ensure text is never clipped */
+    overflow: visible;
+  }
+  .hero-image-col {
+    width: 100%;
+    /* Taller so the person's face + body shows properly */
+    height: 320px;
+    order: 2;
+    flex-shrink: 0;
+    align-items: stretch;
+  }
+  .hero-image-col img {
+    object-fit: cover;
+    /* Pull image up so the face isn't cropped */
+    object-position: center 10%;
+  }
   .hero h1 { font-size: 2rem; }
+  .search-wrap { max-width: 100%; }
+
   .filter-bar { padding: 0 20px; }
   .main { padding: 28px 20px 56px; }
   .featured-grid { grid-template-columns: 1fr; }
@@ -499,10 +522,132 @@ nav {
   .nav-links a { font-size: 0.88rem; }
   .nav-links { gap: 16px; }
 }
+
+@media (max-width: 900px) {
+  nav { padding: 10px 16px; gap: 8px; }
+  .hero-inner { padding: 28px 20px 24px; }
+  .hero-image-col { height: 280px; }
+  .hero-image-col img { object-position: center 8%; }
+  .hero h1 { font-size: 1.75rem; }
+  .hero p { font-size: .88rem; margin-bottom: 22px; }
+  .filter-bar { padding: 0 14px; }
+  .main { padding: 22px 16px 52px; }
+  .featured-side { flex-direction: column; }
+  .side-card { min-width: 100%; }
+  .latest-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+
 @media (max-width: 680px) {
   .side-card { min-width: 100%; }
   .latest-grid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 580px) {
+  nav { padding: 8px 12px; }
+  .hero-inner { padding: 24px 16px 20px; }
+  .hero-image-col { height: 240px; }
+  .hero-image-col img { object-position: center 5%; }
+  .hero h1 { font-size: 1.5rem; }
+  .hero p { font-size: 0.85rem; }
+  .search-wrap { max-width: 100%; }
+  .search-wrap input { font-size: .85rem; min-width: 0; }
+  .search-wrap button.search-btn {
+    padding: 0 16px;
+    width: auto;
+    min-width: unset;
+    font-size: 0.85rem;
+    gap: 6px;
+    justify-content: center;
+    margin: 6px;
+  }
+  .search-wrap button.search-btn i { font-size: 0.85rem; }
+  .search-icon-btn { padding: 0 4px 0 14px; }
+}
+
+@media (max-width: 380px) {
+  .hero h1 { font-size: 1.3rem; }
+  .hero-image-col { height: 200px; }
+}
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: 1.5px solid #dde6ef;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 7px 8px;
+    flex-shrink: 0;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .hamburger:hover { border-color: var(--blue); background: #f0f6fc; }
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--blue);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s, width 0.3s;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ── */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0 12px;
+    position: sticky;
+    top: 57px; /* height of nav */
+    z-index: 999;
+    box-shadow: 0 4px 16px rgba(2,71,116,0.08);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .mobile-nav a:hover { background: #f5faff; color: var(--blue); }
+  .mobile-nav a.active {
+    color: var(--blue);
+    font-weight: 700;
+    border-left-color: var(--blue);
+    background: #f0f6fc;
+  }
+  .mobile-nav .mobile-divider {
+    height: 1px;
+    background: #eee;
+    margin: 6px 20px;
+  }
+  .mobile-nav .mobile-login {
+    margin: 6px 20px 0;
+    padding: 11px 20px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-align: center;
+  }
+  .mobile-nav .mobile-login:hover { background: #035a92; border-left-color: transparent; }
+
+  @media (max-width: 680px) {
+    .hamburger { display: flex; }
+    .nav-links-wrapper { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -519,7 +664,6 @@ nav {
         <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
         <li><a href="/">Home</a></li>
@@ -530,7 +674,6 @@ nav {
         <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
-
     <button class="nav-arrow" id="navNext" aria-label="Show next items">
       <svg viewBox="0 0 14 14" fill="none">
         <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -539,29 +682,49 @@ nav {
   </div>
 
   <div class="nav-right">
-  {% if current_user %}
-  <div class="user-menu">
-    <button class="user-btn" id="userMenuBtn" aria-label="User menu">
-      <img
-        src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
-        alt="Profile"
-        class="user-avatar"
-      >
-      <span class="user-name">{{ current_user }}</span>
-      <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
-        <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    <div class="user-dropdown" id="userDropdown">
-      <a href="/account" class="dropdown-item">Account details</a>
-      <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+    {% if current_user %}
+    <div class="user-menu">
+      <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+        <img
+          src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
+          alt="Profile"
+          class="user-avatar"
+        >
+        <span class="user-name">{{ current_user }}</span>
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <a href="/account" class="dropdown-item">Account details</a>
+        <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+      </div>
     </div>
-  </div>
-  {% else %}
-  <a href="/login" class="btn-login">Log in</a>
-  {% endif %}
+    {% else %}
+    <a href="/login" class="btn-login">Log in</a>
+    {% endif %}
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+  <!-- Mobile drawer (renders below nav, above hero) -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/stunting-prediction.html">Stunting Prediction</a>
+    <a href="/growth-dashboard.html">Growth Dashboard</a>
+    <a href="/healthy-recipes.html">Healthy Recipes</a>
+    <a href="/parenting-guides.html" class="active">Parenting Guides</a>
+    <a href="/forum.html">Forum</a>
+    {% if not current_user %}
+    <div class="mobile-divider"></div>
+    <a href="/login" class="mobile-login">Log in</a>
+    {% endif %}
+  </div>
 
 <!-- HERO -->
 <section class="hero">
@@ -623,6 +786,33 @@ nav {
 </main>
 
 <script>
+  // Hamburger toggle
+  var hamburger  = document.getElementById('hamburger');
+  var mobileNav  = document.getElementById('mobileNav');
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close drawer when a link inside it is tapped
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  }
+
 /* ── NAV CAROUSEL ── */
 (function () {
   const scrollEl = document.getElementById('navScroll');

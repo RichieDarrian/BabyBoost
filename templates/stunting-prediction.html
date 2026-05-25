@@ -103,7 +103,7 @@
     .nav-links a:hover  { color: var(--blue); }
     .nav-links a.active { color: var(--blue); font-weight: 700; }
 
-    .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: auto;}
 
     .btn-login {
       background: var(--blue);
@@ -414,14 +414,126 @@
     .loading-card p { font-size: .9rem; color: var(--blue-mid); font-weight: 500; }
 
     /* --- Responsive --- */
+    @media (max-width: 900px) {
+      nav { padding: 12px 16px; gap: 8px; }
+      .nav-links a { font-size: 0.88rem; }
+      .nav-links { gap: 14px; }
+      .btn-login { padding: 8px 14px; font-size: 0.88rem; }
+      .user-btn { padding: 4px 10px 4px 4px; font-size: 0.82rem; }
+      .user-name { max-width: 90px; }
+      .user-avatar { width: 26px; height: 26px; }
+      .page-wrap { padding: 24px 16px 40px; }
+      .card-header { padding: 24px 28px 22px; }
+      .card-header h1 { font-size: 1.5rem; }
+      .card-body { padding: 22px 28px 28px; }
+    }
 
     @media (max-width: 600px) {
-      nav             { padding: 12px 16px; }
-      .card-header    { padding: 22px 20px 20px; }
-      .card-header h1 { font-size: 1.4rem; }
-      .card-body      { padding: 20px 20px 24px; }
-      .two-col        { grid-template-columns: 1fr; }
+      nav { padding: 10px 12px; gap: 6px; }
+      .btn-login { padding: 7px 12px; font-size: 0.82rem; }
+      .user-name { max-width: 70px; }
+      .page-wrap { padding: 16px 12px 36px; }
+      .card-header { padding: 20px 20px 18px; }
+      .card-header h1 { font-size: 1.3rem; }
+      .card-header p { font-size: 0.82rem; }
+      .card-body { padding: 18px 20px 24px; }
+      .two-col { grid-template-columns: 1fr; }
+      .mode-toggle { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .mode-btn { height: 46px; font-size: 0.84rem; }
+      .gender-toggle { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .gender-btn { height: 44px; font-size: 0.84rem; }
+      .btn-submit { height: 48px; font-size: 0.95rem; }
+      .field-label { font-size: 0.72rem; }
+      .input-wrap input,
+      .input-wrap select { font-size: 0.88rem; }
     }
+
+    @media (max-width: 400px) {
+      .card-header h1 { font-size: 1.15rem; }
+      .mode-btn { font-size: 0.78rem; gap: 5px; }
+      .mode-btn i { font-size: 0.82rem; }
+      .gender-btn { font-size: 0.78rem; gap: 5px; }
+    }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: 1.5px solid #dde6ef;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 7px 8px;
+    flex-shrink: 0;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .hamburger:hover { border-color: var(--blue); background: #f0f6fc; }
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--blue);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s, width 0.3s;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ── */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0 12px;
+    position: sticky;
+    top: 57px; /* height of nav */
+    z-index: 999;
+    box-shadow: 0 4px 16px rgba(2,71,116,0.08);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .mobile-nav a:hover { background: #f5faff; color: var(--blue); }
+  .mobile-nav a.active {
+    color: var(--blue);
+    font-weight: 700;
+    border-left-color: var(--blue);
+    background: #f0f6fc;
+  }
+  .mobile-nav .mobile-divider {
+    height: 1px;
+    background: #eee;
+    margin: 6px 20px;
+  }
+  .mobile-nav .mobile-login {
+    margin: 6px 20px 0;
+    padding: 11px 20px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-align: center;
+  }
+  .mobile-nav .mobile-login:hover { background: #035a92; border-left-color: transparent; }
+
+  @media (max-width: 680px) {
+    .hamburger { display: flex; }
+    .nav-links-wrapper { display: none; }
+  }
   </style>
 </head>
 <body>
@@ -484,8 +596,28 @@
     {% else %}
     <a href="/login" class="btn-login">Log in</a>
     {% endif %}
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+  <!-- Mobile drawer (renders below nav, above hero) -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/stunting-prediction.html" class="active">Stunting Prediction</a>
+    <a href="/growth-dashboard.html">Growth Dashboard</a>
+    <a href="/healthy-recipes.html">Healthy Recipes</a>
+    <a href="/parenting-guides.html">Parenting Guides</a>
+    <a href="/forum.html">Forum</a>
+    {% if not current_user %}
+    <div class="mobile-divider"></div>
+    <a href="/login" class="mobile-login">Log in</a>
+    {% endif %}
+  </div>
 
 <div class="page-wrap">
   <div class="prediction-card">
@@ -606,6 +738,33 @@
 </div>
 
 <script>
+  // Hamburger toggle
+  var hamburger  = document.getElementById('hamburger');
+  var mobileNav  = document.getElementById('mobileNav');
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close drawer when a link inside it is tapped
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  }
+
   // Scrollable navbar
   (function() {
     var scroll = document.getElementById('navScroll');

@@ -6,7 +6,6 @@
   <title>{{ child.name }} – Growth Dashboard - BabyBoost</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 :root {
@@ -36,7 +35,7 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
 .nav-links a{display:flex;align-items:center;text-decoration:none;color:#333;font-size:1rem;font-weight:500;white-space:nowrap;transition:color .2s;}
 .nav-links a.active{color:var(--blue);font-weight:700;}
 .nav-links a:hover{color:var(--blue);}
-.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-left: auto;}
 .btn-login{background:var(--blue);color:#fff;border:none;padding:9px 22px;border-radius:6px;font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s,transform .15s,box-shadow .2s;}
 .btn-login:hover{background:#035a92;transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,71,116,0.28);}
 .btn-login:active{transform:translateY(0) scale(0.97);}
@@ -247,11 +246,244 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
   background: #fde8ef;
 }
 
-/* ── RESPONSIVE ── */
-@media(max-width:860px){
-  .cols{grid-template-columns:1fr;}
-  .stats{grid-template-columns:repeat(2,1fr);}
+/* ── Fluid container spacing ── */
+@media (max-width: 768px) {
+  /* NAV */
+  nav {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .logo-text { font-size: 1.1rem; }
+  .logo-svg { width: 26px; height: 26px; }
+  .nav-links a { font-size: .82rem; }
+  .nav-links { gap: 14px; }
+  .btn-login { padding: 7px 12px; font-size: .82rem; }
+  .user-btn { padding: 4px 10px 4px 4px; font-size: .82rem; }
+  .user-name { max-width: 80px; }
+  .user-avatar { width: 26px; height: 26px; }
+
+  /* PAGE */
+  .page { padding: 16px 12px 40px; gap: 14px; }
+
+  /* HERO */
+  .hero {
+    padding: 18px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    border-radius: 14px;
+  }
+  .hero::before { width: 130px; height: 130px; top: -30px; right: -20px; }
+  .hero::after { width: 100px; height: 100px; bottom: -30px; right: 50px; }
+  .hero-txt h1 { font-size: 1.15rem; }
+  .hero-txt p { font-size: .76rem; }
+  .hero-icon { width: 42px; height: 42px; font-size: 1.1rem; border-radius: 11px; }
+  .hero-actions {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .hero-btn { height: 34px; padding: 0 13px; font-size: .74rem; }
+
+  /* STATS */
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .stat-box { padding: 12px 10px; border-radius: 12px; }
+  .stat-val { font-size: 1.2rem; }
+  .stat-lbl { font-size: .6rem; }
+
+  /* COLS → single column */
+  .cols {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* PROFILE CARD */
+  .card { border-radius: 14px; }
+  .card-head { padding: 14px 16px; gap: 10px; }
+  .card-body { padding: 16px 16px 18px; }
+  .ch-icon { width: 36px; height: 36px; font-size: .9rem; border-radius: 10px; }
+  .ch-title { font-size: .85rem; }
+  .ch-sub { font-size: .67rem; }
+
+  .profile-av { width: 60px; height: 60px; font-size: 1.1rem; }
+  .profile-name { font-size: 1rem; }
+  .chip { font-size: .6rem; padding: 2px 8px; }
+
+  .pred-box { padding: 12px 14px; margin-bottom: 12px; border-radius: 10px; }
+  .pred-label { font-size: .62rem; }
+  .pred-val { font-size: .88rem; }
+  .pred-note { font-size: .68rem; }
+
+  .metric-item { padding: 8px 10px; border-radius: 8px; }
+  .m-lbl { font-size: .68rem; }
+  .m-val { font-size: .82rem; }
+
+  .action-btns { gap: 7px; margin-top: 14px; }
+  .btn-pink,
+  .btn-out { height: 40px; font-size: .82rem; border-radius: 10px; }
+
+  /* CHART CARDS */
+  .chart-card .card-head { flex-wrap: wrap; gap: 10px; }
+  .chart-wrap { padding: 0 14px 14px; }
+  .range-select { font-size: .7rem; height: 28px; }
+  .chart-wrap svg { min-width: 320px; }
+
+  /* NUTRITION CARD */
+  .nut-table { font-size: .74rem; }
+  .nut-table th { font-size: .6rem; padding: 0 6px 8px; }
+  .nut-table td { padding: 8px 6px; }
+  .prog-track { min-width: 50px; }
+  .nut-pct { font-size: .7rem; }
+  .nut-remain { font-size: .68rem; }
+  .reset-pill { font-size: .58rem; padding: 2px 7px; }
+
+  /* USER DROPDOWN */
+  .user-dropdown { right: 0; min-width: 130px; }
+  .dropdown-item { padding: 10px 14px; font-size: .82rem; }
+
+  /* Prevent horizontal overflow */
+  body { overflow-x: hidden; }
+  .page { width: 100%; max-width: 100vw; overflow-x: hidden; }
+
+  /* Constrain all cards */
+  .card { width: 100%; max-width: 100%; }
+  .cols, .stats, .hero { width: 100%; max-width: 100%; }
+  .right-col { width: 100%; min-width: 0; }
+
+  /* Fix chart overflow */
+  .chart-wrap { padding: 0 12px 14px; overflow-x: auto; max-width: 100%; }
+  .chart-wrap svg { min-width: 280px; max-width: 100%; }
+
+  /* Fix nutrition table overflow */
+  .card-body { overflow-x: auto; }
+  .nut-table { min-width: 0; width: 100%; }
+  .nut-table th:nth-child(5),
+  .nut-table td:nth-child(5) { display: none; }
+  .nut-table th:nth-child(3),
+  .nut-table td:nth-child(3) { display: none; }
+  .prog-track { display: none; }
 }
+
+/* ── Very small phones (≤ 380px) ── */
+@media (max-width: 380px) {
+  nav { padding: 8px 10px; }
+  .logo-text { font-size: 1rem; }
+  .logo-svg { width: 22px; height: 22px; }
+  .user-name { display: none; }
+  .hero-txt h1 { font-size: 1.05rem; }
+  .hero-actions { flex-wrap: wrap; }
+  .hero-btn { flex: 1 1 auto; justify-content: center; }
+  .stats { gap: 6px; }
+  .stat-val { font-size: 1.1rem; }
+  .card-head { padding: 12px 14px; }
+  .card-body { padding: 14px 14px 16px; }
+  .chart-wrap svg { min-width: 280px; }
+
+  /* Stack nutrition table columns more aggressively */
+  .nut-table th:nth-child(5),
+  .nut-table td:nth-child(5) { display: none; }
+}
+
+/* ── Tablet / mid breakpoint (769px–860px) ── */
+@media (min-width: 769px) and (max-width: 860px) {
+  .cols { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(4, 1fr); }
+  .page { padding: 20px 16px 44px; }
+  .hero { padding: 22px 24px; }
+  .hero-txt h1 { font-size: 1.3rem; }
+}
+
+/* ── Touch-friendly tap targets ── */
+@media (hover: none) and (pointer: coarse) {
+  .btn-pink,
+  .btn-out { min-height: 44px; }
+  .hero-btn { min-height: 38px; }
+  .btn-login { min-height: 40px; }
+  .dropdown-item { padding: 13px 16px; }
+  .range-select { min-height: 36px; }
+}
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: 1.5px solid #dde6ef;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 7px 8px;
+    flex-shrink: 0;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .hamburger:hover { border-color: var(--blue); background: #f0f6fc; }
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--blue);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s, width 0.3s;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ── */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0 12px;
+    position: sticky;
+    top: 57px; /* height of nav */
+    z-index: 999;
+    box-shadow: 0 4px 16px rgba(2,71,116,0.08);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .mobile-nav a:hover { background: #f5faff; color: var(--blue); }
+  .mobile-nav a.active {
+    color: var(--blue);
+    font-weight: 700;
+    border-left-color: var(--blue);
+    background: #f0f6fc;
+  }
+  .mobile-nav .mobile-divider {
+    height: 1px;
+    background: #eee;
+    margin: 6px 20px;
+  }
+  .mobile-nav .mobile-login {
+    margin: 6px 20px 0;
+    padding: 11px 20px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-align: center;
+  }
+  .mobile-nav .mobile-login:hover { background: #035a92; border-left-color: transparent; }
+
+  @media (max-width: 680px) {
+    .hamburger { display: flex; }
+    .nav-links-wrapper { display: none; }
+  }
   </style>
 </head>
 <body>
@@ -266,7 +498,7 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
 
 <nav>
   <a class="logo" href="/">
-    <img src="{{ url_for('static', filename='img/BabyBoost.svg') }}" alt="BabyBoost Logo" class="logo-svg">
+    <img src="/static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
     <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
 
@@ -276,7 +508,6 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
         <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
         <li><a href="/">Home</a></li>
@@ -287,7 +518,6 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
         <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
-
     <button class="nav-arrow" id="navNext" aria-label="Show next items">
       <svg viewBox="0 0 14 14" fill="none">
         <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -317,8 +547,28 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
     {% else %}
     <a href="/login" class="btn-login">Log in</a>
     {% endif %}
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+  <!-- Mobile drawer (renders below nav, above hero) -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/stunting-prediction.html">Stunting Prediction</a>
+    <a href="/growth-dashboard.html" class="active">Growth Dashboard</a>
+    <a href="/healthy-recipes.html">Healthy Recipes</a>
+    <a href="/parenting-guides.html">Parenting Guides</a>
+    <a href="/forum.html">Forum</a>
+    {% if not current_user %}
+    <div class="mobile-divider"></div>
+    <a href="/login" class="mobile-login">Log in</a>
+    {% endif %}
+  </div>
 
 <!-- ── Page ── -->
 <div class="page">
@@ -638,6 +888,33 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
 </div><!-- /page -->
 
 <script>
+  // Hamburger toggle
+  var hamburger  = document.getElementById('hamburger');
+  var mobileNav  = document.getElementById('mobileNav');
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close drawer when a link inside it is tapped
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  }
+
 /* ── Navbar scroll arrows ── */
 (function(){
   const sc=document.getElementById('navScroll');

@@ -122,6 +122,7 @@
       align-items: center;
       gap: 10px;
       flex-shrink: 0;
+      margin-left: auto;
     }
 
     .btn-login {
@@ -772,7 +773,336 @@
       .nav-links a { font-size: 0.88rem; }
       .nav-links { gap: 16px; }
     }
-  </style>
+
+    /* ── Tablet (≤ 900px) ── */
+    @media (max-width: 900px) {
+      nav { padding: 10px 16px; gap: 8px; }
+      .logo-text { font-size: 1.1rem; }
+      .logo-svg { width: 26px; height: 26px; }
+      .nav-links a { font-size: .82rem; }
+      .nav-links { gap: 14px; }
+      .btn-login { padding: 7px 14px; font-size: .82rem; }
+      .user-btn { padding: 4px 10px 4px 4px; font-size: .82rem; }
+      .user-name { max-width: 90px; }
+      .user-avatar { width: 26px; height: 26px; }
+
+      /* HERO */
+      .hero {
+        flex-wrap: wrap;
+        padding: 28px 20px 32px;
+        gap: 22px;
+      }
+      .hero-left { flex: 1 1 100%; order: 1; }
+      .hero-left h1 { font-size: 1.8rem; }
+      .hero-left p { font-size: .88rem; margin: 12px 0 18px; }
+
+      .feature-highlights { gap: 7px; margin-bottom: 16px; }
+      .highlight-pill { font-size: .74rem; padding: 6px 11px; }
+      .highlight-pill .pill-icon { width: 22px; height: 22px; font-size: .72rem; }
+
+      .trending-row { gap: 6px; margin-bottom: 16px; }
+      .trending-label { font-size: .72rem; }
+      .trending-tag { font-size: .68rem; padding: 4px 10px; }
+
+      .search-row { gap: 8px; flex-wrap: nowrap; }
+      .search-wrap { min-width: 0; max-width: none; }
+      .search-wrap input { font-size: .88rem; padding: 10px 13px; }
+      .search-wrap button { height: 40px; padding: 0 13px; font-size: .85rem; }
+      .btn-new-post { padding: 10px 16px; font-size: .85rem; flex-shrink: 0; }
+
+      /* Hero center — hide on tablet to save space, banner still visible on desktop */
+      .hero-center { display: none; }
+
+      /* Stats row — 4 columns */
+      .hero-right {
+        order: 2;
+        width: 100%;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .stat-card { padding: 14px 10px; border-radius: 12px; }
+      .stat-card .stat-icon { width: 34px; height: 34px; font-size: .95rem; border-radius: 8px; margin-bottom: 8px; }
+      .stat-card .stat-number { font-size: 1.15rem; }
+      .stat-card .stat-label { font-size: .64rem; }
+
+      /* MAIN CONTENT */
+      .forum-content {
+        flex-direction: column;
+        padding: 24px 16px 48px;
+        gap: 20px;
+      }
+      .forum-sidebar { width: 100%; }
+
+      .section-header { margin-bottom: 14px; }
+      .section-header h2 { font-size: 1.25rem; }
+      .post-count { font-size: .76rem; }
+
+      .discussion-list { gap: 10px; }
+
+      .discussion-item {
+        padding: 16px 16px;
+        gap: 12px;
+        border-radius: 12px;
+      }
+      .avatar { width: 44px; height: 44px; min-width: 44px; font-size: 1.05rem; }
+      .discussion-body h3 { font-size: .92rem; margin-bottom: 5px; }
+      .discussion-meta { gap: 10px; font-size: .74rem; }
+      .tag { font-size: .67rem; padding: 4px 11px; }
+
+      /* SIDEBAR */
+      .sidebar-card { padding: 18px 18px; border-radius: 12px; }
+      .sidebar-card h3 { font-size: .95rem; margin-bottom: 12px; }
+
+      .category-list { gap: 7px; }
+      .cat-btn { padding: 9px 12px; font-size: .83rem; border-radius: 9px; }
+      .cat-btn .cat-icon { font-size: .92rem; width: 18px; }
+      .cat-btn .cat-count { font-size: .7rem; }
+
+      .welcome-card { border-radius: 12px; }
+      .welcome-card h3 { font-size: .92rem; margin: 16px 18px 6px; }
+      .welcome-card p { font-size: .74rem; margin: 0 18px 16px; }
+      .welcome-card button { padding: 9px 20px; font-size: .8rem; }
+
+      .guideline-item { font-size: .78rem; padding: 7px 0; gap: 8px; }
+      .guideline-item .g-icon { font-size: .85rem; }
+
+      .user-dropdown { right: 0; min-width: 130px; }
+      .dropdown-item { padding: 10px 14px; font-size: .82rem; }
+    }
+
+    /* ── Mobile (≤ 600px) ── */
+    @media (max-width: 600px) {
+      nav { padding: 8px 12px; }
+      .logo-text { font-size: 1rem; }
+      .logo-svg { width: 22px; height: 22px; }
+
+      .hero { padding: 20px 14px 24px; gap: 18px; }
+      .hero-left h1 { font-size: 1.5rem; }
+      .hero-left p { font-size: .83rem; margin: 10px 0 14px; }
+
+      /* Wrap pills to 2 per row max */
+      .feature-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 14px; }
+      .highlight-pill { justify-content: center; }
+
+      /* Trending tags — allow scroll on tiny screens */
+      .trending-row { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .trending-row::-webkit-scrollbar { display: none; }
+      .trending-tag { flex-shrink: 0; }
+
+      /* Stack search + button vertically */
+      .search-row { flex-direction: column; align-items: stretch; gap: 8px; }
+      .search-wrap { max-width: none; }
+      .btn-new-post { width: 100%; justify-content: center; padding: 11px; }
+
+      /* Stats — 2×2 grid */
+      .hero-right { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .stat-card { padding: 13px 10px; }
+      .stat-card .stat-number { font-size: 1.1rem; }
+
+      /* Discussion items */
+      .forum-content { padding: 18px 12px 40px; gap: 16px; }
+
+      .discussion-item { padding: 14px 13px; gap: 10px; }
+      .avatar { width: 38px; height: 38px; min-width: 38px; font-size: .9rem; }
+      .discussion-body h3 { font-size: .86rem; }
+      .discussion-meta { gap: 8px; font-size: .7rem; flex-wrap: wrap; row-gap: 2px; }
+
+      /* Tag moves below meta on very narrow screens */
+      .discussion-right { align-items: flex-start; }
+      .tag { font-size: .63rem; padding: 3px 9px; }
+
+      /* Category list — 2 columns on mobile */
+      .sidebar-card { padding: 16px 14px; }
+      .category-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+      .cat-btn { padding: 8px 10px; font-size: .78rem; }
+      .cat-btn .cat-count { font-size: .64rem; }
+    }
+
+
+        /* ── Fix overflow on discussion items (414px and below) ── */
+    @media (max-width: 480px) {
+
+      /* Ensure the page itself never overflows */
+      html, body { overflow-x: hidden; }
+
+      /* Section padding must stay inside viewport */
+      .forum-content { padding: 18px 12px 40px; }
+
+      /* The culprit — restructure item to wrap tag under the body text */
+      .discussion-item {
+        flex-wrap: wrap;
+        padding: 14px 13px;
+        gap: 10px 12px;
+        align-items: flex-start;
+      }
+
+      /* Avatar — fixed size, no shrink */
+      .avatar {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        font-size: .88rem;
+        flex-shrink: 0;
+      }
+
+      /* Body takes all remaining width next to avatar */
+      .discussion-body {
+        flex: 1 1 0;
+        min-width: 0; /* critical — allows text-overflow: ellipsis to work */
+      }
+
+      .discussion-body h3 {
+        font-size: .85rem;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .discussion-meta {
+        font-size: .7rem;
+        gap: 6px;
+        flex-wrap: wrap;
+        row-gap: 2px;
+      }
+
+      /* Right column — drop below avatar+body, push to left edge past avatar */
+      .discussion-right {
+        flex-basis: 100%;           /* force onto its own row */
+        padding-left: 50px;         /* align with body text (38px avatar + 12px gap) */
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .tag {
+        font-size: .63rem;
+        padding: 3px 9px;
+      }
+    }
+
+    /* ── Very tight (≤ 360px) ── */
+    @media (max-width: 360px) {
+      .forum-content { padding: 14px 10px 36px; }
+
+      .discussion-right { padding-left: 46px; }
+
+      /* Hide reply count in meta to prevent 3-line wrap */
+      .discussion-meta span:last-child { display: none; }
+    }
+    /* ── Very small phones (≤ 380px) ── */
+    @media (max-width: 380px) {
+      .user-name { display: none; }
+      .hero-left h1 { font-size: 1.3rem; }
+      .feature-highlights { grid-template-columns: 1fr; }
+      .highlight-pill { justify-content: flex-start; }
+
+      /* Stack meta items that don't fit */
+      .discussion-meta span:nth-child(3) { display: none; }
+
+      /* Single column categories */
+      .category-list { grid-template-columns: 1fr; }
+
+      .search-wrap input { font-size: .83rem; padding: 9px 12px; }
+    }
+
+    /* ── Touch targets ── */
+    @media (hover: none) and (pointer: coarse) {
+      .btn-new-post { min-height: 44px; }
+      .search-wrap button { min-height: 44px; }
+      .cat-btn { min-height: 44px; }
+      .btn-login { min-height: 40px; }
+      .trending-tag { min-height: 34px; }
+      .highlight-pill { min-height: 36px; }
+      .discussion-item { padding: 16px 14px; }
+      .dropdown-item { padding: 13px 16px; }
+
+      /* Disable hover lift effects on touch — avoids sticky hover states */
+      .discussion-item:hover { transform: none; box-shadow: none; border-color: #f0dde6; }
+      .stat-card:hover { transform: none; box-shadow: none; border-color: #f0dde6; }
+      .highlight-pill:hover { transform: none; box-shadow: none; border-color: #f0dde6; }
+    }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: 1.5px solid #dde6ef;
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 7px 8px;
+      flex-shrink: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .hamburger:hover { border-color: var(--blue); background: #f0f6fc; }
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s, width 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE DRAWER ── */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 8px 0 12px;
+      position: sticky;
+      top: 57px; /* height of nav */
+      z-index: 999;
+      box-shadow: 0 4px 16px rgba(2,71,116,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      border-left: 3px solid transparent;
+    }
+    .mobile-nav a:hover { background: #f5faff; color: var(--blue); }
+    .mobile-nav a.active {
+      color: var(--blue);
+      font-weight: 700;
+      border-left-color: var(--blue);
+      background: #f0f6fc;
+    }
+    .mobile-nav .mobile-divider {
+      height: 1px;
+      background: #eee;
+      margin: 6px 20px;
+    }
+    .mobile-nav .mobile-login {
+      margin: 6px 20px 0;
+      padding: 11px 20px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+    .mobile-nav .mobile-login:hover { background: #035a92; border-left-color: transparent; }
+
+    @media (max-width: 680px) {
+      .hamburger { display: flex; }
+      .nav-links-wrapper { display: none; }
+    }
+</style>
 </head>
 <body>
 
@@ -788,7 +1118,6 @@
           <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-
       <div class="nav-links-scroll" id="navScroll">
         <ul class="nav-links" id="navLinks">
           <li><a href="/">Home</a></li>
@@ -799,7 +1128,6 @@
           <li><a href="/forum.html" class="active">Forum</a></li>
         </ul>
       </div>
-
       <button class="nav-arrow" id="navNext" aria-label="Show next items">
         <svg viewBox="0 0 14 14" fill="none">
           <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -808,29 +1136,49 @@
     </div>
 
     <div class="nav-right">
-    {% if current_user %}
-    <div class="user-menu">
-      <button class="user-btn" id="userMenuBtn" aria-label="User menu">
-        <img
-          src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
-          alt="Profile"
-          class="user-avatar"
-        >
-        <span class="user-name">{{ current_user }}</span>
-        <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
-          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <div class="user-dropdown" id="userDropdown">
-        <a href="/account" class="dropdown-item">Account details</a>
-        <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+      {% if current_user %}
+      <div class="user-menu">
+        <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+          <img
+            src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
+            alt="Profile"
+            class="user-avatar"
+          >
+          <span class="user-name">{{ current_user }}</span>
+          <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+            <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="user-dropdown" id="userDropdown">
+          <a href="/account" class="dropdown-item">Account details</a>
+          <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+        </div>
       </div>
-    </div>
-    {% else %}
-    <a href="/login" class="btn-login">Log in</a>
-    {% endif %}
+      {% else %}
+      <a href="/login" class="btn-login">Log in</a>
+      {% endif %}
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile drawer (renders below nav, above hero) -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/stunting-prediction.html">Stunting Prediction</a>
+    <a href="/growth-dashboard.html">Growth Dashboard</a>
+    <a href="/healthy-recipes.html">Healthy Recipes</a>
+    <a href="/parenting-guides.html">Parenting Guides</a>
+    <a href="/forum.html" class="active">Forum</a>
+    {% if not current_user %}
+    <div class="mobile-divider"></div>
+    <a href="/login" class="mobile-login">Log in</a>
+    {% endif %}
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1059,6 +1407,33 @@
   </section>
 
 <script>
+  // Hamburger toggle
+  var hamburger  = document.getElementById('hamburger');
+  var mobileNav  = document.getElementById('mobileNav');
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close drawer when a link inside it is tapped
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  }
+
   (function () {
     const scrollEl = document.getElementById('navScroll');
     const list     = document.getElementById('navLinks');

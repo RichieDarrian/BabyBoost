@@ -416,7 +416,7 @@ nav {
     {% if current_user %}
     <div class="user-menu">
       <button class="user-btn" id="userMenuBtn" aria-label="User menu">
-        <img src="{{ url_for('static', filename=current_picture) if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+        <img src="{{ current_picture if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
           alt="Profile" class="user-avatar">
         <span class="user-name">{{ current_user }}</span>
         <svg viewBox="0 0 14 14" fill="none" width="12" height="12">

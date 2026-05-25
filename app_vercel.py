@@ -142,7 +142,7 @@ def save_user_profile_picture(file, email):
     safe_email = re.sub(r"[^a-z0-9]+", "-", email.lower()).strip("-")
     blob_path = f"users/{safe_email}.{ext}"
     try:
-        result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false", "token": BLOB_TOKEN})
+        result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false", "allowOverwrite": "true", "token": BLOB_TOKEN})
         return result["url"]
     except Exception as e:
         app.logger.error(f"Blob upload failed for user {email}: {e}")

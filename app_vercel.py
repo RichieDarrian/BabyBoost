@@ -26,8 +26,8 @@ app = Flask(
 )
 
 app.secret_key = "secret"
-USERS_FILE = Path(__file__).parent / "data" / "users.json"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
+USERS_BLOB_PATH = "data/users.json"
 
 PERIOD_OPTIONS = [
     ("6_months", "Last 6 Months"),
@@ -57,22 +57,28 @@ with open(model_path, "rb") as f:
     model = pickle.load(f)
 
 
-# ---- User persistence ----
+# ---- User persistence (Vercel Blob) ----
 
 def load_users():
-    if USERS_FILE.exists():
-        try:
-            with USERS_FILE.open("r", encoding="utf-8") as fh:
-                return json.load(fh)
-        except (json.JSONDecodeError, ValueError):
+    try:
+        result = vercel_blob.list({"prefix": USERS_BLOB_PATH})
+        blobs = result.get("blobs", [])
+        if not blobs:
             return {}
-    return {}
+        # Download the file content
+        import urllib.request
+        with urllib.request.urlopen(blobs[0]["url"]) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except Exception:
+        return {}
 
 
 def save_users(users):
-    USERS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with USERS_FILE.open("w", encoding="utf-8") as fh:
-        json.dump(users, fh, indent=2)
+    try:
+        data = json.dumps(users, indent=2).encode("utf-8")
+        vercel_blob.put(USERS_BLOB_PATH, data, {"addRandomSuffix": "false"})
+    except Exception as e:
+        app.logger.error(f"Failed to save users to blob: {e}")
 
 
 # ---- Per-user children helpers ----
@@ -611,7 +617,6 @@ def delete_child(child_id):
     children = get_children()
     child = children.get(child_id)
     if child:
-        # Delete profile picture from Vercel Blob
         delete_blob_if_exists(child.get("profile_picture"))
         del children[child_id]
         save_user_children(email, children)
@@ -651,7 +656,6 @@ def update_data(child_id):
         weight = request.form.get("weight", type=float)
         file = request.files.get("profile_picture")
         if file and file.filename:
-            # Delete old blob before uploading new one
             delete_blob_if_exists(child.get("profile_picture"))
             picture_url = save_profile_picture(file, child["id"])
             if picture_url:
@@ -924,7 +928,6 @@ def update_profile():
     if new_email != email and new_email in users:
         return render(profile_error="That email is already in use by another account.")
 
-    # Upload new profile picture if provided, deleting the old one first
     if file and file.filename:
         delete_blob_if_exists(user.get("profile_picture"))
         picture_url = save_user_profile_picture(file, email)
@@ -984,9 +987,7 @@ def delete_account():
     email = session["user_email"]
     user = users.get(email)
     if user:
-        # Delete user profile picture from Vercel Blob
         delete_blob_if_exists(user.get("profile_picture"))
-        # Delete all children profile pictures from Vercel Blob
         for child in user.get("children", {}).values():
             delete_blob_if_exists(child.get("profile_picture"))
         del users[email]
@@ -999,13 +1000,3 @@ def delete_account():
 def logout():
     session.clear()
     return redirect(url_for("login"))
-
-
-def open_browser():
-    webbrowser.open_new("http://127.0.0.1:5000/")
-
-
-if __name__ == "__main__":
-    if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-        threading.Timer(1.25, open_browser).start()
-    app.run(debug=True)

@@ -4,12 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stunting Prediction | BabyBoost</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
   <style>
-    /* ─── Design tokens ──────────────────────────────────────────── */
     :root {
       --pink:       #FEA4AA;
       --pink-light: #fde8ef;
@@ -18,7 +15,6 @@
       --blue-light: #e8f2fb;
     }
 
-    /* ─── Reset ──────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
@@ -28,10 +24,8 @@
       min-height: 100vh;
     }
 
+    /* --- Nav --- */
 
-    /* ═══════════════════════════════════════════════════════════════
-       NAV
-    ═══════════════════════════════════════════════════════════════ */
     nav {
       display: flex;
       align-items: center;
@@ -45,26 +39,39 @@
       z-index: 1000;
     }
 
-    /* Logo */
-    .logo { display: flex; align-items: center; gap: 6px; text-decoration: none; flex-shrink: 0; }
-    .logo-svg  { width: 32px; height: 32px; }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-svg { width: 32px; height: 32px; }
     .logo-text { font-size: 1.25rem; font-weight: 700; }
     .logo-text .b { color: var(--blue); }
     .logo-text .p { color: var(--pink); }
 
-    /* Scrollable nav links */
-    .nav-links-wrapper { display: flex; align-items: center; gap: 4px; margin-left: auto; min-width: 0; flex: 1; }
+    .nav-links-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+      min-width: 0;
+      flex: 1;
+    }
 
     .nav-arrow {
       flex-shrink: 0;
-      width: 28px; height: 28px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       border: 1.5px solid #ddd;
       background: #fff;
       color: #555;
       cursor: pointer;
       display: none;
-      align-items: center; justify-content: center;
+      align-items: center;
+      justify-content: center;
       padding: 0;
       transition: border-color .2s, color .2s, background .2s, box-shadow .2s;
     }
@@ -85,7 +92,14 @@
       transition: transform .35s cubic-bezier(.4,0,.2,1), padding-left .35s cubic-bezier(.4,0,.2,1);
     }
     .nav-links li { display: flex; align-items: center; flex-shrink: 0; }
-    .nav-links a { text-decoration: none; color: #333; font-size: 1rem; font-weight: 500; white-space: nowrap; transition: color .2s; }
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color .2s;
+    }
     .nav-links a:hover  { color: var(--blue); }
     .nav-links a.active { color: var(--blue); font-weight: 700; }
 
@@ -98,21 +112,69 @@
       padding: 9px 22px;
       border-radius: 6px;
       font-family: 'Poppins', sans-serif;
-      font-size: 1rem; font-weight: 600;
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
       transition: background .2s, transform .15s, box-shadow .2s;
     }
     .btn-login:hover  { background: #035a92; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2,71,116,0.28); }
     .btn-login:active { transform: translateY(0) scale(0.97); }
 
-    @media (max-width: 600px) {
-      nav { padding: 12px 16px; }
+    /* --- User menu --- */
+
+    .user-menu { position: relative; }
+
+    .user-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 1.5px solid #dde6ef;
+      border-radius: 50px;
+      padding: 5px 12px 5px 5px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--blue);
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
+    .user-btn:hover { border-color: var(--blue); box-shadow: 0 2px 8px rgba(2,71,116,0.12); }
 
+    .user-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; display: block; }
+    .user-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-    /* ═══════════════════════════════════════════════════════════════
-       PAGE SHELL
-    ═══════════════════════════════════════════════════════════════ */
+    .user-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(2,71,116,0.1);
+      min-width: 140px;
+      overflow: hidden;
+      z-index: 999;
+    }
+    .user-dropdown.open { display: block; }
+
+    .dropdown-item {
+      display: block;
+      padding: 11px 16px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .dropdown-item:hover { background: #f7f9fb; }
+    .dropdown-item-logout { color: #c0536a; }
+    .dropdown-item-logout:hover { background: #fde8ef; }
+
+    /* --- Page layout --- */
+
     .page-wrap {
       min-height: calc(100vh - 65px);
       display: flex;
@@ -121,15 +183,14 @@
       padding: 32px 20px 48px;
     }
 
+    /* --- Prediction card --- */
 
-    /* ═══════════════════════════════════════════════════════════════
-       PREDICTION CARD
-    ═══════════════════════════════════════════════════════════════ */
     .prediction-card {
       background: #fff;
       border-radius: 24px;
       border: 1.5px solid #f0dde6;
-      width: 100%; max-width: 680px;
+      width: 100%;
+      max-width: 680px;
       overflow: hidden;
       animation: fadeUp .5s ease both;
     }
@@ -138,14 +199,12 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── Card header ────────────────────────────────────────────── */
     .card-header {
       background: linear-gradient(135deg, var(--blue) 0%, #037abf 100%);
       padding: 28px 40px 26px;
       position: relative;
       overflow: hidden;
     }
-    /* Decorative circles */
     .card-header::before {
       content: '';
       position: absolute;
@@ -175,34 +234,25 @@
     .card-header h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 4px; position: relative; z-index: 1; }
     .card-header p  { font-size: .88rem; color: rgba(255,255,255,0.72); position: relative; z-index: 1; }
 
-    @media (max-width: 600px) {
-      .card-header   { padding: 22px 20px 20px; }
-      .card-header h1 { font-size: 1.4rem; }
-    }
-
-    /* ─── Card body ──────────────────────────────────────────────── */
     .card-body { padding: 24px 40px 32px; }
 
-    @media (max-width: 600px) {
-      .card-body { padding: 20px 20px 24px; }
-    }
+    /* --- Form elements --- */
 
-
-    /* ═══════════════════════════════════════════════════════════════
-       FORM ELEMENTS
-    ═══════════════════════════════════════════════════════════════ */
     .field-group { margin-bottom: 18px; }
 
     .field-label {
-      display: flex; align-items: center; gap: 8px;
-      font-size: .78rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 8px;
     }
     .field-label i { font-size: .82rem; color: var(--pink); }
 
-    /* Text / number / select inputs */
     .input-wrap { position: relative; }
     .input-wrap input,
     .input-wrap select {
@@ -218,11 +268,9 @@
       appearance: none;
       transition: border-color .2s, box-shadow .2s;
     }
-    /* Hide browser number spinners */
     .input-wrap input[type=number]::-webkit-inner-spin-button,
     .input-wrap input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     .input-wrap input[type=number] { -moz-appearance: textfield; }
-
     .input-wrap input::placeholder { color: #b0c4d8; }
     .input-wrap input:focus,
     .input-wrap select:focus {
@@ -231,7 +279,18 @@
       box-shadow: 0 0 0 3px rgba(254,164,170,0.18);
     }
 
-    /* Locked state for child-mode inputs */
+    .input-wrap .unit {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: .78rem; font-weight: 600;
+      color: var(--blue-mid); pointer-events: none;
+    }
+    .input-wrap .select-arrow {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: .75rem; color: var(--blue-mid); pointer-events: none;
+    }
+
     .locked-input {
       background: #eef3f7 !important;
       color: #7c8fa1 !important;
@@ -239,20 +298,12 @@
       opacity: 0.9;
     }
 
-    .input-wrap .unit         { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: .78rem; font-weight: 600; color: var(--blue-mid); pointer-events: none; }
-    .input-wrap .select-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: .75rem; color: var(--blue-mid); pointer-events: none; }
-
-    /* Two equal columns */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    @media (max-width: 600px) {
-      .two-col { grid-template-columns: 1fr; }
-    }
-
     .form-divider { height: 1px; background: #f0e8ed; margin: 4px 0 18px; }
+    .req { color: #e03040; margin-left: 3px; }
 
+    /* --- Mode toggle --- */
 
-    /* ─── Mode toggle buttons ─────────────────────────────────────── */
     .mode-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
     .mode-btn {
@@ -269,7 +320,6 @@
     }
     .mode-btn:hover  { border-color: var(--pink); background: #fff; color: var(--blue); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2,71,116,0.12); }
     .mode-btn:active { transform: scale(0.97); }
-
     .mode-btn.active {
       border-color: var(--pink);
       background: linear-gradient(135deg, var(--pink-light) 0%, #fff5f7 100%);
@@ -277,13 +327,11 @@
       box-shadow: 0 6px 18px rgba(254,164,170,0.18);
     }
     .mode-btn.active:hover { filter: brightness(1.02); transform: translateY(-2px); }
-
-    /* Icon accent colours */
     #quickModeBtn i { color: #ff9f43; }
     #childModeBtn i { color: #5b9bd5; }
 
+    /* --- Gender buttons --- */
 
-    /* ─── Gender toggle ──────────────────────────────────────────── */
     .gender-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
     .gender-btn {
@@ -298,21 +346,14 @@
       display: flex; align-items: center; justify-content: center; gap: 8px;
       transition: all .2s;
     }
-    .gender-btn.male-btn  i { color: #5b9bd5; }
+    .gender-btn.male-btn   i { color: #5b9bd5; }
     .gender-btn.female-btn i { color: var(--pink); }
-
     .gender-btn.active.male-btn   { border-color: #5b9bd5; background: #edf4fb; color: #2a6aad; }
     .gender-btn.active.female-btn { border-color: var(--pink); background: var(--pink-light); color: #c0555c; }
+    .gender-btn.locked { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
 
-    /* Read-only state in child mode */
-    .gender-btn.locked {
-      opacity: 0.6;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
+    /* --- Submit button --- */
 
-
-    /* ─── Submit button ───────────────────────────────────────────── */
     .btn-submit {
       width: 100%; height: 52px;
       background: linear-gradient(135deg, var(--pink) 0%, #f67a84 100%);
@@ -329,8 +370,8 @@
     .btn-submit:hover  { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(254,164,170,0.45); filter: brightness(1.05); }
     .btn-submit:active { transform: translateY(0) scale(0.98); }
 
+    /* --- Disclaimer --- */
 
-    /* ─── Disclaimer ──────────────────────────────────────────────── */
     .disclaimer {
       display: flex; align-items: flex-start; gap: 8px;
       margin-top: 16px;
@@ -342,8 +383,8 @@
     }
     .disclaimer i { color: var(--blue); margin-top: 1px; flex-shrink: 0; }
 
+    /* --- Loading overlay --- */
 
-    /* ─── Loading overlay ─────────────────────────────────────────── */
     .loading-overlay {
       display: none;
       position: fixed; inset: 0;
@@ -372,107 +413,29 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .loading-card p { font-size: .9rem; color: var(--blue-mid); font-weight: 500; }
 
-    .user-menu {
-      position: relative;
-    }
+    /* --- Responsive --- */
 
-    .user-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: none;
-      border: 1.5px solid #dde6ef;
-      border-radius: 50px;
-      padding: 5px 12px 5px 5px;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--blue);
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .user-btn:hover {
-      border-color: var(--blue);
-      box-shadow: 0 2px 8px rgba(2, 71, 116, 0.12);
-    }
-
-    .user-avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .user-name {
-      max-width: 120px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .user-dropdown {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      box-shadow: 0 8px 24px rgba(2, 71, 116, 0.1);
-      min-width: 140px;
-      overflow: hidden;
-      z-index: 999;
-    }
-
-    .user-dropdown.open {
-      display: block;
-    }
-
-    .dropdown-item {
-      display: block;
-      padding: 11px 16px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: #333;
-      text-decoration: none;
-      transition: background 0.15s;
-      white-space: nowrap;
-    }
-
-    .dropdown-item:hover {
-      background: #f7f9fb;
-    }
-
-    .dropdown-item-logout {
-      color: #c0536a;
-    }
-
-    .dropdown-item-logout:hover {
-      background: #fde8ef;
-    }
-
-    .req {
-      color: #e03040;
-      margin-left: 3px;
+    @media (max-width: 600px) {
+      nav             { padding: 12px 16px; }
+      .card-header    { padding: 22px 20px 20px; }
+      .card-header h1 { font-size: 1.4rem; }
+      .card-body      { padding: 20px 20px 24px; }
+      .two-col        { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── Loading overlay ────────────────────────────────────────────── -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-card">
     <div class="spinner"></div>
-    <p>Analyzing growth data…</p>
+    <p>Analyzing growth data...</p>
   </div>
 </div>
 
-
 <nav>
   <a class="logo" href="/">
-    <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <img src="/static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
     <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
 
@@ -482,7 +445,6 @@
         <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-
     <div class="nav-links-scroll" id="navScroll">
       <ul class="nav-links" id="navLinks">
         <li><a href="/">Home</a></li>
@@ -493,7 +455,6 @@
         <li><a href="/forum.html">Forum</a></li>
       </ul>
     </div>
-
     <button class="nav-arrow" id="navNext" aria-label="Show next items">
       <svg viewBox="0 0 14 14" fill="none">
         <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -502,36 +463,33 @@
   </div>
 
   <div class="nav-right">
-  {% if current_user %}
-  <div class="user-menu">
-    <button class="user-btn" id="userMenuBtn" aria-label="User menu">
-      <img
-        src="{{ current_picture if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
-        alt="Profile"
-        class="user-avatar"
-      >
-      <span class="user-name">{{ current_user }}</span>
-      <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
-        <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    <div class="user-dropdown" id="userDropdown">
-      <a href="/account" class="dropdown-item">Account details</a>
-      <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+    {% if current_user %}
+    <div class="user-menu">
+      <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+        <img
+          src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
+          alt="Profile"
+          class="user-avatar"
+        >
+        <span class="user-name">{{ current_user }}</span>
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <a href="/account" class="dropdown-item">Account details</a>
+        <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+      </div>
     </div>
-  </div>
-  {% else %}
-  <a href="/login" class="btn-login">Log in</a>
-  {% endif %}
+    {% else %}
+    <a href="/login" class="btn-login">Log in</a>
+    {% endif %}
   </div>
 </nav>
 
-
-<!-- ── Page ───────────────────────────────────────────────────────── -->
 <div class="page-wrap">
   <div class="prediction-card">
 
-    <!-- Header -->
     <div class="card-header">
       <div class="header-icon"><i class="fa-solid fa-child"></i></div>
       <h1>Stunting Prediction</h1>
@@ -540,27 +498,22 @@
 
     <div class="card-body">
 
-      <!-- Mode selector -->
       <div class="field-group">
         <div class="field-label">
           <i class="fa-solid fa-sliders"></i> Prediction Mode
         </div>
         <div class="mode-toggle">
-          <button type="button" class="mode-btn active"
-                  id="quickModeBtn" onclick="setMode('quick')">
+          <button type="button" class="mode-btn active" id="quickModeBtn" onclick="setMode('quick')">
             <i class="fa-solid fa-bolt"></i> Quick Prediction
           </button>
-          <button type="button" class="mode-btn"
-                  id="childModeBtn" onclick="setMode('child')">
+          <button type="button" class="mode-btn" id="childModeBtn" onclick="setMode('child')">
             <i class="fa-solid fa-baby"></i> Existing Child
           </button>
         </div>
       </div>
 
-      <form id="predForm" action="/predict" method="POST"
-            onsubmit="return handleSubmit()">
+      <form id="predForm" action="/predict" method="POST" onsubmit="return handleSubmit()">
 
-        <!-- Child selector — visible in child mode only -->
         <div class="field-group" id="childSelectorWrap" style="display:none;">
           <div class="field-label">
             <i class="fa-solid fa-user-group"></i> Child Profile <span class="req">*</span>
@@ -578,42 +531,34 @@
 
         <div class="form-divider"></div>
 
-        <!-- Gender -->
         <div class="field-group">
           <div class="field-label">
             <i class="fa-solid fa-venus-mars"></i> Gender <span class="req">*</span>
           </div>
           <div class="gender-toggle">
-            <button type="button" class="gender-btn male-btn active"
-                    id="genderMale" onclick="setGender('Male', this)">
+            <button type="button" class="gender-btn male-btn active" id="gM" onclick="setGender('Male')">
               <i class="fa-solid fa-mars"></i> Male
             </button>
-            <button type="button" class="gender-btn female-btn"
-                    id="genderFemale" onclick="setGender('Female', this)">
+            <button type="button" class="gender-btn female-btn" id="gF" onclick="setGender('Female')">
               <i class="fa-solid fa-venus"></i> Female
             </button>
           </div>
-          <input type="hidden" name="gender" id="genderInput" value="Male">
+          <input type="hidden" name="gender" id="genderVal" value="Male">
         </div>
 
         <div class="form-divider"></div>
 
-        <!-- Age — years and months side by side -->
         <div class="field-group">
           <div class="field-label">
             <i class="fa-solid fa-calendar-days"></i> Age <span class="req">*</span>
           </div>
           <div class="two-col">
             <div class="input-wrap">
-              <input type="number" name="age_years"
-                     placeholder="Years e.g. 2"
-                     min="0" max="5" step="1" required>
+              <input type="number" name="age_years" placeholder="Years e.g. 2" min="0" max="5" step="1" required>
               <span class="unit">yr</span>
             </div>
             <div class="input-wrap">
-              <input type="number" name="age_months"
-                     placeholder="Months e.g. 6"
-                     min="0" max="11" step="1" required>
+              <input type="number" name="age_months" placeholder="Months e.g. 6" min="0" max="11" step="1" required>
               <span class="unit">mo</span>
             </div>
           </div>
@@ -621,16 +566,13 @@
 
         <div class="form-divider"></div>
 
-        <!-- Weight and Height -->
         <div class="two-col">
           <div class="field-group">
             <div class="field-label">
               <i class="fa-solid fa-weight-scale"></i> Body Weight <span class="req">*</span>
             </div>
             <div class="input-wrap">
-              <input type="number" name="weight_kg"
-                     placeholder="e.g. 6.7"
-                     step="0.1" min="0" required>
+              <input type="number" name="weight_kg" placeholder="e.g. 6.7" step="0.1" min="0" required>
               <span class="unit">kg</span>
             </div>
           </div>
@@ -639,9 +581,7 @@
               <i class="fa-solid fa-ruler-vertical"></i> Body Height <span class="req">*</span>
             </div>
             <div class="input-wrap">
-              <input type="number" name="height_cm"
-                     placeholder="e.g. 69.5"
-                     step="0.1" min="0" required>
+              <input type="number" name="height_cm" placeholder="e.g. 69.5" step="0.1" min="0" required>
               <span class="unit">cm</span>
             </div>
           </div>
@@ -656,151 +596,137 @@
 
       </form>
 
-      <!-- Disclaimer -->
       <div class="disclaimer">
         <i class="fa-solid fa-circle-info"></i>
-        <span>
-          This tool uses a machine learning model and is not a substitute
-          for professional medical advice. Consult a pediatrician for a
-          complete assessment.
-        </span>
+        <span>This tool uses a machine learning model and is not a substitute for professional medical advice. Consult a pediatrician for a complete assessment.</span>
       </div>
 
     </div>
   </div>
 </div>
 
-
 <script>
-  /* ── Scrollable navbar ─────────────────────────────────────────── */
-  (function () {
-    const scroll = document.getElementById('navScroll');
-    const links  = document.getElementById('navLinks');
-    const prev   = document.getElementById('navPrev');
-    const next   = document.getElementById('navNext');
-    let offset   = 0;
-    const STEP   = 100;
+  // Scrollable navbar
+  (function() {
+    var scroll = document.getElementById('navScroll');
+    var links  = document.getElementById('navLinks');
+    var prev   = document.getElementById('navPrev');
+    var next   = document.getElementById('navNext');
+    var offset = 0;
+    var STEP   = 100;
 
     function maxOffset() {
-      const saved = links.style.paddingLeft;
+      var saved = links.style.paddingLeft;
       links.style.paddingLeft = '0px';
-      const max = Math.max(0, links.scrollWidth - scroll.clientWidth);
+      var max = Math.max(0, links.scrollWidth - scroll.clientWidth);
       links.style.paddingLeft = saved;
       return max;
     }
 
     function render() {
-      const max = maxOffset();
+      var max = maxOffset();
       offset = Math.max(0, Math.min(offset, max));
-      links.style.transform = `translateX(${-offset}px)`;
-
+      links.style.transform = 'translateX(' + (-offset) + 'px)';
       if (max === 0) {
-        const spare = scroll.clientWidth - links.scrollWidth;
-        links.style.paddingLeft = spare > 0 ? `${spare / 2}px` : '0px';
+        var spare = scroll.clientWidth - links.scrollWidth;
+        links.style.paddingLeft = spare > 0 ? (spare / 2) + 'px' : '0px';
       } else {
         links.style.paddingLeft = '0px';
       }
-
       prev.classList.toggle('visible', offset > 0);
       next.classList.toggle('visible', offset < max);
     }
 
-    prev.addEventListener('click', () => { offset -= STEP; render(); });
-    next.addEventListener('click', () => { offset += STEP; render(); });
+    prev.addEventListener('click', function() { offset -= STEP; render(); });
+    next.addEventListener('click', function() { offset += STEP; render(); });
     new ResizeObserver(render).observe(scroll);
     render();
   })();
 
-  var userMenuBtn = document.getElementById('userMenuBtn');
+  // User dropdown
+  var userMenuBtn  = document.getElementById('userMenuBtn');
   var userDropdown = document.getElementById('userDropdown');
 
   if (userMenuBtn && userDropdown) {
-    userMenuBtn.addEventListener('click', function (e) {
+    userMenuBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       userDropdown.classList.toggle('open');
     });
-
-    document.addEventListener('click', function () {
+    document.addEventListener('click', function() {
       userDropdown.classList.remove('open');
     });
   }
 
-  /* ── Child data (injected by Jinja) ────────────────────────────── */
-  const childrenData = {{ children | tojson }};
+  // Child data from server
+  var childrenData = {{ children | tojson }};
 
-
-  /* ── Gender toggle ─────────────────────────────────────────────── */
-  function setGender(value, btn) {
-    document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('genderInput').value = value;
+  // Gender
+  function setGender(gender) {
+    document.getElementById('gM').classList.toggle('active', gender === 'Male');
+    document.getElementById('gF').classList.toggle('active', gender === 'Female');
+    document.getElementById('genderVal').value = gender;
   }
 
   function lockGender(gender) {
-    // Show the correct button as active but make both non-interactive
-    const maleBtn   = document.getElementById('genderMale');
-    const femaleBtn = document.getElementById('genderFemale');
-    maleBtn.classList.remove('active');
-    femaleBtn.classList.remove('active');
-    if (gender === 'Male')   maleBtn.classList.add('active');
-    if (gender === 'Female') femaleBtn.classList.add('active');
-    maleBtn.classList.add('locked');
-    femaleBtn.classList.add('locked');
-    document.getElementById('genderInput').value = gender || '';
+    var normalized = gender
+      ? gender.charAt(0).toUpperCase() + gender.slice(1).toLowerCase()
+      : '';
+    document.getElementById('gM').classList.remove('active');
+    document.getElementById('gF').classList.remove('active');
+    if (normalized === 'Male')   document.getElementById('gM').classList.add('active');
+    if (normalized === 'Female') document.getElementById('gF').classList.add('active');
+    document.getElementById('gM').classList.add('locked');
+    document.getElementById('gF').classList.add('locked');
+    document.getElementById('genderVal').value = normalized || '';
   }
 
   function unlockGender() {
-    document.getElementById('genderMale').classList.remove('locked');
-    document.getElementById('genderFemale').classList.remove('locked');
+    document.getElementById('gM').classList.remove('locked');
+    document.getElementById('gF').classList.remove('locked');
   }
 
-
-  /* ── Mode toggle ───────────────────────────────────────────────── */
-  let currentMode = 'quick';
+  // Prediction mode
+  var currentMode = 'quick';
 
   function setMode(mode) {
     currentMode = mode;
-
-    const isChild = mode === 'child';
+    var isChild = mode === 'child';
 
     document.getElementById('quickModeBtn').classList.toggle('active', !isChild);
     document.getElementById('childModeBtn').classList.toggle('active',  isChild);
-
     document.getElementById('childSelectorWrap').style.display = isChild ? 'block' : 'none';
     document.getElementById('childSelect').value = '';
 
-    // Lock/unlock measurement inputs and gender
     setInputsLocked(isChild);
     clearMeasurementFields();
 
     if (!isChild) {
-      // Restore gender to Male (default) and make it interactive
       unlockGender();
-      setGender('Male', document.getElementById('genderMale'));
+      setGender('Male');
     } else {
-      // Lock gender until a child is selected
       lockGender('');
     }
   }
 
-
-  /* ── Populate from selected child ──────────────────────────────── */
-  document.getElementById('childSelect').addEventListener('change', function () {
-    const child = childrenData.find(c => c.id === this.value);
+  // Populate fields from selected child
+  document.getElementById('childSelect').addEventListener('change', function() {
+    var id    = this.value;
+    var child = null;
+    for (var i = 0; i < childrenData.length; i++) {
+      if (childrenData[i].id === id) { child = childrenData[i]; break; }
+    }
     if (!child) return;
 
-    const totalMonths = Number(child.age_months || 0);
+    var totalMonths = Number(child.age_months || 0);
     document.querySelector('[name="age_years"]').value  = Math.floor(totalMonths / 12);
     document.querySelector('[name="age_months"]').value = totalMonths % 12;
-    document.querySelector('[name="weight_kg"]').value  = child.weight_kg ?? child.weight ?? '';
-    document.querySelector('[name="height_cm"]').value  = child.height_cm ?? child.height ?? '';
+    document.querySelector('[name="weight_kg"]').value  = child.weight_kg != null ? child.weight_kg : (child.weight || '');
+    document.querySelector('[name="height_cm"]').value  = child.height_cm != null ? child.height_cm : (child.height || '');
 
-    // Show child's gender as read-only
     lockGender(child.gender || '');
   });
 
-
-  /* ── Form submit ───────────────────────────────────────────────── */
+  // Form submit
   function handleSubmit() {
     if (currentMode === 'child' && !document.getElementById('childSelect').value) {
       alert('Please select a child profile first.');
@@ -811,28 +737,25 @@
     return true;
   }
 
-
-  /* ── Helpers ───────────────────────────────────────────────────── */
+  // Lock/unlock measurement inputs
   function setInputsLocked(locked) {
-    ['[name="age_years"]', '[name="age_months"]', '[name="weight_kg"]', '[name="height_cm"]']
-      .forEach(sel => {
-        const input = document.querySelector(sel);
-        input.readOnly = locked;
-        input.classList.toggle('locked-input', locked);
-
-        // Preserve and restore placeholder text
-        if (locked) {
-          input.dataset.placeholder = input.placeholder;
-          input.placeholder = '';
-        } else {
-          input.placeholder = input.dataset.placeholder || '';
-        }
-      });
+    var fields = ['[name="age_years"]', '[name="age_months"]', '[name="weight_kg"]', '[name="height_cm"]'];
+    fields.forEach(function(sel) {
+      var input = document.querySelector(sel);
+      input.readOnly = locked;
+      input.classList.toggle('locked-input', locked);
+      if (locked) {
+        input.dataset.placeholder = input.placeholder;
+        input.placeholder = '';
+      } else {
+        input.placeholder = input.dataset.placeholder || '';
+      }
+    });
   }
 
   function clearMeasurementFields() {
-    ['[name="age_years"]', '[name="age_months"]', '[name="weight_kg"]', '[name="height_cm"]']
-      .forEach(sel => document.querySelector(sel).value = '');
+    var fields = ['[name="age_years"]', '[name="age_months"]', '[name="weight_kg"]', '[name="height_cm"]'];
+    fields.forEach(function(sel) { document.querySelector(sel).value = ''; });
   }
 </script>
 </body>

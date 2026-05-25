@@ -586,7 +586,7 @@ footer {
 
 <nav>
   <a class="logo" href="/">
-    <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <img src="/static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
     <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
 
@@ -620,7 +620,7 @@ footer {
   <div class="user-menu">
     <button class="user-btn" id="userMenuBtn" aria-label="User menu">
       <img
-        src="{{ current_picture if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+        src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
         alt="Profile"
         class="user-avatar"
       >
@@ -672,7 +672,7 @@ footer {
   </div>
   <div class="hero-right">
     <div class="hero-photo">
-      <img src="static/img/hero-img.png"
+      <img src="/static/img/hero-img.png"
            alt="Happy family with baby"
            onerror="this.style.display='none'">
     </div>
@@ -684,7 +684,7 @@ footer {
   <div class="cards-grid">
     <div class="card">
       <div class="card-icon">
-        <img src="static/img/stunting-prediction.svg" alt="Stunting Prediction">
+        <img src="/static/img/stunting-prediction.svg" alt="Stunting Prediction">
       </div>
       <div class="card-body">
         <h3>AI-driven Stunting Prediction</h3>
@@ -693,7 +693,7 @@ footer {
     </div>
     <div class="card">
       <div class="card-icon">
-        <img src="static/img/healthy-food.svg" alt="Healthy Food">
+        <img src="/static/img/healthy-food.svg" alt="Healthy Food">
       </div>
       <div class="card-body">
         <h3>Healthy Food Recipes</h3>
@@ -702,7 +702,7 @@ footer {
     </div>
     <div class="card">
       <div class="card-icon">
-        <img src="static/img/child-growth-dashboard.svg" alt="Growth Dashboard">
+        <img src="/static/img/child-growth-dashboard.svg" alt="Growth Dashboard">
       </div>
       <div class="card-body">
         <h3>Child Growth Dashboard</h3>
@@ -711,7 +711,7 @@ footer {
     </div>
     <div class="card">
       <div class="card-icon">
-        <img src="static/img/parenting-guides.svg" alt="Parenting Guides">
+        <img src="/static/img/parenting-guides.svg" alt="Parenting Guides">
       </div>
       <div class="card-body">
         <h3>Parenting Guides</h3>
@@ -720,7 +720,7 @@ footer {
     </div>
     <div class="card-forum">
       <div class="card-icon">
-        <img src="static/img/parents-forum.svg" alt="Parents Forum">
+        <img src="/static/img/parents-forum.svg" alt="Parents Forum">
       </div>
       <div class="card-body">
         <h3>Parents Forum</h3>

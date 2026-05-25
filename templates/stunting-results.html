@@ -369,7 +369,7 @@ body.theme-severely-stunted {
 
 <nav>
   <a class="logo" href="/">
-    <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <img src="/static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
     <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
 
@@ -403,7 +403,7 @@ body.theme-severely-stunted {
   <div class="user-menu">
     <button class="user-btn" id="userMenuBtn" aria-label="User menu">
       <img
-        src="{{ current_picture if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+        src="{% if is_blob_url(user.profile_picture) %}{{ user.profile_picture }}{% elif user.profile_picture %}{{ url_for('static', filename=user.profile_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
         alt="Profile"
         class="user-avatar"
       >
@@ -456,7 +456,7 @@ body.theme-severely-stunted {
         </div>
         <div class="info-tile">
           <div class="info-tile-label">Gender</div>
-          <div class="info-tile-value">{% if gender_s == 'laki-laki' %}Male{% else %}Female{% endif %}</div>
+          <div class="info-tile-value">{% if gender_s == 'Male' %}Male{% else %}Female{% endif %}</div>
         </div>
         <div class="info-tile">
           <div class="info-tile-label">Height</div>

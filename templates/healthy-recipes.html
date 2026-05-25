@@ -1033,7 +1033,7 @@ nav {
 
 <nav>
   <a class="logo" href="/">
-    <img src="static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <img src="/static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
     <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
   </a>
 
@@ -1067,7 +1067,7 @@ nav {
     <div class="user-menu">
       <button class="user-btn" id="userMenuBtn" aria-label="User menu">
         <img
-          src="{{ current_picture if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+          src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
           alt="Profile"
           class="user-avatar"
         >
@@ -1144,7 +1144,7 @@ nav {
 
   <div class="featured" id="featuredCard">
     <div class="featured-img">
-      <img src="static/img/Chicken-Liver-Congee-1.png" alt="Featured Recipe" onerror="this.src='https://images.unsplash.com/photo-1512058454905-6b841e7ad132?auto=format&fit=crop&w=700&q=80'">
+      <img src="/static/img/Chicken-Liver-Congee-1.png" alt="Featured Recipe" onerror="this.src='https://images.unsplash.com/photo-1512058454905-6b841e7ad132?auto=format&fit=crop&w=700&q=80'">
     </div>
     <div class="featured-info">
       <div class="featured-label"><i class="fa-solid fa-star"></i> Featured Recipe</div>
@@ -1271,7 +1271,7 @@ var RECIPES = [
     price: "~Rp 18.000",
     tags: ["iron", "6-8m"],
     tagLabels: ["High Iron"],
-    img: "static/img/Chicken-Liver-Congee-1.png",
+    img: "/static/img/Chicken-Liver-Congee-1.png",
     servings: "2 servings",
     calories: "~120 kcal",
     ingredients: [
@@ -1298,7 +1298,7 @@ var RECIPES = [
     price: "~Rp 14.000",
     tags: ["bb", "1-3y"],
     tagLabels: ["Weight Booster"],
-    img: "static/img/tempe-nugget.png",
+    img: "/static/img/tempe-nugget.png",
     servings: "8-10 pieces",
     calories: "~180 kcal",
     ingredients: [
@@ -1325,7 +1325,7 @@ var RECIPES = [
     price: "~Rp 35.000",
     tags: ["omega", "bb", "9-11m"],
     tagLabels: ["Omega-3", "Weight Booster"],
-    img: "static/img/macaroni-soup.png",
+    img: "/static/img/macaroni-soup.png",
     servings: "2 servings",
     calories: "~210 kcal",
     ingredients: [
@@ -1354,7 +1354,7 @@ var RECIPES = [
     price: "~Rp 12.000",
     tags: ["iron", "6-8m"],
     tagLabels: ["High Iron"],
-    img: "static/img/egg-drop-soup.png",
+    img: "/static/img/egg-drop-soup.png",
     servings: "2 servings",
     calories: "~110 kcal",
     ingredients: [
@@ -1381,7 +1381,7 @@ var RECIPES = [
     price: "~Rp 10.000",
     tags: ["bb", "9-11m"],
     tagLabels: ["Weight Booster"],
-    img: "static/img/banana-pancakes.png",
+    img: "/static/img/banana-pancakes.png",
     servings: "6 mini pancakes",
     calories: "~95 kcal",
     ingredients: [
@@ -1406,7 +1406,7 @@ var RECIPES = [
     price: "~Rp 28.000",
     tags: ["iron", "bb", "1-3y"],
     tagLabels: ["High Iron", "Weight Booster"],
-    img: "static/img/meatballs.png",
+    img: "/static/img/meatballs.png",
     servings: "10-12 pieces",
     calories: "~200 kcal",
     ingredients: [

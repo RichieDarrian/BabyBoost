@@ -26,12 +26,12 @@ if not exist requirements.txt (
 :: Install dependencies using the same Python that will run the app
 echo  Installing dependencies from requirements.txt...
 python -m pip install -r requirements.txt >nul 2>&1
-echo  Launching app_local.py...
+echo  Launching app.py...
 echo  Open your browser at: http://127.0.0.1:5000
 echo.
 echo  Press Ctrl+C to stop the server.
 echo.
-python app_local.py
+python app.py
 echo.
 echo  Server stopped.
 pause

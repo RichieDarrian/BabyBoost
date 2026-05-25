@@ -300,7 +300,7 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
     <div class="user-menu">
       <button class="user-btn" id="userMenuBtn" aria-label="User menu">
         <img
-          src="{{ current_picture if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+          src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
           alt="Profile"
           class="user-avatar"
         >
@@ -375,13 +375,15 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
       <div class="card-body">
 
         <div class="profile-avatar-wrap">
-          <div class="profile-av {{ child.avatar_class }}">
-            {% if child.profile_picture %}
-              <img src="{{ child.profile_picture }}" alt="{{ child.name }}">
-            {% elif child.avatar %}
-              <img src="{{ url_for('static', filename='img/' ~ child.avatar) }}" alt="{{ child.name }}">
+          <div class="profile-av {% if child.gender == 'Male' %}av-b{% elif child.gender == 'Female' %}av-p{% else %}av-g{% endif %}">
+            {% if child.profile_picture and child.profile_picture != 'img/default-children-picture.svg' %}
+              {% if is_blob_url(child.profile_picture) %}
+                <img src="{{ child.profile_picture }}" alt="{{ child.name }}">
+              {% else %}
+                <img src="{{ url_for('static', filename=child.profile_picture) }}" alt="{{ child.name }}">
+              {% endif %}
             {% else %}
-              {{ child.initials }}
+              <img src="{{ url_for('static', filename='img/default-children-picture.svg') }}" alt="{{ child.name }}">
             {% endif %}
           </div>
           <div class="profile-name">{{ child.name }}</div>

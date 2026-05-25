@@ -123,7 +123,7 @@ def save_profile_picture(file, child_id):
     if not allowed_file(file.filename):
         return None
     ext = secure_filename(file.filename).rsplit(".", 1)[1].lower()
-    blob_path = f"children/{child_id}.{ext}"
+    blob_path = f"static/uploads/children/{child_id}.{ext}"
     try:
         result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false", "allowOverwrite": "true", "token": BLOB_TOKEN})
         return result["url"]
@@ -140,7 +140,7 @@ def save_user_profile_picture(file, email):
         return None
     ext = secure_filename(file.filename).rsplit(".", 1)[1].lower()
     safe_email = re.sub(r"[^a-z0-9]+", "-", email.lower()).strip("-")
-    blob_path = f"users/{safe_email}.{ext}"
+    blob_path = f"static/uploads/users/{safe_email}.{ext}"
     try:
         result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false", "allowOverwrite": "true", "token": BLOB_TOKEN})
         return result["url"]

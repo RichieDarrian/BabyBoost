@@ -2,11 +2,9 @@ import json
 import os
 import pickle
 import re
-import threading
-import webbrowser
+import urllib.request
 from copy import deepcopy
 from datetime import datetime, timedelta
-from pathlib import Path
 from functools import wraps
 
 import numpy as np
@@ -28,6 +26,7 @@ app = Flask(
 app.secret_key = "secret"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 USERS_BLOB_PATH = "data/users.json"
+BLOB_TOKEN = os.environ.get("BLOB_READ_WRITE_TOKEN", "")
 
 PERIOD_OPTIONS = [
     ("6_months", "Last 6 Months"),
@@ -61,12 +60,10 @@ with open(model_path, "rb") as f:
 
 def load_users():
     try:
-        result = vercel_blob.list({"prefix": USERS_BLOB_PATH})
+        result = vercel_blob.list({"prefix": USERS_BLOB_PATH, "token": BLOB_TOKEN})
         blobs = result.get("blobs", [])
         if not blobs:
             return {}
-        # Download the file content
-        import urllib.request
         with urllib.request.urlopen(blobs[0]["url"]) as response:
             return json.loads(response.read().decode("utf-8"))
     except Exception:
@@ -76,7 +73,7 @@ def load_users():
 def save_users(users):
     try:
         data = json.dumps(users, indent=2).encode("utf-8")
-        vercel_blob.put(USERS_BLOB_PATH, data, {"addRandomSuffix": "false"})
+        vercel_blob.put(USERS_BLOB_PATH, data, {"addRandomSuffix": "false", "token": BLOB_TOKEN})
     except Exception as e:
         app.logger.error(f"Failed to save users to blob: {e}")
 
@@ -85,8 +82,7 @@ def save_users(users):
 
 def load_user_children(email):
     users = load_users()
-    user = users.get(email, {})
-    return user.get("children", {})
+    return users.get(email, {}).get("children", {})
 
 
 def save_user_children(email, children_data):
@@ -115,7 +111,7 @@ def delete_blob_if_exists(url):
     if not url:
         return
     try:
-        vercel_blob.delete(url)
+        vercel_blob.delete(url, {"token": BLOB_TOKEN})
     except Exception:
         pass
 
@@ -129,7 +125,7 @@ def save_profile_picture(file, child_id):
     ext = secure_filename(file.filename).rsplit(".", 1)[1].lower()
     blob_path = f"children/{child_id}.{ext}"
     try:
-        result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false"})
+        result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false", "token": BLOB_TOKEN})
         return result["url"]
     except Exception as e:
         app.logger.error(f"Blob upload failed for child {child_id}: {e}")
@@ -146,7 +142,7 @@ def save_user_profile_picture(file, email):
     safe_email = re.sub(r"[^a-z0-9]+", "-", email.lower()).strip("-")
     blob_path = f"users/{safe_email}.{ext}"
     try:
-        result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false"})
+        result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false", "token": BLOB_TOKEN})
         return result["url"]
     except Exception as e:
         app.logger.error(f"Blob upload failed for user {email}: {e}")

@@ -2,3 +2,5 @@ Flask
 Werkzeug
 numpy
 scikit-learn
+vercel_blob
+python-dotenv

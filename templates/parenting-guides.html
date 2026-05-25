@@ -543,7 +543,7 @@ nav {
   <div class="user-menu">
     <button class="user-btn" id="userMenuBtn" aria-label="User menu">
       <img
-        src="{{ url_for('static', filename=current_picture) if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+        src="{{ current_picture if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
         alt="Profile"
         class="user-avatar"
       >

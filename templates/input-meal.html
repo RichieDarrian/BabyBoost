@@ -252,7 +252,7 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
   <div class="user-menu">
     <button class="user-btn" id="userMenuBtn" aria-label="User menu">
       <img
-        src="{{ url_for('static', filename=current_picture) if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
+        src="{{ current_picture if current_picture else url_for('static', filename='img/default-profile-picture.jpg') }}"
         alt="Profile"
         class="user-avatar"
       >
@@ -303,11 +303,13 @@ nav{display:flex;align-items:center;padding:14px 48px;background:rgba(255,255,25
 
         <div class="profile-avatar-wrap">
           <div class="profile-av {{ child.avatar_class }}">
-            {% if child.avatar %}
-              <img src="{{ url_for('static', filename='img/' ~ child.avatar) }}" alt="{{ child.name }}" onerror="this.style.display='none'">
-            {% else %}
-              {{ child.initials }}
-            {% endif %}
+          {% if child.profile_picture %}
+            <img src="{{ child.profile_picture }}" alt="{{ child.name }}">
+          {% elif child.avatar %}
+            <img src="{{ url_for('static', filename='img/' ~ child.avatar) }}" alt="{{ child.name }}">
+          {% else %}
+            {{ child.initials }}
+          {% endif %}
           </div>
           <div class="profile-name">{{ child.name }}</div>
           <div class="profile-chips">

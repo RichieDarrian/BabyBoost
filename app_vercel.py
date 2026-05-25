@@ -73,7 +73,7 @@ def load_users():
 def save_users(users):
     try:
         data = json.dumps(users, indent=2).encode("utf-8")
-        vercel_blob.put(USERS_BLOB_PATH, data, {"addRandomSuffix": "false", "token": BLOB_TOKEN})
+        vercel_blob.put(USERS_BLOB_PATH, data, {"addRandomSuffix": "false", "allowOverwrite": "true", "token": BLOB_TOKEN})
     except Exception as e:
         app.logger.error(f"Failed to save users to blob: {e}")
 
@@ -125,7 +125,7 @@ def save_profile_picture(file, child_id):
     ext = secure_filename(file.filename).rsplit(".", 1)[1].lower()
     blob_path = f"children/{child_id}.{ext}"
     try:
-        result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false", "token": BLOB_TOKEN})
+        result = vercel_blob.put(blob_path, file.read(), {"addRandomSuffix": "false", "allowOverwrite": "true", "token": BLOB_TOKEN})
         return result["url"]
     except Exception as e:
         app.logger.error(f"Blob upload failed for child {child_id}: {e}")

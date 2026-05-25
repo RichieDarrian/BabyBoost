@@ -4,3 +4,4 @@ numpy
 scikit-learn
 vercel_blob
 python-dotenv
+upstash-redis

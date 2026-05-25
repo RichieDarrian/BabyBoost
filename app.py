@@ -20,6 +20,7 @@ IS_VERCEL = os.environ.get("VERCEL") == "1"
 if IS_VERCEL:
     import urllib.request
     import vercel_blob
+    from upstash_redis import Redis
     from dotenv import load_dotenv
     load_dotenv()
 
@@ -36,7 +37,10 @@ ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 # ---- Storage config ----
 if IS_VERCEL:
     BLOB_TOKEN = os.environ.get("BLOB_READ_WRITE_TOKEN", "")
-    USERS_BLOB_PATH = "data/users.json"
+    redis = Redis(
+        url=os.environ.get("KV_REST_API_URL", ""),
+        token=os.environ.get("KV_REST_API_TOKEN", "")
+    )
 else:
     USERS_FILE = Path(__file__).parent / "data" / "users.json"
     CHILD_UPLOAD_FOLDER = Path(__file__).parent / "static" / "uploads" / "children"
@@ -75,12 +79,16 @@ with open(model_path, "rb") as f:
 def load_users():
     if IS_VERCEL:
         try:
-            result = vercel_blob.list({"prefix": USERS_BLOB_PATH, "token": BLOB_TOKEN})
-            blobs = result.get("blobs", [])
-            if not blobs:
+            keys_result = redis.keys("user:*")
+            if not keys_result:
                 return {}
-            with urllib.request.urlopen(blobs[0]["url"]) as response:
-                return json.loads(response.read().decode("utf-8"))
+            users = {}
+            for key in keys_result:
+                data = redis.get(key)
+                if data:
+                    email = key.replace("user:", "")
+                    users[email] = json.loads(data)
+            return users
         except Exception:
             return {}
     else:
@@ -96,14 +104,10 @@ def load_users():
 def save_users(users):
     if IS_VERCEL:
         try:
-            data = json.dumps(users, indent=2).encode("utf-8")
-            vercel_blob.put(USERS_BLOB_PATH, data, {
-                "addRandomSuffix": "false",
-                "allowOverwrite": "true",
-                "token": BLOB_TOKEN
-            })
+            for email, user_data in users.items():
+                redis.set(f"user:{email}", json.dumps(user_data))
         except Exception as e:
-            app.logger.error(f"Failed to save users to blob: {e}")
+            app.logger.error(f"Failed to save users to Redis: {e}")
     else:
         USERS_FILE.parent.mkdir(parents=True, exist_ok=True)
         with USERS_FILE.open("w", encoding="utf-8") as fh:

@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ child.name }} - Growth Dashboard | BabyBoost</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+    /* BASE */
+    :root{--pink:#FEA4AA;--pink-h:#f67a84;--pink-l:#fde8ef;--pink-m:#fcd0db;--blue:#024774;--blue-mid:#37678D;--blue-l:#e8f2fb;--bg:#F0F4F8;--card:#ffffff;--brd:#f0dde6;--brd2:#e8eef4;--ok:#2ea55a;--ok-bg:#e8f7ee;--risk:#e68200;--risk-bg:#fff4e6;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--blue);min-height:100vh;}
+    .page{padding:28px 20px 48px;display:flex;flex-direction:column;align-items:center;gap:20px;}
+
+    /* HERO */
+    .hero{width:100%;max-width:960px;background:#024774;border-radius:18px;padding:26px 32px;display:flex;align-items:center;gap:18px;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;top:-50px;right:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.04);}
+    .hero::after{content:'';position:absolute;bottom:-60px;right:100px;width:170px;height:170px;border-radius:50%;background:rgba(254,164,170,0.1);}
+    .hero-icon{width:52px;height:52px;background:rgba(255,255,255,0.14);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;flex-shrink:0;position:relative;z-index:1;}
+    .hero-txt{position:relative;z-index:1;flex:1;min-width:0;}
+    .hero-txt h1{font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:3px;}
+    .hero-txt p{font-size:.82rem;color:rgba(255,255,255,.68);}
+    .hero-actions{display:flex;gap:8px;flex-shrink:0;position:relative;z-index:1;}
+    .hero-btn{height:36px;padding:0 16px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;border:none;display:flex;align-items:center;gap:6px;transition:transform .2s,box-shadow .2s,filter .2s;white-space:nowrap;}
+    .hero-btn-outline{background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.22);}
+    .hero-btn-outline:hover{background:rgba(255,255,255,.22);transform:translateY(-1px);}
+    .hero-btn-solid{background:var(--pink);color:#fff;}
+    .hero-btn-solid:hover{filter:brightness(1.06);transform:translateY(-1px);box-shadow:0 6px 16px rgba(254,164,170,.38);}
+
+    /* STATS */
+    .stats{width:100%;max-width:960px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+    .stat-box{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:14px 16px;text-align:center;}
+    .stat-val{font-size:1.4rem;font-weight:800;color:var(--blue);}
+    .stat-lbl{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--blue-mid);margin-top:2px;}
+
+    /* LAYOUT */
+    .cols{width:100%;max-width:960px;display:grid;grid-template-columns:340px 1fr;gap:18px;align-items:start;}
+
+    /* CARD BASE */
+    .card{background:var(--card);border-radius:18px;border:1px solid var(--brd);overflow:hidden;}
+    .card-head{padding:18px 24px;border-bottom:1px solid var(--brd);display:flex;align-items:center;gap:12px;}
+    .ch-icon{width:40px;height:40px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+    .ch-icon.blue{background:var(--blue-l);color:var(--blue);}
+    .ch-icon.pink{background:var(--pink-l);color:#c0516a;}
+    .ch-icon.green{background:#e8f7ee;color:#1a7a40;}
+    .ch-title{font-size:.92rem;font-weight:700;color:var(--blue);margin-bottom:2px;}
+    .ch-sub{font-size:.72rem;color:var(--blue-mid);}
+    .card-body{padding:20px 24px 24px;}
+
+    /* PROFILE CARD */
+    .profile-avatar-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:18px;}
+    .profile-av{width:72px;height:72px;border-radius:50%;border:3px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;overflow:hidden;}
+    .profile-av img{width:100%;height:100%;object-fit:cover;}
+    .av-p{background:var(--pink-l);color:#c0516a;border-color:#f7d0d8;}
+    .av-b{background:var(--blue-l);color:#2a6aad;border-color:#c0d8f0;}
+    .av-g{background:#eaf5ea;color:#2a6e2a;border-color:#b5ddb5;}
+    .profile-name{font-size:1.1rem;font-weight:800;color:var(--blue);}
+    .profile-chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:2px;}
+    .chip{font-size:.63rem;font-weight:700;padding:3px 9px;border-radius:20px;}
+    .chip-a{background:var(--blue-l);color:#0c447c;}
+    .chip-g{background:#eaf5ea;color:#27500a;}
+    .pred-box{border-radius:12px;padding:14px 16px;margin-bottom:14px;}
+    .pred-box.normal{background:var(--ok-bg);border:1px solid #b5dfc8;}
+    .pred-box.at_risk{background:var(--risk-bg);border:1px solid #f5cc91;}
+    .pred-label{font-size:.66rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:4px;}
+    .pred-box.normal .pred-label{color:var(--ok);}
+    .pred-box.at_risk .pred-label{color:var(--risk);}
+    .pred-val{font-size:.95rem;font-weight:800;color:var(--blue);margin-bottom:4px;}
+    .pred-note{font-size:.72rem;color:var(--blue-mid);line-height:1.5;}
+    .divider{height:1px;background:var(--brd);margin:14px 0;}
+    .metric-row{display:flex;flex-direction:column;gap:8px;}
+    .metric-item{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:#fafcff;border:1px solid var(--brd2);border-radius:9px;}
+    .m-lbl{font-size:.72rem;color:var(--blue-mid);display:flex;align-items:center;gap:6px;}
+    .m-lbl i{font-size:.7rem;color:var(--pink);}
+    .m-val{font-size:.88rem;font-weight:700;color:var(--blue);}
+    .action-btns{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
+    .btn-pink{width:100%;height:44px;background:var(--pink);color:#fff;border:none;border-radius:11px;font-family:'Poppins',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s,box-shadow .2s,filter .2s;text-decoration:none;}
+    .btn-pink:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(254,164,170,.38);filter:brightness(1.04);}
+    .btn-out{width:100%;height:44px;background:#fff;color:var(--blue);border:1.5px solid #ccdde8;border-radius:11px;font-family:'Poppins',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:border-color .2s,background .2s,transform .2s;text-decoration:none;}
+    .btn-out:hover{border-color:var(--blue);background:var(--blue-l);transform:translateY(-2px);}
+
+    /* RIGHT COL */
+    .right-col{display:flex;flex-direction:column;gap:18px;}
+
+    /* CHART */
+    .chart-card .card-head{justify-content:space-between;}
+    .legend{display:flex;gap:14px;padding:0 24px 12px;}
+    .leg-item{display:flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600;color:var(--blue-mid);}
+    .leg-dot{width:8px;height:8px;border-radius:50%;}
+    .leg-dot-h{background:#024774;}
+    .leg-dot-w{background:var(--pink);}
+    .range-select{height:30px;padding:0 28px 0 10px;border:1.5px solid var(--brd2);border-radius:7px;font-family:'Poppins',sans-serif;font-size:.75rem;font-weight:600;color:var(--blue);background:#fafcff;appearance:none;cursor:pointer;outline:none;}
+    .range-select:focus{border-color:var(--pink);}
+    .range-w{position:relative;}
+    .range-w i{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:.65rem;color:var(--blue-mid);pointer-events:none;}
+    .chart-wrap{padding:0 24px 16px;overflow-x:auto;}
+    .chart-wrap svg{width:100%;min-width:420px;height:auto;display:block;}
+    .grid-lines line{stroke:#f0e8ef;stroke-width:1;}
+    .axis-labels text{font-size:11px;fill:var(--blue-mid);font-family:'Poppins',sans-serif;}
+    .height-line{fill:none;stroke:#024774;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;}
+    .weight-line{fill:none;stroke:var(--pink);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;}
+    .height-dot{fill:#024774;}
+    .weight-dot{fill:var(--pink);}
+    .height-value{font-size:10px;fill:#024774;font-family:'Poppins',sans-serif;font-weight:600;}
+    .weight-value{font-size:10px;fill:var(--pink-h);font-family:'Poppins',sans-serif;font-weight:600;}
+    .month-label{font-size:10px;fill:var(--blue-mid);font-family:'Poppins',sans-serif;}
+    .small-axis{font-size:9px;font-family:'Poppins',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+    .height-axis{fill:#024774;}
+    .weight-axis{fill:var(--pink-h);}
+
+    /* NUTRITION */
+    .nut-table{width:100%;border-collapse:collapse;font-size:.8rem;}
+    .nut-table th{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-mid);padding:0 8px 10px;text-align:left;}
+    .nut-table td{padding:9px 8px;border-top:1px solid var(--brd2);vertical-align:middle;}
+    .nut-table tr:first-child td{border-top:none;}
+    .nut-name{font-weight:600;color:var(--blue);}
+    .nut-intake{color:var(--blue-mid);white-space:nowrap;}
+    .prog-track{display:block;height:6px;background:#f0e8ef;border-radius:99px;width:100%;min-width:70px;}
+    .prog-fill{display:block;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--pink-h));transition:width .4s;}
+    .prog-fill.ok{background:linear-gradient(90deg,#56d889,#2ea55a);}
+    .nut-pct{font-weight:700;font-size:.75rem;white-space:nowrap;}
+    .nut-pct.ok{color:var(--ok);}
+    .nut-pct.warn{color:var(--risk);}
+    .nut-remain{font-size:.72rem;color:var(--blue-mid);white-space:nowrap;}
+    .reset-pill{font-size:.63rem;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--blue-l);color:var(--blue);}
+
+    /* LOADING */
+    .loading-overlay{display:none;position:fixed;inset:0;background:rgba(2,71,116,0.2);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;}
+    .loading-overlay.show{display:flex;}
+    .loading-card{background:#fff;border-radius:20px;padding:36px 48px;text-align:center;box-shadow:0 20px 60px rgba(2,71,116,0.2);}
+    .spinner{width:46px;height:46px;border:4px solid #f0e0e3;border-top-color:var(--pink);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 14px;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .loading-card p{font-size:.9rem;color:var(--blue-mid);font-weight:500;}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .page{padding:16px 12px 40px;gap:14px;}
+      .hero{padding:18px;flex-direction:column;align-items:flex-start;gap:14px;border-radius:14px;}
+      .hero::before{width:130px;height:130px;top:-30px;right:-20px;}
+      .hero::after{width:100px;height:100px;bottom:-30px;right:50px;}
+      .hero-txt h1{font-size:1.15rem;}
+      .hero-txt p{font-size:.76rem;}
+      .hero-icon{width:42px;height:42px;font-size:1.1rem;border-radius:11px;}
+      .hero-actions{width:100%;justify-content:flex-start;gap:8px;}
+      .hero-btn{height:34px;padding:0 13px;font-size:.74rem;}
+      .stats{grid-template-columns:repeat(2,1fr);gap:8px;}
+      .stat-box{padding:12px 10px;border-radius:12px;}
+      .stat-val{font-size:1.2rem;}
+      .stat-lbl{font-size:.6rem;}
+      .cols{grid-template-columns:1fr;gap:14px;}
+      .card{border-radius:14px;width:100%;max-width:100%;}
+      .card-head{padding:14px 16px;gap:10px;}
+      .card-body{padding:16px 16px 18px;overflow-x:auto;}
+      .ch-icon{width:36px;height:36px;font-size:.9rem;border-radius:10px;}
+      .ch-title{font-size:.85rem;}
+      .ch-sub{font-size:.67rem;}
+      .profile-av{width:60px;height:60px;font-size:1.1rem;}
+      .profile-name{font-size:1rem;}
+      .chip{font-size:.6rem;padding:2px 8px;}
+      .pred-box{padding:12px 14px;margin-bottom:12px;border-radius:10px;}
+      .pred-label{font-size:.62rem;}
+      .pred-val{font-size:.88rem;}
+      .pred-note{font-size:.68rem;}
+      .metric-item{padding:8px 10px;border-radius:8px;}
+      .m-lbl{font-size:.68rem;}
+      .m-val{font-size:.82rem;}
+      .action-btns{gap:7px;margin-top:14px;}
+      .btn-pink,.btn-out{height:40px;font-size:.82rem;border-radius:10px;}
+      .chart-card .card-head{flex-wrap:wrap;gap:10px;}
+      .chart-wrap{padding:0 14px 14px;}
+      .range-select{font-size:.7rem;height:28px;}
+      .chart-wrap svg{min-width:320px;}
+      .nut-table{font-size:.74rem;}
+      .nut-table th{font-size:.6rem;padding:0 6px 8px;}
+      .nut-table td{padding:8px 6px;}
+      .prog-track{min-width:50px;display:none;}
+      .nut-pct{font-size:.7rem;}
+      .nut-remain{font-size:.68rem;}
+      .reset-pill{font-size:.58rem;padding:2px 7px;}
+      .nut-table th:nth-child(3),
+      .nut-table td:nth-child(3),
+      .nut-table th:nth-child(5),
+      .nut-table td:nth-child(5){display:none;}
+      body,
+      .page{overflow-x:hidden;max-width:100vw;}
+      .cols,.stats,.hero,.right-col{width:100%;max-width:100%;min-width:0;}
+      .chart-wrap{padding:0 12px 14px;max-width:100%;}
+      .chart-wrap svg{min-width:280px;max-width:100%;}
+    }
+
+    @media(max-width:380px){
+      .hero-txt h1{font-size:1.05rem;}
+      .hero-actions{flex-wrap:wrap;}
+      .hero-btn{flex:1 1 auto;justify-content:center;}
+      .stats{gap:6px;}
+      .stat-val{font-size:1.1rem;}
+      .card-head{padding:12px 14px;}
+      .card-body{padding:14px 14px 16px;}
+      .chart-wrap svg{min-width:280px;}
+      .nut-table th:nth-child(5),
+      .nut-table td:nth-child(5){display:none;}
+    }
+
+    @media(min-width:769px) and (max-width:860px){
+      .cols{grid-template-columns:1fr;}
+      .stats{grid-template-columns:repeat(4,1fr);}
+      .page{padding:20px 16px 44px;}
+      .hero{padding:22px 24px;}
+      .hero-txt h1{font-size:1.3rem;}
+    }
+
+    @media(hover:none) and (pointer:coarse){
+      .btn-pink,.btn-out{min-height:44px;}
+      .hero-btn{min-height:38px;}
+      .range-select{min-height:36px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Loading overlay ── -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-card">
+    <div class="spinner"></div>
+    <p>Loading…</p>
+  </div>
+</div>
+
+<nav>
+  <a class="logo" href="/">
+    <img src="/static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
+  </a>
+
+  <div class="nav-links-wrapper">
+    <button class="nav-arrow" id="navPrev" aria-label="Show previous items">
+      <svg viewBox="0 0 14 14" fill="none">
+        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="nav-links-scroll" id="navScroll">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/stunting-prediction.html">Stunting Prediction</a></li>
+        <li><a href="/growth-dashboard.html" class="active">Growth Dashboard</a></li>
+        <li><a href="/healthy-recipes.html">Healthy Recipes</a></li>
+        <li><a href="/parenting-guides.html">Parenting Guides</a></li>
+        <li><a href="/forum.html">Forum</a></li>
+      </ul>
+    </div>
+    <button class="nav-arrow" id="navNext" aria-label="Show next items">
+      <svg viewBox="0 0 14 14" fill="none">
+        <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="nav-right">
+    {% if current_user %}
+    <div class="user-menu">
+      <button class="user-btn" id="userMenuBtn" aria-label="User menu">
+        <img
+          src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}"
+          alt="Profile"
+          class="user-avatar"
+        >
+        <span class="user-name">{{ current_user }}</span>
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <a href="/account" class="dropdown-item">Account details</a>
+        <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+      </div>
+    </div>
+    {% else %}
+    <a href="/login" class="btn-login">Log in</a>
+    {% endif %}
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+  <!-- Mobile drawer (renders below nav, above hero) -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/stunting-prediction.html">Stunting Prediction</a>
+    <a href="/growth-dashboard.html" class="active">Growth Dashboard</a>
+    <a href="/healthy-recipes.html">Healthy Recipes</a>
+    <a href="/parenting-guides.html">Parenting Guides</a>
+    <a href="/forum.html">Forum</a>
+  </div>
+
+<!-- ── Page ── -->
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon"><i class="fa-solid fa-chart-line"></i></div>
+    <div class="hero-txt">
+      <h1>{{ child.name }}'s Growth Dashboard</h1>
+      <p>Monitoring development and stunting risk in one place.</p>
+    </div>
+    <div class="hero-actions">
+      <a class="hero-btn hero-btn-outline" href="{{ url_for('select_child') }}">
+        <i class="fa-solid fa-arrow-left"></i> All Children
+      </a>
+      <a class="hero-btn hero-btn-solid" href="{{ url_for('update_data', child_id=child.id) }}" onclick="showLoading()">
+        <i class="fa-solid fa-pen"></i> Update Data
+      </a>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-val">{{ child.age_months }}</div>
+      <div class="stat-lbl">Months Old</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">{{ child.height }} <span style="font-size:.8rem;font-weight:600">cm</span></div>
+      <div class="stat-lbl">Height</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">{{ child.weight }} <span style="font-size:.8rem;font-weight:600">kg</span></div>
+      <div class="stat-lbl">Weight</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">{{ child.bmi }}</div>
+      <div class="stat-lbl">BMI</div>
+    </div>
+  </div>
+
+  <!-- Two-column layout -->
+  <div class="cols">
+
+    <!-- ── Profile card (left) ── -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon blue"><i class="fa-solid fa-child"></i></div>
+        <div>
+          <div class="ch-title">Child Profile</div>
+          <div class="ch-sub">Overview &amp; AI prediction</div>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <div class="profile-avatar-wrap">
+          <div class="profile-av {% if child.gender == 'Male' %}av-b{% elif child.gender == 'Female' %}av-p{% else %}av-g{% endif %}">
+            {% if child.profile_picture and child.profile_picture != 'img/default-children-picture.svg' %}
+              {% if is_blob_url(child.profile_picture) %}
+                <img src="{{ child.profile_picture }}" alt="{{ child.name }}">
+              {% else %}
+                <img src="{{ url_for('static', filename=child.profile_picture) }}" alt="{{ child.name }}">
+              {% endif %}
+            {% else %}
+              <img src="{{ url_for('static', filename='img/default-children-picture.svg') }}" alt="{{ child.name }}">
+            {% endif %}
+          </div>
+          <div class="profile-name">{{ child.name }}</div>
+          <div class="profile-chips">
+            <span class="chip chip-a">{{ child.age_months }} months</span>
+            <span class="chip chip-g">{{ child.gender }}</span>
+          </div>
+        </div>
+
+        <div class="pred-box {{ child.status }}">
+          <div class="pred-label"><i class="fa-solid fa-robot" style="margin-right:4px;"></i>AI Stunting Prediction</div>
+          <div class="pred-val">{{ child.prediction }}</div>
+          <div class="pred-note">{{ child.prediction_note }}</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="metric-row">
+          <div class="metric-item">
+            <span class="m-lbl"><i class="fa-solid fa-ruler-vertical"></i> Height</span>
+            <span class="m-val">{{ child.height }} cm</span>
+          </div>
+          <div class="metric-item">
+            <span class="m-lbl"><i class="fa-solid fa-weight-scale"></i> Weight</span>
+            <span class="m-val">{{ child.weight }} kg</span>
+          </div>
+          <div class="metric-item">
+            <span class="m-lbl"><i class="fa-solid fa-calculator"></i> BMI</span>
+            <span class="m-val">{{ child.bmi }}</span>
+          </div>
+        </div>
+
+        <div class="action-btns">
+          <a class="btn-pink" href="{{ url_for('input_meal', child_id=child.id) }}" onclick="showLoading()">
+            <i class="fa-solid fa-utensils"></i> Input Meal
+          </a>
+          <a class="btn-out" href="{{ url_for('update_data', child_id=child.id) }}" onclick="showLoading()">
+            <i class="fa-solid fa-pen-to-square"></i> Update Measurements
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Right column ── -->
+    <div class="right-col">
+
+      <!-- Chart card -->
+      <!-- HEIGHT CHART -->
+      <div class="card chart-card">
+        <div class="card-head">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="ch-icon blue">
+              <i class="fa-solid fa-ruler-vertical"></i>
+            </div>
+            <div>
+              <div class="ch-title">Height Progress</div>
+              <div class="ch-sub">Height growth over time</div>
+            </div>
+          </div>
+
+          <form method="get">
+            <div class="range-w">
+              <select class="range-select" name="range" onchange="this.form.submit()">
+                {% for value, label in child.period_options %}
+                  <option value="{{ value }}" {% if child.selected_period == value %}selected{% endif %}>
+                    {{ label }}
+                  </option>
+                {% endfor %}
+              </select>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+          </form>
+        </div>
+
+        <div class="chart-wrap">
+          <svg viewBox="0 0 760 310" preserveAspectRatio="none">
+
+            <!-- Grid -->
+            <g class="grid-lines">
+              <line x1="70" y1="40" x2="710" y2="40"/>
+              <line x1="70" y1="100" x2="710" y2="100"/>
+              <line x1="70" y1="160" x2="710" y2="160"/>
+              <line x1="70" y1="220" x2="710" y2="220"/>
+              <line x1="70" y1="280" x2="710" y2="280"/>
+            </g>
+
+            <!-- Axis labels -->
+            <g class="axis-labels">
+              <text x="35" y="44">80</text>
+              <text x="35" y="104">70</text>
+              <text x="35" y="164">60</text>
+              <text x="35" y="224">50</text>
+              <text x="35" y="284">40</text>
+            </g>
+
+            <!-- Height line -->
+            <polyline class="height-line"
+                      points="{{ child.height_polyline }}"/>
+
+            <!-- Height points -->
+            {% for point in child.chart_points %}
+              <circle class="height-dot"
+                      cx="{{ point.x }}"
+                      cy="{{ point.height_y }}"
+                      r="5"/>
+
+              <text class="height-value"
+                    x="{{ point.x - 18 }}"
+                    y="{{ point.height_y - 16 }}">
+                {{ point.height }}
+              </text>
+
+              <text class="month-label"
+                    x="{{ point.x - 34 }}"
+                    y="305">
+                {{ point.month }}
+              </text>
+            {% endfor %}
+
+            <text class="small-axis height-axis"
+                  x="35"
+                  y="16">
+              Height (cm)
+            </text>
+
+          </svg>
+        </div>
+      </div>
+
+
+      <!-- WEIGHT CHART -->
+      <div class="card chart-card">
+        <div class="card-head">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="ch-icon pink">
+              <i class="fa-solid fa-weight-scale"></i>
+            </div>
+            <div>
+              <div class="ch-title">Weight Progress</div>
+              <div class="ch-sub">Weight growth over time</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <svg viewBox="0 0 760 310" preserveAspectRatio="none">
+
+            <!-- Grid -->
+            <g class="grid-lines">
+              <line x1="70" y1="40" x2="710" y2="40"/>
+              <line x1="70" y1="100" x2="710" y2="100"/>
+              <line x1="70" y1="160" x2="710" y2="160"/>
+              <line x1="70" y1="220" x2="710" y2="220"/>
+              <line x1="70" y1="280" x2="710" y2="280"/>
+            </g>
+
+            <!-- Axis labels -->
+            <g class="axis-labels">
+              <text x="35" y="44">12</text>
+              <text x="35" y="104">10</text>
+              <text x="35" y="164">8</text>
+              <text x="35" y="224">6</text>
+              <text x="35" y="284">4</text>
+            </g>
+
+            <!-- Weight line -->
+            <polyline class="weight-line"
+                      points="{{ child.weight_polyline }}"/>
+
+            <!-- Weight points -->
+            {% for point in child.chart_points %}
+              <circle class="weight-dot"
+                      cx="{{ point.x }}"
+                      cy="{{ point.weight_y }}"
+                      r="5"/>
+
+              <text class="weight-value"
+                    x="{{ point.x - 16 }}"
+                    y="{{ point.weight_y - 16 }}">
+                {{ point.weight }}
+              </text>
+
+              <text class="month-label"
+                    x="{{ point.x - 34 }}"
+                    y="305">
+                {{ point.month }}
+              </text>
+            {% endfor %}
+
+            <text class="small-axis weight-axis"
+                  x="35"
+                  y="16">
+              Weight (kg)
+            </text>
+
+          </svg>
+        </div>
+      </div>
+
+      <!-- Nutrition card -->
+      <div class="card">
+        <div class="card-head">
+          <div class="ch-icon pink"><i class="fa-solid fa-apple-whole"></i></div>
+          <div style="flex:1;">
+            <div class="ch-title">Nutrition Progress</div>
+            <div class="ch-sub">Daily intake — today</div>
+          </div>
+          <span class="reset-pill"><i class="fa-solid fa-rotate" style="margin-right:4px;font-size:.6rem;"></i>Resets Daily</span>
+        </div>
+        <div class="card-body">
+          <table class="nut-table">
+            <thead>
+              <tr>
+                <th>Nutrient</th>
+                <th>Intake</th>
+                <th style="width:90px;">Progress</th>
+                <th>Status</th>
+                <th>To Goal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for nutrient in child.nutrition %}
+              <tr>
+                <td class="nut-name">{{ nutrient.name }}</td>
+                <td class="nut-intake">{{ nutrient.intake }}</td>
+                <td>
+                  <span class="prog-track">
+                    <span class="prog-fill {% if nutrient.percent >= 80 %}ok{% endif %}" style="width:{{ [nutrient.percent, 100]|min }}%"></span>
+                  </span>
+                </td>
+                <td>
+                  <span class="nut-pct {% if nutrient.percent >= 80 %}ok{% else %}warn{% endif %}">{{ nutrient.percent }}%</span>
+                </td>
+                <td class="nut-remain">{{ nutrient.remaining }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <div style="margin-top:16px;">
+            <a class="btn-pink" href="{{ url_for('input_meal', child_id=child.id) }}" onclick="showLoading()">
+              <i class="fa-solid fa-plus"></i> Input Meal
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /right-col -->
+  </div><!-- /cols -->
+
+</div><!-- /page -->
+
+<script>
+  // Hamburger toggle
+  var hamburger  = document.getElementById('hamburger');
+  var mobileNav  = document.getElementById('mobileNav');
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close drawer when a link inside it is tapped
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  }
+
+/* ── Navbar scroll arrows ── */
+(function(){
+  const sc=document.getElementById('navScroll');
+  const li=document.getElementById('navLinks');
+  const pv=document.getElementById('navPrev');
+  const nx=document.getElementById('navNext');
+  let off=0;const STEP=100;
+  function maxOff(){const p=li.style.paddingLeft;li.style.paddingLeft='0px';const m=Math.max(0,li.scrollWidth-sc.clientWidth);li.style.paddingLeft=p;return m;}
+  function render(){const m=maxOff();off=Math.max(0,Math.min(off,m));li.style.transform=`translateX(${-off}px)`;if(m===0){const s=sc.clientWidth-li.scrollWidth;li.style.paddingLeft=s>0?`${s/2}px`:'0px';}else{li.style.paddingLeft='0px';}pv.classList.toggle('visible',off>0);nx.classList.toggle('visible',off<m);}
+  pv.addEventListener('click',()=>{off-=STEP;render();});
+  nx.addEventListener('click',()=>{off+=STEP;render();});
+  new ResizeObserver(render).observe(sc);render();
+})();
+
+function showLoading(){
+  document.getElementById('loadingOverlay').classList.add('show');
+}
+
+var userMenuBtn = document.getElementById('userMenuBtn');
+var userDropdown = document.getElementById('userDropdown');
+
+if (userMenuBtn && userDropdown) {
+  userMenuBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    userDropdown.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function () {
+    userDropdown.classList.remove('open');
+  });
+}
+</script>
+</body>
+</html>

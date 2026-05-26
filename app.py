@@ -487,37 +487,37 @@ def inject_user():
 @app.route("/")
 @app.route("/index.html")
 def home():
-    return render_template("index.html")
+    return render_template("home/index.html")
 
 
 @app.route("/parenting-guides.html")
 @app.get("/parenting-guides")
 def parenting_guides():
-    return render_template("parenting-guides.html")
+    return render_template("parenting-guides/parenting-guides.html")
 
 
 @app.route("/parenting-article-example.html")
 @login_required
 def parenting_article():
-    return render_template("parenting-article-example.html")
+    return render_template("parenting-guides/parenting-article-example.html")
 
 
 @app.route("/healthy-recipes.html")
 @app.get("/healthy-recipes")
 def healthy_recipes():
-    return render_template("healthy-recipes.html")
+    return render_template("healthy-recipes/healthy-recipes.html")
 
 
 @app.route("/forum.html")
 @app.get("/forum")
 def forum():
-    return render_template("forum.html")
+    return render_template("forum/forum.html")
 
 
 @app.route("/forum-example.html")
 @login_required
 def forum_example():
-    return render_template("forum-example.html")
+    return render_template("forum/forum-example.html")
 
 
 # ---- Stunting prediction ----
@@ -532,12 +532,12 @@ def stunting_prediction():
         years, months = split_age(total)
         c["age_years"] = years
         c["age_months_display"] = months
-    return render_template("stunting-prediction.html", children=children_list)
+    return render_template("stunting-prediction/stunting-prediction.html", children=children_list)
 
 
 @app.route("/stunting-results.html")
 def stunting_results():
-    return render_template("stunting-results.html")
+    return render_template("stunting-prediction/stunting-results.html")
 
 
 @app.post("/predict")
@@ -560,7 +560,7 @@ def predict():
 
     gender_raw = str(request.form["gender"])
     gender_s = gender_raw.capitalize()
-    gender = 1 if gender_raw.lower() in ["Male"] else 2
+    gender = 1 if gender_raw.capitalize() == "Male" else 2
     age_years = int(request.form.get("age_years", 0))
     age_months = int(request.form.get("age_months", 0))
     total_months = (age_years * 12) + age_months
@@ -626,7 +626,7 @@ def predict():
         save_user_children(email, children)
 
     return render_template(
-        "stunting-results.html",
+        "stunting-prediction/stunting-results.html",
         user=user,
         child=child,
         age_years=age_years,
@@ -651,7 +651,7 @@ def select_child():
     children = get_children()
     for c in children.values():
         refresh_age_months(c)
-    return render_template("select-child.html", children=children.values(), today=datetime.now().strftime("%Y-%m-%d"))
+    return render_template("dashboard/select-child.html", children=children.values(), today=datetime.now().strftime("%Y-%m-%d"))
 
 
 @app.post("/growth-dashboard")
@@ -667,7 +667,7 @@ def add_child():
     email = session["user_email"]
     name = request.form.get("name", "").strip()
     birthdate_str = request.form.get("birthdate", "").strip()
-    gender = request.form.get("gender")
+    gender = (request.form.get("gender") or "").strip().capitalize()
     height = request.form.get("height", type=float)
     weight = request.form.get("weight", type=float)
     if not name or not birthdate_str or height is None or weight is None or not gender:
@@ -686,6 +686,36 @@ def add_child():
     save_user_children(email, children)
     return redirect(url_for("dashboard", child_id=child["id"]))
 
+@app.route("/growth-dashboard/edit_child/<child_id>", methods=["GET", "POST"])
+@login_required
+def edit_child(child_id):
+    email = session["user_email"]
+    children = get_children()
+    child = children.get(child_id)
+    if not child:
+        return redirect(url_for("select_child"))
+    if request.method == "POST":
+        name = request.form.get("name", "").strip()
+        birthdate_str = request.form.get("birthdate", "").strip()
+        gender = request.form.get("gender", "").strip().capitalize()
+        file = request.files.get("profile_picture")
+        if name:
+            child["name"] = name
+        if gender:
+            child["gender"] = gender
+        if birthdate_str:
+            try:
+                birthdate = datetime.strptime(birthdate_str, "%Y-%m-%d").date()
+                child["birthdate"] = birthdate.strftime("%Y-%m-%d")
+                refresh_age_months(child)
+            except ValueError:
+                pass
+        picture_path = save_child_profile_picture(file, child_id)
+        if picture_path:
+            child["profile_picture"] = picture_path
+        save_user_children(email, children)
+        return redirect(url_for("select_child"))
+    return render_template("dashboard/edit-child.html", child=child, today=datetime.now().strftime("%Y-%m-%d"))
 
 @app.route("/growth-dashboard/delete_child/<child_id>", methods=["POST"])
 @login_required
@@ -716,7 +746,7 @@ def dashboard(child_id):
     if ensure_daily_nutrition(selected_child):
         save_user_children(email, children)
     child = dashboard_child(selected_child, period)
-    return render_template("dashboard.html", child=child)
+    return render_template("dashboard/dashboard.html", child=child)
 
 
 @app.route("/growth-dashboard/<child_id>/update", methods=["GET", "POST"])
@@ -750,7 +780,7 @@ def update_data(child_id):
         return redirect(url_for("dashboard", child_id=child["id"]))
     users = load_users()
     user = users.get(email, {})
-    return render_template("update-data.html", child=child, user=user)
+    return render_template("dashboard/update-data.html", child=child, user=user)
 
 
 @app.route("/growth-dashboard/<child_id>/meal", methods=["GET", "POST"])
@@ -771,7 +801,7 @@ def input_meal(child_id):
             save_user_children(email, children)
         return redirect(url_for("dashboard", child_id=child["id"]))
     food_names = [name.title() for name in FOOD_DATABASE if name != "default"]
-    return render_template("input-meal.html", child=child, food_names=food_names)
+    return render_template("dashboard/input-meal.html", child=child, food_names=food_names)
 
 
 # ---- REST API ----
@@ -922,12 +952,12 @@ def login():
         users = load_users()
         user = users.get(email)
         if not user or not check_password_hash(user["password_hash"], password):
-            return render_template("login.html", error="Incorrect email or password.")
+            return render_template("account/login.html", error="Incorrect email or password.")
         session["user_email"] = email
         session["user_name"] = user.get("first_name", "")
         session["user_picture"] = user.get("profile_picture")
         return redirect(url_for("home"))
-    return render_template("login.html", error=None)
+    return render_template("account/login.html", error=None)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -941,14 +971,14 @@ def register():
         password = request.form.get("password", "")
         confirm = request.form.get("confirm_password", "")
         if not first_name or not email or not password:
-            return render_template("register.html", error="Please fill in all required fields.", success=None)
+            return render_template("account/register.html", error="Please fill in all required fields.", success=None)
         if len(password) < 8:
-            return render_template("register.html", error="Password must be at least 8 characters.", success=None)
+            return render_template("account/register.html", error="Password must be at least 8 characters.", success=None)
         if password != confirm:
-            return render_template("register.html", error="Passwords do not match.", success=None)
+            return render_template("account/register.html", error="Passwords do not match.", success=None)
         users = load_users()
         if email in users:
-            return render_template("register.html", error="An account with that email already exists.", success=None)
+            return render_template("account/register.html", error="An account with that email already exists.", success=None)
         users[email] = {
             "first_name": first_name,
             "last_name": last_name,
@@ -960,7 +990,7 @@ def register():
         session["user_email"] = email
         session["user_name"] = first_name
         return redirect(url_for("home"))
-    return render_template("register.html", error=None, success=None)
+    return render_template("account/register.html", error=None, success=None)
 
 
 @app.route("/account")
@@ -969,7 +999,7 @@ def account():
     users = load_users()
     user = users.get(session["user_email"], {})
     return render_template(
-        "account.html",
+        "account/account.html",
         user=user,
         profile_error=None,
         profile_success=None,
@@ -991,7 +1021,7 @@ def update_profile():
 
     def render(profile_error=None, profile_success=None):
         return render_template(
-            "account.html",
+            "account/account.html",
             user=users.get(session["user_email"], user),
             profile_error=profile_error,
             profile_success=profile_success,
@@ -1029,7 +1059,7 @@ def update_password():
 
     def render(password_error=None, password_success=None):
         return render_template(
-            "account.html",
+            "account/account.html",
             user=user,
             profile_error=None,
             profile_success=None,

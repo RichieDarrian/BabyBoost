@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit {{ child.name }} | BabyBoost</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <style>
+    /* BASE */
+    :root {
+      --pink: #FEA4AA;
+      --pink-h: #f67a84;
+      --pink-l: #fde8ef;
+      --blue: #024774;
+      --blue-mid: #37678D;
+      --blue-l: #e8f2fb;
+      --bg: #F0F4F8;
+      --card: #ffffff;
+      --brd: #f0dde6;
+      --brd2: #e8eef4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--blue);
+      min-height: 100vh;
+    }
+
+    .page {
+      padding: 28px 20px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* CARD */
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      border: 1px solid var(--brd);
+      overflow: hidden;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    .card-head {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--brd);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ch-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      background: var(--pink-l);
+      color: #c0516a;
+    }
+
+    .ch-title {
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 2px;
+    }
+
+    .ch-sub { font-size: .72rem; color: var(--blue-mid); }
+
+    .card-body { padding: 20px 24px 24px; }
+
+    /* FORM */
+    .fgrp { margin-bottom: 14px; }
+
+    .flbl {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .flbl i { color: var(--pink); font-size: .72rem; }
+    .req { color: #e03040; margin-left: 3px; }
+
+    .inp {
+      width: 100%;
+      height: 44px;
+      border: 1.5px solid var(--brd2);
+      border-radius: 9px;
+      padding: 0 13px;
+      font-family: 'Poppins', sans-serif;
+      font-size: .88rem;
+      color: var(--blue);
+      background: #fafcff;
+      outline: none;
+      appearance: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .inp:focus {
+      border-color: var(--pink);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(254,164,170,.18);
+    }
+
+    .gender-w { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+
+    .gender-btn {
+      height: 44px;
+      border: 1.5px solid var(--brd2);
+      border-radius: 9px;
+      background: #fafcff;
+      color: var(--blue-mid);
+      font-family: 'Poppins', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all .2s;
+    }
+
+    .gender-btn.male.on { border-color: #5b9bd5; background: #edf4fb; color: #2a6aad; }
+    .gender-btn.female.on { border-color: var(--pink); background: var(--pink-l); color: #c0555c; }
+
+    .upload-box {
+      width: 100%;
+      min-height: 100px;
+      border: 2px dashed var(--brd);
+      border-radius: 16px;
+      background: #fafcff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 20px;
+      text-align: center;
+      color: var(--blue-mid);
+      transition: .25s;
+    }
+
+    .upload-box:hover { border-color: var(--pink); background: var(--pink-l); }
+    .upload-box i { font-size: 1.5rem; color: var(--pink); }
+    .upload-box span { font-size: .9rem; font-weight: 700; color: var(--blue); }
+    .upload-box small { font-size: .72rem; color: var(--blue-mid); }
+    #previewImage { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; display: none; border: 4px solid #fff; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+    .upload-box.has-image i, .upload-box.has-image span, .upload-box.has-image small { display: none; }
+
+    .age-display { font-size: .82rem; font-weight: 600; color: var(--blue-mid); padding: 6px 0 2px 2px; min-height: 22px; }
+    .divider { height: 1px; background: var(--brd); margin: 4px 0 14px; }
+
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+
+    .btn-cancel {
+      height: 48px;
+      background: #fff;
+      color: var(--blue);
+      border: 1.5px solid #ccdde8;
+      border-radius: 11px;
+      font-family: 'Poppins', sans-serif;
+      font-size: .92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: border-color .2s, background .2s;
+      text-decoration: none;
+    }
+
+    .btn-cancel:hover { border-color: var(--blue); background: var(--blue-l); }
+
+    .btn-save {
+      height: 48px;
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      font-family: 'Poppins', sans-serif;
+      font-size: .92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+
+    .btn-save:hover { background: #035a92; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(2,71,116,.18); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .card-head { padding: 14px 18px; gap: 10px; }
+      .ch-icon { width: 34px; height: 34px; font-size: .88rem; border-radius: 9px; }
+      .ch-title { font-size: .85rem; }
+      .ch-sub { font-size: .68rem; }
+      .card-body { padding: 16px 18px 20px; }
+      .inp { height: 40px; font-size: .84rem; }
+      .gender-btn { height: 40px; font-size: .82rem; }
+      .btn-cancel, .btn-save { height: 44px; font-size: .88rem; }
+      .flbl { font-size: .64rem; }
+      .age-display { font-size: .78rem; }
+    }
+
+    @media (max-width: 580px) {
+      .page { padding: 14px 12px 40px; }
+      .card { border-radius: 14px; }
+      .card-body { padding: 14px 16px 18px; }
+      .btn-row { gap: 8px; }
+      .btn-cancel, .btn-save { height: 42px; font-size: .84rem; }
+      .gender-w { gap: 7px; }
+      .upload-box { min-height: 88px; padding: 16px; }
+    }
+
+    @media (max-width: 380px) {
+      .btn-row { grid-template-columns: 1fr; }
+      .btn-cancel { order: 2; }
+      .btn-save { order: 1; }
+      .gender-btn { font-size: .78rem; }
+    }
+
+    /* TOUCH */
+    @media (hover: none) and (pointer: coarse) {
+      .btn-save:hover { transform: none; box-shadow: none; }
+      .btn-cancel { min-height: 44px; }
+      .btn-save { min-height: 44px; }
+      .gender-btn { min-height: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">
+    <img src="/static/img/BabyBoost.svg" alt="BabyBoost Logo" class="logo-svg">
+    <span class="logo-text"><span class="b">Baby</span><span class="p">Boost</span></span>
+  </a>
+  <div class="nav-links-wrapper">
+    <button class="nav-arrow" id="navPrev" aria-label="Show previous items">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="nav-links-scroll" id="navScroll">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/stunting-prediction.html">Stunting Prediction</a></li>
+        <li><a href="/growth-dashboard.html" class="active">Growth Dashboard</a></li>
+        <li><a href="/healthy-recipes.html">Healthy Recipes</a></li>
+        <li><a href="/parenting-guides.html">Parenting Guides</a></li>
+        <li><a href="/forum.html">Forum</a></li>
+      </ul>
+    </div>
+    <button class="nav-arrow" id="navNext" aria-label="Show next items">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="nav-right">
+    {% if current_user %}
+    <div class="user-menu">
+      <button class="user-btn" id="userMenuBtn">
+        <img src="{% if is_blob_url(current_picture) %}{{ current_picture }}{% elif current_picture %}{{ url_for('static', filename=current_picture) }}{% else %}{{ url_for('static', filename='img/default-profile-picture.jpg') }}{% endif %}" alt="Profile" class="user-avatar">
+        <span class="user-name">{{ current_user }}</span>
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <a href="/account" class="dropdown-item">Account details</a>
+        <a href="/logout" class="dropdown-item dropdown-item-logout">Log out</a>
+      </div>
+    </div>
+    {% else %}
+    <a href="/login" class="btn-login">Log in</a>
+    {% endif %}
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="/">Home</a>
+  <a href="/stunting-prediction.html">Stunting Prediction</a>
+  <a href="/growth-dashboard.html" class="active">Growth Dashboard</a>
+  <a href="/healthy-recipes.html">Healthy Recipes</a>
+  <a href="/parenting-guides.html">Parenting Guides</a>
+  <a href="/forum.html">Forum</a>
+</div>
+
+<div class="page">
+  <div class="card">
+    <div class="card-head">
+      <div class="ch-icon"><i class="fa-solid fa-pen"></i></div>
+      <div>
+        <div class="ch-title">Edit {{ child.name }}</div>
+        <div class="ch-sub">Update name, photo, gender or birthday</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <form action="{{ url_for('edit_child', child_id=child.id) }}" method="post" enctype="multipart/form-data">
+
+        <div class="fgrp">
+          <div class="flbl"><i class="fa-solid fa-pen"></i> Child name <span class="req">*</span></div>
+          <input class="inp" type="text" name="name" value="{{ child.name }}" placeholder="e.g. Baby Steve" required>
+        </div>
+
+        <div class="fgrp">
+          <div class="flbl"><i class="fa-solid fa-camera"></i> Profile picture</div>
+            <label class="upload-box {{ 'has-image' if child.profile_picture }}" for="profile_picture" id="uploadBox">
+            <div id="uploadPlaceholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>Upload new photo</span>
+                <small>PNG, JPG, JPEG · leave blank to keep current</small>
+            </div>
+            <img id="previewImage"
+                src="{% if child.profile_picture %}{% if is_blob_url(child.profile_picture) %}{{ child.profile_picture }}{% else %}{{ url_for('static', filename=child.profile_picture) }}{% endif %}{% else %}#{% endif %}"
+                alt="Preview"
+                style="display: {{ 'block' if child.profile_picture else 'none' }};">
+            </label>
+          <input type="file" id="profile_picture" name="profile_picture" accept="image/*" hidden>
+        </div>
+
+        <div class="fgrp">
+          <div class="flbl"><i class="fa-solid fa-venus-mars"></i> Gender <span class="req">*</span></div>
+          <div class="gender-w">
+            <button type="button" class="gender-btn male {{ 'on' if child.gender == 'Male' }}" id="gM" onclick="setGender('Male')">
+              <i class="fa-solid fa-mars"></i> Male
+            </button>
+            <button type="button" class="gender-btn female {{ 'on' if child.gender == 'Female' }}" id="gF" onclick="setGender('Female')">
+              <i class="fa-solid fa-venus"></i> Female
+            </button>
+          </div>
+          <input type="hidden" name="gender" id="genderVal" value="{{ child.gender }}">
+        </div>
+
+        <div class="fgrp">
+          <div class="flbl"><i class="fa-solid fa-calendar-days"></i> Date of birth <span class="req">*</span></div>
+          <input class="inp" type="date" name="birthdate" id="birthdateInput" value="{{ child.birthdate }}" max="{{ today }}" required>
+        </div>
+
+        <div class="fgrp">
+          <div class="flbl"><i class="fa-solid fa-clock"></i> Age</div>
+          <div class="age-display" id="ageDisplay"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="btn-row">
+          <a href="{{ url_for('select_child') }}" class="btn-cancel">
+            <i class="fa-solid fa-arrow-left"></i> Cancel
+          </a>
+          <button type="submit" class="btn-save">
+            <i class="fa-solid fa-check"></i> Save changes
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+    document.addEventListener('click', function() {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  }
+
+  (function() {
+    var scroll = document.getElementById('navScroll');
+    var links = document.getElementById('navLinks');
+    var prev = document.getElementById('navPrev');
+    var next = document.getElementById('navNext');
+    var offset = 0, STEP = 100;
+    function maxOffset() {
+      var saved = links.style.paddingLeft;
+      links.style.paddingLeft = '0px';
+      var max = Math.max(0, links.scrollWidth - scroll.clientWidth);
+      links.style.paddingLeft = saved;
+      return max;
+    }
+    function render() {
+      var max = maxOffset();
+      offset = Math.max(0, Math.min(offset, max));
+      links.style.transform = 'translateX(' + (-offset) + 'px)';
+      var spare = scroll.clientWidth - links.scrollWidth;
+      links.style.paddingLeft = (max === 0 && spare > 0) ? (spare / 2) + 'px' : '0px';
+      prev.classList.toggle('visible', offset > 0);
+      next.classList.toggle('visible', offset < max);
+    }
+    prev.addEventListener('click', function() { offset -= STEP; render(); });
+    next.addEventListener('click', function() { offset += STEP; render(); });
+    new ResizeObserver(render).observe(scroll);
+    render();
+  })();
+
+  var userMenuBtn = document.getElementById('userMenuBtn');
+  var userDropdown = document.getElementById('userDropdown');
+  if (userMenuBtn && userDropdown) {
+    userMenuBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      userDropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', function() { userDropdown.classList.remove('open'); });
+  }
+
+  function setGender(gender) {
+    document.getElementById('gM').classList.toggle('on', gender === 'Male');
+    document.getElementById('gF').classList.toggle('on', gender === 'Female');
+    document.getElementById('genderVal').value = gender;
+  }
+
+  var profileInput = document.getElementById('profile_picture');
+  var previewImage = document.getElementById('previewImage');
+  var uploadBox = document.getElementById('uploadBox');
+  if (profileInput) {
+    profileInput.addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      previewImage.src = URL.createObjectURL(file);
+      previewImage.style.display = 'block';
+      uploadBox.classList.add('has-image');
+    });
+  }
+
+  function calcAge(dateStr) {
+    var display = document.getElementById('ageDisplay');
+    if (!dateStr) { display.textContent = ''; return; }
+    var birth = new Date(dateStr), now = new Date();
+    var months = (now.getFullYear() - birth.getFullYear()) * 12 + (now.getMonth() - birth.getMonth());
+    if (now.getDate() < birth.getDate()) months--;
+    if (months < 0) { display.textContent = 'Date is in the future'; return; }
+    var years = Math.floor(months / 12), rem = months % 12, parts = [];
+    if (years) parts.push(years + ' year' + (years !== 1 ? 's' : ''));
+    if (rem) parts.push(rem + ' month' + (rem !== 1 ? 's' : ''));
+    if (!parts.length) parts.push('Less than 1 month');
+    display.textContent = parts.join(', ') + ' (' + months + ' months total)';
+  }
+
+  var birthdateInput = document.getElementById('birthdateInput');
+  if (birthdateInput) {
+    birthdateInput.addEventListener('change', function() { calcAge(this.value); });
+    birthdateInput.addEventListener('input', function() { calcAge(this.value); });
+    calcAge(birthdateInput.value);
+  }
+</script>
+</body>
+</html>

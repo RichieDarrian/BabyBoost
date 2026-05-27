@@ -10,245 +10,86 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
   <style>
     /* BASE */
-    :root {
-      --pink: #FEA4AA;
-      --pink-h: #f67a84;
-      --pink-l: #fde8ef;
-      --blue: #024774;
-      --blue-mid: #37678D;
-      --blue-l: #e8f2fb;
-      --bg: #F0F4F8;
-      --card: #ffffff;
-      --brd: #f0dde6;
-      --brd2: #e8eef4;
-    }
+    :root{--pink:#FEA4AA;--pink-h:#f67a84;--pink-l:#fde8ef;--blue:#024774;--blue-mid:#37678D;--blue-l:#e8f2fb;--bg:#F0F4F8;--card:#ffffff;--brd:#f0dde6;--brd2:#e8eef4;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--blue);min-height:100vh;}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--blue);
-      min-height: 100vh;
-    }
-
-    .page {
-      padding: 28px 20px 48px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
+    /* PAGE */
+    .page{padding:28px 20px 48px;display:flex;flex-direction:column;align-items:center;gap:20px;}
 
     /* CARD */
-    .card {
-      background: var(--card);
-      border-radius: 18px;
-      border: 1px solid var(--brd);
-      overflow: hidden;
-      max-width: 480px;
-      width: 100%;
-    }
-
-    .card-head {
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--brd);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .ch-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 11px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      background: var(--pink-l);
-      color: #c0516a;
-    }
-
-    .ch-title {
-      font-size: .92rem;
-      font-weight: 700;
-      color: var(--blue);
-      margin-bottom: 2px;
-    }
-
-    .ch-sub { font-size: .72rem; color: var(--blue-mid); }
-
-    .card-body { padding: 20px 24px 24px; }
+    .card{background:var(--card);border-radius:18px;border:1px solid var(--brd);overflow:hidden;max-width:480px;width:100%;}
+    .card-head{padding:18px 24px;border-bottom:1px solid var(--brd);display:flex;align-items:center;gap:12px;}
+    .ch-icon{width:40px;height:40px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;background:var(--pink-l);color:#c0516a;}
+    .ch-title{font-size:.92rem;font-weight:700;color:var(--blue);margin-bottom:2px;}
+    .ch-sub{font-size:.72rem;color:var(--blue-mid);}
+    .card-body{padding:20px 24px 24px;}
 
     /* FORM */
-    .fgrp { margin-bottom: 14px; }
+    .fgrp{margin-bottom:14px;}
+    .flbl{font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:7px;display:flex;align-items:center;gap:5px;}
+    .flbl i{color:var(--pink);font-size:.72rem;}
+    .req{color:#e03040;margin-left:3px;}
+    .inp{width:100%;height:44px;border:1.5px solid var(--brd2);border-radius:9px;padding:0 13px;font-family:'Poppins',sans-serif;font-size:.88rem;color:var(--blue);background:#fafcff;outline:none;appearance:none;transition:border-color .2s,box-shadow .2s;}
+    .inp:focus{border-color:var(--pink);background:#fff;box-shadow:0 0 0 3px rgba(254,164,170,.18);}
 
-    .flbl {
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-      color: var(--blue-mid);
-      margin-bottom: 7px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+    /* GENDER TOGGLE */
+    .gender-w{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+    .gender-btn{height:44px;border:1.5px solid var(--brd2);border-radius:9px;background:#fafcff;color:var(--blue-mid);font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;}
+    .gender-btn.male.on{border-color:#5b9bd5;background:#edf4fb;color:#2a6aad;}
+    .gender-btn.female.on{border-color:var(--pink);background:var(--pink-l);color:#c0555c;}
 
-    .flbl i { color: var(--pink); font-size: .72rem; }
-    .req { color: #e03040; margin-left: 3px; }
+    /* UPLOAD */
+    .upload-box{width:100%;min-height:100px;border:2px dashed var(--brd);border-radius:16px;background:#fafcff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;padding:20px;text-align:center;color:var(--blue-mid);transition:.25s;}
+    .upload-box:hover{border-color:var(--pink);background:var(--pink-l);}
+    .upload-box i{font-size:1.5rem;color:var(--pink);}
+    .upload-box span{font-size:.9rem;font-weight:700;color:var(--blue);}
+    .upload-box small{font-size:.72rem;color:var(--blue-mid);}
+    #previewImage{width:80px;height:80px;object-fit:cover;border-radius:50%;display:none;border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.12);}
+    .upload-box.has-image i,.upload-box.has-image span,.upload-box.has-image small{display:none;}
 
-    .inp {
-      width: 100%;
-      height: 44px;
-      border: 1.5px solid var(--brd2);
-      border-radius: 9px;
-      padding: 0 13px;
-      font-family: 'Poppins', sans-serif;
-      font-size: .88rem;
-      color: var(--blue);
-      background: #fafcff;
-      outline: none;
-      appearance: none;
-      transition: border-color .2s, box-shadow .2s;
-    }
+    /* MISC */
+    .age-display{font-size:.82rem;font-weight:600;color:var(--blue-mid);padding:6px 0 2px 2px;min-height:22px;}
+    .divider{height:1px;background:var(--brd);margin:4px 0 14px;}
 
-    .inp:focus {
-      border-color: var(--pink);
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(254,164,170,.18);
-    }
-
-    .gender-w { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-
-    .gender-btn {
-      height: 44px;
-      border: 1.5px solid var(--brd2);
-      border-radius: 9px;
-      background: #fafcff;
-      color: var(--blue-mid);
-      font-family: 'Poppins', sans-serif;
-      font-size: .85rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all .2s;
-    }
-
-    .gender-btn.male.on { border-color: #5b9bd5; background: #edf4fb; color: #2a6aad; }
-    .gender-btn.female.on { border-color: var(--pink); background: var(--pink-l); color: #c0555c; }
-
-    .upload-box {
-      width: 100%;
-      min-height: 100px;
-      border: 2px dashed var(--brd);
-      border-radius: 16px;
-      background: #fafcff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      padding: 20px;
-      text-align: center;
-      color: var(--blue-mid);
-      transition: .25s;
-    }
-
-    .upload-box:hover { border-color: var(--pink); background: var(--pink-l); }
-    .upload-box i { font-size: 1.5rem; color: var(--pink); }
-    .upload-box span { font-size: .9rem; font-weight: 700; color: var(--blue); }
-    .upload-box small { font-size: .72rem; color: var(--blue-mid); }
-    #previewImage { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; display: none; border: 4px solid #fff; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
-    .upload-box.has-image i, .upload-box.has-image span, .upload-box.has-image small { display: none; }
-
-    .age-display { font-size: .82rem; font-weight: 600; color: var(--blue-mid); padding: 6px 0 2px 2px; min-height: 22px; }
-    .divider { height: 1px; background: var(--brd); margin: 4px 0 14px; }
-
-    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
-
-    .btn-cancel {
-      height: 48px;
-      background: #fff;
-      color: var(--blue);
-      border: 1.5px solid #ccdde8;
-      border-radius: 11px;
-      font-family: 'Poppins', sans-serif;
-      font-size: .92rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: border-color .2s, background .2s;
-      text-decoration: none;
-    }
-
-    .btn-cancel:hover { border-color: var(--blue); background: var(--blue-l); }
-
-    .btn-save {
-      height: 48px;
-      background: var(--blue);
-      color: #fff;
-      border: none;
-      border-radius: 11px;
-      font-family: 'Poppins', sans-serif;
-      font-size: .92rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: background .2s, transform .2s, box-shadow .2s;
-    }
-
-    .btn-save:hover { background: #035a92; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(2,71,116,.18); }
+    /* BUTTONS */
+    .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;}
+    .btn-cancel{height:48px;background:#fff;color:var(--blue);border:1.5px solid #ccdde8;border-radius:11px;font-family:'Poppins',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:border-color .2s,background .2s;}
+    .btn-cancel:hover{border-color:var(--blue);background:var(--blue-l);}
+    .btn-save{height:48px;background:var(--blue);color:#fff;border:none;border-radius:11px;font-family:'Poppins',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s,transform .2s,box-shadow .2s;}
+    .btn-save:hover{background:#035a92;transform:translateY(-2px);box-shadow:0 6px 16px rgba(2,71,116,.18);}
 
     /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .card-head { padding: 14px 18px; gap: 10px; }
-      .ch-icon { width: 34px; height: 34px; font-size: .88rem; border-radius: 9px; }
-      .ch-title { font-size: .85rem; }
-      .ch-sub { font-size: .68rem; }
-      .card-body { padding: 16px 18px 20px; }
-      .inp { height: 40px; font-size: .84rem; }
-      .gender-btn { height: 40px; font-size: .82rem; }
-      .btn-cancel, .btn-save { height: 44px; font-size: .88rem; }
-      .flbl { font-size: .64rem; }
-      .age-display { font-size: .78rem; }
+    @media(max-width:900px){
+      .card-head{padding:14px 18px;gap:10px;}
+      .ch-icon{width:34px;height:34px;font-size:.88rem;border-radius:9px;}
+      .ch-title{font-size:.85rem;}
+      .ch-sub{font-size:.68rem;}
+      .card-body{padding:16px 18px 20px;}
+      .inp{height:40px;font-size:.84rem;}
+      .gender-btn{height:40px;font-size:.82rem;}
+      .btn-cancel,.btn-save{height:44px;font-size:.88rem;}
+      .flbl{font-size:.64rem;}
+      .age-display{font-size:.78rem;}
     }
-
-    @media (max-width: 580px) {
-      .page { padding: 14px 12px 40px; }
-      .card { border-radius: 14px; }
-      .card-body { padding: 14px 16px 18px; }
-      .btn-row { gap: 8px; }
-      .btn-cancel, .btn-save { height: 42px; font-size: .84rem; }
-      .gender-w { gap: 7px; }
-      .upload-box { min-height: 88px; padding: 16px; }
+    @media(max-width:580px){
+      .page{padding:14px 12px 40px;}
+      .card{border-radius:14px;}
+      .card-body{padding:14px 16px 18px;}
+      .btn-row{gap:8px;}
+      .btn-cancel,.btn-save{height:42px;font-size:.84rem;}
+      .gender-w{gap:7px;}
+      .upload-box{min-height:88px;padding:16px;}
     }
-
-    @media (max-width: 380px) {
-      .btn-row { grid-template-columns: 1fr; }
-      .btn-cancel { order: 2; }
-      .btn-save { order: 1; }
-      .gender-btn { font-size: .78rem; }
+    @media(max-width:380px){
+      .btn-row{grid-template-columns:1fr;}
+      .btn-cancel{order:2;}
+      .btn-save{order:1;}
+      .gender-btn{font-size:.78rem;}
     }
-
-    /* TOUCH */
-    @media (hover: none) and (pointer: coarse) {
-      .btn-save:hover { transform: none; box-shadow: none; }
-      .btn-cancel { min-height: 44px; }
-      .btn-save { min-height: 44px; }
-      .gender-btn { min-height: 44px; }
+    @media(hover:none) and (pointer:coarse){
+      .btn-save:hover{transform:none;box-shadow:none;}
+      .btn-cancel,.btn-save,.gender-btn{min-height:44px;}
     }
   </style>
 </head>
